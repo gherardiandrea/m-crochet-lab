@@ -8,12 +8,23 @@
         <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
-    <body class="bg-stone-50 text-stone-800 font-sans antialiased flex flex-col min-h-screen">
+    <body class="bg-stone-50 text-stone-800 font-sans antialiased flex flex-col min-h-screen scroll-smooth">
         
         <header class="bg-[#e6ccb2] py-12 text-center shadow-sm px-4">
             <h1 class="text-4xl md:text-5xl font-serif text-[#7f5539] mb-2 font-bold">{{ $page->title }}</h1>
             <p class="text-[#9c6644] text-lg">{{ $page->description }}</p>
         </header>
+
+        <nav class="sticky top-0 z-20 bg-stone-50/95 backdrop-blur border-b border-stone-200" aria-label="Navigazione principale">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="flex gap-2 sm:gap-3 overflow-x-auto py-3 text-sm sm:text-base whitespace-nowrap">
+                    <a href="/#home-section" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Home</a>
+                    <a href="/#modelli" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Modelli</a>
+                    <a href="/#chi-sono" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Chi sono</a>
+                    <a href="/#contatti" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Contatti</a>
+                </div>
+            </div>
+        </nav>
 
         <main class="container mx-auto px-4 py-12 max-w-6xl flex-grow">
             @yield('body')
