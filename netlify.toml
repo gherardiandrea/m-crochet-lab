@@ -1,0 +1,7 @@
+[build]
+  command = "npm install && npm run build && ./vendor/bin/jigsaw build production"
+  publish = "build_production"
+
+[build.environment]
+  PHP_VERSION = "8.2"
+  NODE_VERSION = "20"
