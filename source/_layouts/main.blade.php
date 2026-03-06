@@ -32,7 +32,7 @@
                 </a>
             </div>
 
-            <p class="text-sm opacity-80">&copy; {{ date('Y') }} {{ $page->title }}. Fatto a mano in Italia con ❤️.</p>
+            <p class="text-sm opacity-80">&copy; {{ date('Y') }} {{ $page->title }}. Fatte a mano con il ❤️.</p>
         </footer>
     </body>
 </html>
