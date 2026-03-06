@@ -1,8 +1,8 @@
 ---
 extends: _layouts.prodotto
 section: content
-nome: Granny Square Bag
-prezzo: 45€
+nome: M Bag
+prezzo: 30€
 colori: ["Rosso", "Blu", "Beige"]
 copertina: /assets/images/borsa_1/1.jpg
 gallery:
