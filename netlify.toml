@@ -1,5 +1,5 @@
 [build]
-  command = "npm install && npm run build && ./vendor/bin/jigsaw build production"
+  command = "npm install && npm run prod && ./vendor/bin/jigsaw build production"
   publish = "build_production"
 
 [build.environment]
