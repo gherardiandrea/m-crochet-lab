@@ -1,22 +1,15 @@
 @extends('_layouts.main')
 
 @section('body')
-    <section id="home-section" class="scroll-mt-32 mb-24">
-        <div class="bg-white rounded-3xl shadow-sm p-6 md:p-10 lg:p-12">
+    <section id="home-section" class="scroll-mt-32 mb-16 md:mb-24">
+        <div class="bg-white rounded-3xl shadow-sm p-5 sm:p-6 md:p-10 lg:p-12">
             <p class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#9c6644] bg-[#f4e7db] px-3 py-2 rounded-full mb-5">Home</p>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                <div>
-                    <h2 class="text-3xl md:text-5xl font-bold text-[#7f5539] mb-5">Borse crochet fatte a mano, una per una</h2>
-                    <p class="text-stone-600 leading-relaxed mb-7">Benvenuta in M Crochet Lab: qui trovi creazioni artigianali con uno stile caldo, naturale e curato nei dettagli. Ogni modello e pensato per accompagnarti tutti i giorni con originalita.</p>
-                    <div class="flex flex-wrap gap-3">
-                        <a href="/#modelli" class="py-3 px-6 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md">Scopri i modelli</a>
-                        <a href="/#chi-sono" class="py-3 px-6 rounded-xl border border-stone-300 text-stone-700 font-semibold hover:bg-stone-50 transition">Leggi la mia storia</a>
-                    </div>
-                </div>
-                <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-stone-100">
-                    <img src="/assets/images/borsa_1/1.jpg"
-                         alt="Borsa crochet artigianale"
-                         class="w-full h-full object-cover">
+            <div class="max-w-3xl">
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold text-[#7f5539] mb-4 md:mb-5">Borse crochet fatte a mano, una per una</h2>
+                <p class="text-stone-600 leading-relaxed mb-6 md:mb-7">Benvenuta in M Crochet Lab: qui trovi creazioni artigianali con uno stile caldo, naturale e curato nei dettagli. Ogni modello e pensato per accompagnarti tutti i giorni con originalita.</p>
+                <div class="flex flex-wrap gap-2 sm:gap-3">
+                    <a href="/#modelli" class="py-3 px-6 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md">Scopri i modelli</a>
+                    <a href="/#chi-sono" class="py-3 px-6 rounded-xl border border-stone-300 text-stone-700 font-semibold hover:bg-stone-50 transition">Leggi la mia storia</a>
                 </div>
             </div>
         </div>
