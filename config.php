@@ -8,7 +8,7 @@ return [
     'collections' => [
         'borse' => [
             'path' => 'modelli/{filename}',
-            'sort' => 'nome',
+            'sort' => 'ordine',
             'getExcerpt' => function ($page, $length = 150) {
                 if ($page->excerpt) {
                     return $page->excerpt;

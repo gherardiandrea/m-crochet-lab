@@ -65,6 +65,38 @@
             </div>
         </div>
 
+        @php
+            // With Jigsaw page data, empty($page->field) can be unreliable on dynamic properties.
+            $dimensioni = method_exists($page, 'get') ? $page->get('dimensioni') : null;
+            $dettagli = method_exists($page, 'get') ? $page->get('dettagli') : null;
+        @endphp
+
+        @if ($dimensioni)
+            <div class="mb-8">
+                <h3 class="font-bold mb-3 text-stone-800">Dimensioni:</h3>
+                <p class="inline-flex items-center px-4 py-2 bg-stone-100 text-stone-700 rounded-lg text-sm font-medium">{{ $dimensioni }}</p>
+            </div>
+        @endif
+
+        @if (is_array($dettagli) && count($dettagli) > 0)
+            <div class="mb-8">
+                <h3 class="font-bold mb-3 text-stone-800">Dettagli:</h3>
+                <ul class="space-y-2 text-stone-700 text-sm">
+                    @foreach($dettagli as $dettaglio)
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1 h-2 w-2 rounded-full bg-[#9c6644] shrink-0"></span>
+                            <span>{{ $dettaglio }}</span>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @elseif (is_string($dettagli) && $dettagli)
+            <div class="mb-8">
+                <h3 class="font-bold mb-3 text-stone-800">Dettagli:</h3>
+                <p class="text-stone-700 text-sm">{{ $dettagli }}</p>
+            </div>
+        @endif
+
         <a href="https://wa.me/390000000000?text={{ urlencode('Ciao! Vorrei info su ' . $page->nome) }}" 
            target="_blank"
            class="inline-flex w-full justify-center items-center gap-2 bg-[#7f5539] hover:bg-[#9c6644] text-white py-4 rounded-xl font-bold shadow-lg transition-colors duration-300">

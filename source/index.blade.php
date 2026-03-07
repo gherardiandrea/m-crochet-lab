@@ -30,7 +30,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             
-            @foreach ($borse as $borsa)
+            @foreach ($borse->sortBy('ordine') as $borsa)
                 <div class="group bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
                     
                     <a href="{{ $borsa->getPath() }}" class="block aspect-[4/5] overflow-hidden bg-stone-100">
