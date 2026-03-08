@@ -1,7 +1,7 @@
 @extends('_layouts.main')
 
 @section('body')
-    <section id="home-section" class="scroll-mt-32 mb-16 md:mb-24">
+    <section id="home-section" class="scroll-mt-32 mb-10 md:mb-14">
         <div class="bg-white rounded-3xl shadow-sm p-5 sm:p-6 md:p-10 lg:p-12">
             <p class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#9c6644] bg-[#f4e7db] px-3 py-2 rounded-full mb-5">Home</p>
             <div class="max-w-3xl">
@@ -16,7 +16,7 @@
     </section>
 
     <section id="modelli" class="scroll-mt-32">
-        <div class="text-center mb-16">
+        <div class="text-center mb-10 md:mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-[#7f5539] mb-4">I Nostri Modelli</h2>
             <p class="text-stone-500 max-w-xl mx-auto">Ogni borsa è un pezzo unico, realizzato interamente a mano con materiali di prima qualità.</p>
         </div>
@@ -24,9 +24,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             
             @foreach ($borse->sortBy('ordine') as $borsa)
-                <div class="group bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
+                <div class="group w-full max-w-sm mx-auto md:max-w-none bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
                     
-                    <a href="{{ $borsa->getPath() }}" class="block aspect-[4/5] overflow-hidden bg-stone-100">
+                    <a href="{{ $borsa->getPath() }}" class="block aspect-[4/3] sm:aspect-[4/5] overflow-hidden bg-stone-100">
                         <img src="{{ $borsa->copertina }}" 
                              alt="{{ $borsa->nome }}" 
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
@@ -68,9 +68,9 @@
         </div>
     </section>
 
-    <section id="chi-sono" class="mt-24 scroll-mt-32">
+    <section id="chi-sono" class="mt-10 md:mt-14 scroll-mt-32">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl shadow-sm p-6 md:p-10">
-            <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-stone-100">
+            <div class="aspect-[4/3] sm:aspect-[4/5] rounded-2xl overflow-hidden bg-stone-100">
                 <img src="/assets/images/borsa_1/2.jpg"
                      alt="Dettaglio artigianale di una borsa crochet"
                      class="w-full h-full object-cover">
@@ -96,7 +96,7 @@
         </div>
     </section>
 
-    <section id="contatti" class="mt-24 scroll-mt-32">
+    <section id="contatti" class="mt-10 md:mt-14 scroll-mt-32">
         <div class="bg-[#e6ccb2] rounded-3xl p-6 md:p-10 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-[#7f5539] mb-4">Contatti</h2>
             <p class="text-[#7f5539] max-w-2xl mx-auto mb-8">Scrivimi per disponibilita, colori personalizzati o tempi di realizzazione. Ti rispondo volentieri su WhatsApp o Instagram.</p>
