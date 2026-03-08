@@ -6,4 +6,4 @@
 /.idea/
 /.vscode/
 npm-debug.log
-/raw-images/
+**/raw-images/
