@@ -868,6 +868,10 @@ video {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.object-\[center_38\%\] {
+  -o-object-position: center 38%;
+     object-position: center 38%;
+}
 .p-2 {
   padding: 0.5rem;
 }
@@ -1253,6 +1257,11 @@ video {
   .md\:object-cover {
     -o-object-fit: cover;
        object-fit: cover;
+  }
+
+  .md\:object-\[center_30\%\] {
+    -o-object-position: center 30%;
+       object-position: center 30%;
   }
 
   .md\:p-10 {
