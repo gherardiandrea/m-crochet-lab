@@ -69,6 +69,9 @@
             // With Jigsaw page data, empty($page->field) can be unreliable on dynamic properties.
             $dimensioni = method_exists($page, 'get') ? $page->get('dimensioni') : null;
             $dettagli = method_exists($page, 'get') ? $page->get('dettagli') : null;
+            $shipping = method_exists($page, 'get') ? (array) $page->get('shipping', []) : [];
+            $shippingPreparation = (string) ($shipping['preparationTime'] ?? '3-7 giorni lavorativi');
+            $shippingDelivery = (string) ($shipping['deliveryTime'] ?? '24-72 ore dopo la spedizione');
         @endphp
 
         @if ($dimensioni)
@@ -97,6 +100,12 @@
             </div>
         @endif
 
+        <div class="mb-8 rounded-xl border border-stone-200 bg-stone-50 p-4">
+            <p class="text-sm font-semibold text-stone-800 mb-1">Spedizione</p>
+            <p class="text-sm text-stone-600">Preparazione in {{ $shippingPreparation }}. Consegna in Italia in {{ $shippingDelivery }}.</p>
+            <a href="/spedizioni" class="inline-flex mt-3 text-sm font-semibold text-[#7f5539] hover:text-[#9c6644] transition-colors">Leggi tempi e dettagli</a>
+        </div>
+
         <a href="https://ig.me/m/m_crochet_lab"
            target="_blank"
            rel="noopener noreferrer"
@@ -104,7 +113,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M8 0C5.826 0 5.555.01 4.703.048 3.85.088 3.27.222 2.762.42a5.06 5.06 0 0 0-1.83 1.191A5.06 5.06 0 0 0 .42 3.44c-.198.507-.332 1.087-.372 1.94C.01 6.232 0 6.503 0 8.677c0 2.174.01 2.445.048 3.297.04.853.174 1.433.372 1.94.22.56.513 1.036.93 1.453.417.417.893.71 1.453.93.507.198 1.087.332 1.94.372.852.038 1.123.048 3.297.048 2.174 0 2.445-.01 3.297-.048.853-.04 1.433-.174 1.94-.372a5.06 5.06 0 0 0 1.453-.93c.417-.417.71-.893.93-1.453.198-.507.332-1.087.372-1.94.038-.852.048-1.123.048-3.297 0-2.174-.01-2.445-.048-3.297-.04-.853-.174-1.433-.372-1.94a5.06 5.06 0 0 0-.93-1.453 5.06 5.06 0 0 0-1.453-.93c-.507-.198-1.087-.332-1.94-.372C10.445.01 10.174 0 8 0zm0 1.441c2.137 0 2.39.008 3.232.046.778.036 1.2.166 1.48.275.37.144.633.316.91.593.277.277.45.54.594.91.109.28.239.702.275 1.48.038.842.046 1.095.046 3.232 0 2.137-.008 2.39-.046 3.232-.036.778-.166 1.2-.275 1.48a3.62 3.62 0 0 1-.593.91 3.62 3.62 0 0 1-.91.594c-.28.109-.702.239-1.48.275-.842.038-1.095.046-3.232.046-2.137 0-2.39-.008-3.232-.046-.778-.036-1.2-.166-1.48-.275a3.62 3.62 0 0 1-.91-.593 3.62 3.62 0 0 1-.594-.91c-.109-.28-.239-.702-.275-1.48-.038-.842-.046-1.095-.046-3.232 0-2.137.008-2.39.046-3.232.036-.778.166-1.2.275-1.48.144-.37.316-.633.593-.91.277-.277.54-.45.91-.594.28-.109.702-.239 1.48-.275.842-.038 1.095-.046 3.232-.046zm0 2.456A4.103 4.103 0 1 0 8 12.103 4.103 4.103 0 0 0 8 3.897zm0 6.765A2.662 2.662 0 1 1 8 5.338a2.662 2.662 0 0 1 0 5.324zm5.224-6.927a.959.959 0 1 1-1.918 0 .959.959 0 0 1 1.918 0z"/>
             </svg>
-            Contattami su Instagram
+            Contattami per personalizzazioni
         </a>
     </div>
 

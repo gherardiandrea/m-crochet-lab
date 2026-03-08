@@ -1,6 +1,14 @@
 @extends('_layouts.main')
 
 @section('body')
+    @php
+        $shipping = method_exists($page, 'get') ? (array) $page->get('shipping', []) : [];
+        $shippingPreparation = (string) ($shipping['preparationTime'] ?? '3-7 giorni lavorativi');
+        $shippingDelivery = (string) ($shipping['deliveryTime'] ?? '24-72 ore dopo la spedizione');
+        $shippingTracking = (string) ($shipping['tracking'] ?? 'Codice inviato appena parte il pacco');
+        $shippingCustomOrders = (string) ($shipping['customOrders'] ?? 'Tempi comunicati prima della conferma');
+    @endphp
+
     <section id="home-section" class="scroll-mt-32 mb-10 md:mb-14">
         <div class="bg-white rounded-3xl shadow-sm p-5 sm:p-6 md:p-10 lg:p-12">
             <p class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#9c6644] bg-[#f4e7db] px-3 py-2 rounded-full mb-5">Home</p>
@@ -96,6 +104,45 @@
                     <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 font-medium text-stone-700">Pezzi unici</div>
                     <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 font-medium text-stone-700">Personalizzabili</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="spedizioni" class="mt-10 md:mt-14 scroll-mt-32">
+        <div class="bg-white rounded-3xl shadow-sm p-6 md:p-10">
+            <div class="text-center mb-8">
+                <p class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#9c6644] bg-[#f4e7db] px-3 py-2 rounded-full mb-4">Spedizioni</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-[#7f5539] mb-3">Tempi e consegna</h2>
+                <p class="text-stone-600 max-w-2xl mx-auto">Ogni borsa viene realizzata a mano: i tempi possono variare in base al modello e alle personalizzazioni richieste.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 text-sm">
+                <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-4">
+                    <p class="font-semibold text-stone-800 mb-1">Preparazione</p>
+                    <p class="text-stone-600">{{ $shippingPreparation }}</p>
+                </div>
+                <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-4">
+                    <p class="font-semibold text-stone-800 mb-1">Consegna Italia</p>
+                    <p class="text-stone-600">{{ $shippingDelivery }}</p>
+                </div>
+                <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-4">
+                    <p class="font-semibold text-stone-800 mb-1">Tracciamento</p>
+                    <p class="text-stone-600">{{ $shippingTracking }}</p>
+                </div>
+                <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-4">
+                    <p class="font-semibold text-stone-800 mb-1">Personalizzazioni</p>
+                    <p class="text-stone-600">{{ $shippingCustomOrders }}</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="/spedizioni" class="py-3 px-6 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md text-center">Leggi dettagli spedizioni</a>
+                <a href="https://ig.me/m/m_crochet_lab"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="py-3 px-6 rounded-xl border border-[#7f5539] text-[#7f5539] font-semibold hover:bg-[#f4e7db] transition text-center">
+                    Chiedi info su Instagram
+                </a>
             </div>
         </div>
     </section>

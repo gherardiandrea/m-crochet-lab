@@ -5,6 +5,13 @@ return [
     'baseUrl' => '',
     'title' => 'M Crochet Lab',
     'description' => 'Borse all\'uncinetto fatte a mano con passione',
+    'shipping' => [
+        'preparationTime' => '3-7 giorni lavorativi',
+        'deliveryTime' => '24-72 ore dopo la spedizione',
+        'tracking' => 'Codice inviato appena parte il pacco',
+        'customOrders' => 'Tempi comunicati prima della conferma',
+        'costs' => 'I costi vengono indicati prima della conferma ordine in base al peso, al volume e alla destinazione.',
+    ],
     'collections' => [
         'borse' => [
             'path' => 'modelli/{filename}',

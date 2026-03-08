@@ -86,6 +86,7 @@
                     <a href="/#home-section" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Home</a>
                     <a href="/#modelli" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Modelli</a>
                     <a href="/#chi-sono" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Chi sono</a>
+                    <a href="/#spedizioni" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Spedizioni</a>
                     <a href="/#contatti" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Contatti</a>
                 </div>
             </div>
@@ -112,6 +113,8 @@
                 <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
                 <span aria-hidden="true" class="opacity-60">|</span>
                 <a href="/cookie" class="hover:text-white transition-colors">Cookie Policy</a>
+                <span aria-hidden="true" class="opacity-60">|</span>
+                <a href="/spedizioni" class="hover:text-white transition-colors">Spedizioni</a>
             </div>
 
             <p class="text-sm opacity-80">&copy; {{ date('Y') }} {{ $page->title }}. Fatte a mano con il ❤️.</p>
