@@ -9,6 +9,9 @@ return [
         'borse' => [
             'path' => 'modelli/{filename}',
             'sort' => 'ordine',
+            'filter' => function ($page) {
+                return (bool) ($page->get('visibile', true));
+            },
             'getExcerpt' => function ($page, $length = 150) {
                 if ($page->excerpt) {
                     return $page->excerpt;

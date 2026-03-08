@@ -3,6 +3,7 @@ extends: _layouts.prodotto
 section: content
 nome: M Bag Medium
 ordine: 2
+visibile: false
 prezzo: 45€
 colori: ["Rosso", "Blu", "Beige"]
 dimensioni: "L 30 cm x H 22 cm x P 10 cm"

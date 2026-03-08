@@ -24,6 +24,11 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             
             @foreach ($borse->sortBy('ordine') as $borsa)
+                @php
+                    $isVisible = method_exists($borsa, 'get') ? (bool) $borsa->get('visibile', true) : true;
+                @endphp
+                @continue(!$isVisible)
+
                 <div class="group w-full max-w-sm mx-auto md:max-w-none bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
                     
                     @php
