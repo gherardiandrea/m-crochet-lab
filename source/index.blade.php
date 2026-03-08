@@ -28,7 +28,7 @@
                     
                     @php
                         $path = (string) $borsa->getPath();
-                        $useLowerCropFocus = str_contains($path, 'm-bag-small') || str_contains($path, 'm-bag-extra-large');
+                        $useLowerCropFocus = str_contains($path, 'm-bag-small') || str_contains($path, 'm-bag-extra-large') || str_contains($path, 'e-bag') || str_contains($path, 's-bag');
                     @endphp
                     <a href="{{ $borsa->getPath() }}" class="block aspect-[4/3] sm:aspect-[4/5] overflow-hidden bg-stone-100">
                         <img src="{{ $borsa->copertina }}" 
