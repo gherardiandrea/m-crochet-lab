@@ -80,7 +80,7 @@
 
     <section id="chi-sono" class="mt-10 md:mt-14 scroll-mt-32">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl shadow-sm p-6 md:p-10">
-            <div class="aspect-[4/3] sm:aspect-[4/5] rounded-2xl overflow-hidden bg-stone-100">
+            <div class="aspect-[4/3] sm:aspect-[4/5] -mx-6 -mt-6 sm:mx-0 sm:mt-0 rounded-t-2xl sm:rounded-2xl overflow-hidden bg-stone-100">
                 <img src="/assets/images/homepage/homepage.jpg"
                      alt="Dettaglio artigianale di una borsa crochet"
                      class="w-full h-full object-cover object-[center_38%] md:object-[center_30%]">
