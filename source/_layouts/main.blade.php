@@ -1,9 +1,74 @@
 <!DOCTYPE html>
 <html lang="it">
     <head>
+        @php
+            $siteName = 'M Crochet Lab';
+            $pageTitle = (string) ($page->title ?? $siteName);
+            $productName = method_exists($page, 'get') ? (string) $page->get('nome', '') : '';
+
+            // Build a stronger title on product pages without requiring per-file frontmatter changes.
+            $seoTitle = $productName !== '' ? ($productName . ' | ' . $siteName) : $pageTitle;
+
+            $rawDescription = method_exists($page, 'get')
+                ? (string) $page->get('seoDescription', $page->get('description', ''))
+                : (string) ($page->description ?? '');
+
+            if ($rawDescription === '' && method_exists($page, 'getContent')) {
+                $rawDescription = trim((string) $page->getContent());
+            }
+
+            if ($rawDescription === '' && $productName !== '') {
+                $rawDescription = 'Scopri ' . $productName . ', borsa crochet artigianale realizzata a mano da M Crochet Lab.';
+            }
+
+            if ($rawDescription === '') {
+                $rawDescription = 'Borse crochet fatte a mano con passione e cura artigianale.';
+            }
+
+            $seoDescription = trim(preg_replace('/\s+/', ' ', $rawDescription));
+            if (function_exists('mb_substr') && function_exists('mb_strlen') && mb_strlen($seoDescription) > 160) {
+                $seoDescription = rtrim(mb_substr($seoDescription, 0, 157)) . '...';
+            }
+
+            $seoImagePath = method_exists($page, 'get')
+                ? (string) $page->get('seoImage', $page->get('copertina', '/assets/images/homepage/homepage.jpg'))
+                : '/assets/images/homepage/homepage.jpg';
+
+            $baseUrl = rtrim((string) ($page->baseUrl ?? ''), '/');
+            $pagePath = (string) ($page->getPath() ?? '/');
+            $canonicalPath = $pagePath === '/' ? '' : $pagePath;
+            $canonicalUrl = $baseUrl !== '' ? $baseUrl . $canonicalPath : '';
+            $seoImage = $baseUrl !== '' ? $baseUrl . $seoImagePath : $seoImagePath;
+            $ogType = $productName !== '' ? 'product' : 'website';
+        @endphp
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ $page->title }}</title>
+        <title>{{ $seoTitle }}</title>
+        <meta name="description" content="{{ $seoDescription }}">
+        <meta name="robots" content="index, follow">
+
+        @if ($canonicalUrl !== '')
+            <link rel="canonical" href="{{ $canonicalUrl }}">
+        @endif
+
+        <meta property="og:locale" content="it_IT">
+        <meta property="og:type" content="{{ $ogType }}">
+        <meta property="og:site_name" content="{{ $siteName }}">
+        <meta property="og:title" content="{{ $seoTitle }}">
+        <meta property="og:description" content="{{ $seoDescription }}">
+        <meta property="og:image" content="{{ $seoImage }}">
+        @if ($canonicalUrl !== '')
+            <meta property="og:url" content="{{ $canonicalUrl }}">
+        @endif
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ $seoTitle }}">
+        <meta name="twitter:description" content="{{ $seoDescription }}">
+        <meta name="twitter:image" content="{{ $seoImage }}">
+
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        <link rel="apple-touch-icon" href="/assets/images/jigsaw.png">
+        <link rel="manifest" href="/site.webmanifest">
         
         <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -41,6 +106,12 @@
                     </svg>
                     <span class="font-medium">Seguimi su Instagram</span>
                 </a>
+            </div>
+
+            <div class="mb-5 text-sm flex flex-wrap items-center justify-center gap-3">
+                <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+                <span aria-hidden="true" class="opacity-60">|</span>
+                <a href="/cookie" class="hover:text-white transition-colors">Cookie Policy</a>
             </div>
 
             <p class="text-sm opacity-80">&copy; {{ date('Y') }} {{ $page->title }}. Fatte a mano con il ❤️.</p>

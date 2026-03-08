@@ -63,12 +63,11 @@
                                 Vedi Dettagli
                             </a>
                             
-                            @php
-                                $waMsg = urlencode("Ciao! Ho visto sul sito la borsa " . $borsa->nome . " e vorrei saperne di più.");
-                            @endphp
-                            <a href="https://wa.me/390000000000?text={{ $waMsg }}" 
+                            <a href="https://ig.me/m/m_crochet_lab"
+                               target="_blank"
+                               rel="noopener noreferrer"
                                class="w-full text-center py-3 px-4 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md">
-                                Ordina Ora
+                                Contattami su Instagram
                             </a>
                         </div>
                     </div>
@@ -97,11 +96,6 @@
                     <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 font-medium text-stone-700">Pezzi unici</div>
                     <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 font-medium text-stone-700">Personalizzabili</div>
                 </div>
-
-                <a href="https://wa.me/390000000000?text={{ urlencode('Ciao! Ho visto la sezione Chi sono e vorrei maggiori informazioni.') }}"
-                   class="inline-block py-3 px-6 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md">
-                    Scrivimi su WhatsApp
-                </a>
             </div>
         </div>
     </section>
@@ -109,17 +103,19 @@
     <section id="contatti" class="mt-10 md:mt-14 scroll-mt-32">
         <div class="bg-[#e6ccb2] rounded-3xl p-6 md:p-10 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-[#7f5539] mb-4">Contatti</h2>
-            <p class="text-[#7f5539] max-w-2xl mx-auto mb-8">Scrivimi per disponibilita, colori personalizzati o tempi di realizzazione. Ti rispondo volentieri su WhatsApp o Instagram.</p>
+            <p class="text-[#7f5539] max-w-2xl mx-auto mb-8">Scrivimi per disponibilita, colori personalizzati o tempi di realizzazione. Ti rispondo volentieri su Instagram.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://wa.me/390000000000?text={{ urlencode('Ciao! Vorrei informazioni sui modelli disponibili.') }}"
+                <a href="https://ig.me/m/m_crochet_lab"
+                   target="_blank"
+                   rel="noopener noreferrer"
                    class="py-3 px-6 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md">
-                    Contattami su WhatsApp
+                    Contattami su Instagram
                 </a>
                 <a href="https://www.instagram.com/m_crochet_lab/"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="py-3 px-6 rounded-xl border border-[#7f5539] text-[#7f5539] font-semibold hover:bg-[#f4e7db] transition">
-                    Apri Instagram
+                    Seguimi su Instagram
                 </a>
             </div>
         </div>

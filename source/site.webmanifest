@@ -1,0 +1,15 @@
+{
+  "name": "M Crochet Lab",
+  "short_name": "M Crochet",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f6f2",
+  "theme_color": "#7f5539",
+  "icons": [
+    {
+      "src": "/assets/images/jigsaw.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
