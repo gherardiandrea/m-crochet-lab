@@ -28,7 +28,7 @@
     
     <div class="md:w-1/2">
         <div class="relative group cursor-zoom-in" @click="open = true">
-            <img :src="currentImg" class="w-full rounded-2xl shadow-lg mb-4 object-cover aspect-square">
+            <img :src="currentImg" class="w-full rounded-2xl shadow-lg mb-4 object-contain md:object-cover aspect-square bg-stone-100">
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-2xl flex items-center justify-center">
                 <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 p-3 rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">

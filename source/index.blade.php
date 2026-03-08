@@ -26,10 +26,15 @@
             @foreach ($borse->sortBy('ordine') as $borsa)
                 <div class="group w-full max-w-sm mx-auto md:max-w-none bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
                     
+                    @php
+                        $path = (string) $borsa->getPath();
+                        $useLowerCropFocus = str_contains($path, 'm-bag-small') || str_contains($path, 'm-bag-extra-large');
+                    @endphp
                     <a href="{{ $borsa->getPath() }}" class="block aspect-[4/3] sm:aspect-[4/5] overflow-hidden bg-stone-100">
                         <img src="{{ $borsa->copertina }}" 
                              alt="{{ $borsa->nome }}" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                             style="{{ $useLowerCropFocus ? 'object-position: center 72%;' : '' }}">
                     </a>
                     
                     <div class="p-8 flex flex-col flex-grow">
