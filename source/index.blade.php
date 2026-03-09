@@ -96,8 +96,12 @@
             <div>
                 <p class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#9c6644] bg-[#f4e7db] px-3 py-2 rounded-full mb-5">Chi sono</p>
                 <h2 class="text-3xl md:text-4xl font-bold text-[#7f5539] mb-5">Creativita, filati e passione artigianale</h2>
-                <p class="text-stone-600 mb-4 leading-relaxed">Mi chiamo Mara e ho creato M Crochet Lab per trasformare il crochet in accessori da indossare ogni giorno. Ogni borsa nasce da un'idea, viene realizzata a mano e rifinita con attenzione ai dettagli.</p>
-                <p class="text-stone-600 mb-6 leading-relaxed">Lavoro con materiali selezionati, piccoli lotti e tanta cura: cosi ogni pezzo resta speciale, autentico e unico. Se hai in mente un colore o una variante, possiamo personalizzarla insieme.</p>
+                <p class="text-stone-600 mb-4 leading-relaxed">Mi chiamo Mara, ho quasi 27 anni e, se qualche anno fa mi avessero detto che avrei creato borse all'uncinetto, probabilmente avrei riso. Non mi sono mai considerata una persona particolarmente creativa... e forse è proprio per questo che quello che faccio oggi mi sembra ancora più magico.</p>
+                <p class="text-stone-600 mb-4 leading-relaxed">L'uncinetto mi ha insegnato qualcosa di importante: che dal nulla può nascere qualcosa di bello. Un filo, un uncino, un po' di pazienza... e piano piano prende forma una borsa unica.</p>
+                <p class="text-stone-600 mb-4 leading-relaxed">Mi ha insegnato anche che non sempre le cose riescono al primo tentativo. A volte bisogna fermarsi, disfare qualche punto e ricominciare. Ma in fondo è proprio così che si impara, e forse è anche così che funziona la vita.</p>
+                <p class="text-stone-600 mb-4 leading-relaxed">Ogni borsa che realizzo è diversa, imperfetta nel modo più bello possibile, perché fatta a mano e con il suo carattere. Un po' come noi.</p>
+                <p class="text-stone-600 mb-4 leading-relaxed">Ah, e non sono sola in questa avventura: il mio assistente ufficiale è Simba, il mio gattino rosso, grande esperto nel controllare gomitoli, fili in movimento e momenti di pausa.</p>
+                <p class="text-stone-600 mb-6 leading-relaxed">Se sei qui, probabilmente anche tu credi che le cose fatte con calma, pazienza e un pizzico di magia abbiano qualcosa di speciale.</p>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 text-sm">
                     <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 font-medium text-stone-700">100% handmade</div>
