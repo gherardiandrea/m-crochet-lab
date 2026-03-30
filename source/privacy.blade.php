@@ -32,8 +32,8 @@ description: Informativa sul trattamento dei dati personali
             <div>
                 <h3 class="text-xl font-semibold text-stone-800 mb-2">Hosting</h3>
                 <p>
-                    Il sito e ospitato su Netlify, che puo trattare dati tecnici necessari all'erogazione del servizio
-                    (ad esempio log e dati di traffico) in qualita di fornitore tecnico.
+                    Il sito è ospitato su Netlify, che puo trattare dati tecnici necessari all'erogazione del servizio
+                    (ad esempio log e dati di traffico) in qualità di fornitore tecnico.
                 </p>
             </div>
 
