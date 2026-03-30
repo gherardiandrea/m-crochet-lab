@@ -18,4 +18,4 @@ gallery:
   - /assets/images/e-bag/e_bag_grigia_6.jpeg
 ---
 Borsa intrecciata con sacchetto interno rimovibile e intercambiabile.
-Realizzata interamente a mano con filato di cotone 100%.
+Realizzata interamente a mano con filato di cotone.

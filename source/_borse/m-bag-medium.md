@@ -15,4 +15,4 @@ gallery:
   - /assets/images/borsa_1/3.jpg
 ---
 Borsa a mano media, con clip clap di 20 cm.
-Realizzata interamente a mano con filato di cotone 100%.
+Realizzata interamente a mano con filato di cotone.

@@ -17,4 +17,4 @@ gallery:
   - /assets/images/s-bag/s_bag_bianca_6.jpg
 ---
 Borsa con catenella a tracolla/a spalla con lavorazione punto costa.
-Realizzata interamente a mano con filato di cotone 100%.
+Realizzata interamente a mano con filato di cotone.

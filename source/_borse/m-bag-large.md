@@ -16,4 +16,4 @@ gallery:
   - /assets/images/m-bag-large/5.webp
 ---
 Borsa a mano grande, con clip clap di 20 cm.
-Realizzata interamente a mano con filato di cotone 100%.
+Realizzata interamente a mano con filato di cotone.

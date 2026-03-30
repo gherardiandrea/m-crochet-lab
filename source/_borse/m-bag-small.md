@@ -16,4 +16,4 @@ gallery:
   - /assets/images/m-bag-small/5.webp
 ---
 Borsa a mano piccola, con clip clap di 16 cm.
-Realizzata interamente a mano con filato di cotone 100%.
+Realizzata interamente a mano con filato di cotone.
