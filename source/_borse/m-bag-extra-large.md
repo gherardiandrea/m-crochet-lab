@@ -3,11 +3,10 @@ extends: _layouts.prodotto
 section: content
 nome: M Bag Extra-large
 ordine: 4
-prezzo: 75€
+prezzo: 40€
 colori: ["Rosso", "Blu", "Beige"]
-dimensioni: "L 42 cm x H 32 cm x P 14 cm"
+dimensioni: "L 30 cm x P 15 cm x H 15 cm"
 dettagli:
-  - "Chiusura selezionabile: standard oppure tonda"
 copertina: /assets/images/m-bag-extra-large/1.webp
 gallery:
   - /assets/images/m-bag-extra-large/1.webp
@@ -17,5 +16,5 @@ gallery:
   - /assets/images/m-bag-extra-large/5.webp
   - /assets/images/m-bag-extra-large/6.webp
 ---
-Questa borsa e realizzata interamente a mano con filato di cotone 100%.
-Perfetta per l'estate e molto resistente.
+Borsa a mano grande, con clip clap di 22 cm.
+Realizzata interamente a mano con filato di cotone 100%.

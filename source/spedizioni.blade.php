@@ -7,7 +7,7 @@ description: Tempi, costi e modalita di consegna
 @section('body')
     @php
         $shipping = method_exists($page, 'get') ? (array) $page->get('shipping', []) : [];
-        $shippingPreparation = (string) ($shipping['preparationTime'] ?? '3-7 giorni lavorativi');
+        $shippingPreparation = (string) ($shipping['preparationTime'] ?? '4-7 giorni lavorativi');
         $shippingDelivery = (string) ($shipping['deliveryTime'] ?? '24-72 ore dopo la spedizione');
         $shippingTracking = (string) ($shipping['tracking'] ?? 'Codice inviato appena parte il pacco');
         $shippingCustomOrders = (string) ($shipping['customOrders'] ?? 'Tempi comunicati prima della conferma');
