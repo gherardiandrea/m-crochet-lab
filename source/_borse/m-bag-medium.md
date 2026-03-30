@@ -5,7 +5,6 @@ nome: M Bag Medium
 ordine: 2
 visibile: false
 prezzo: 30€
-colori: ["Rosso", "Blu", "Beige"]
 dimensioni: "L 30 cm x H 22 cm x P 10 cm"
 dettagli:
 copertina: /assets/images/borsa_1/1.jpg

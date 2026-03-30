@@ -4,7 +4,6 @@ section: content
 nome: M Bag Extra-large
 ordine: 4
 prezzo: 40€
-colori: ["Rosso", "Blu", "Beige"]
 dimensioni: "L 30 cm x P 15 cm x H 15 cm"
 dettagli:
 copertina: /assets/images/m-bag-extra-large/1.webp

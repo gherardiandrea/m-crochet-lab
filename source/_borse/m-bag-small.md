@@ -4,7 +4,6 @@ section: content
 nome: M Bag Small
 ordine: 1
 prezzo: 25€
-colori: ["Rosso", "Blu", "Beige"]
 dimensioni: "L 24 cm x P 12 cm x H 14 cm"
 dettagli:
 copertina: /assets/images/m-bag-small/1.webp

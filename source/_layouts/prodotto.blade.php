@@ -56,13 +56,11 @@
             @yield('content')
         </div>
 
-        <div class="mb-8">
-            <h3 class="font-bold mb-3 text-stone-800">Colori disponibili:</h3>
-            <div class="flex flex-wrap gap-2">
-                @foreach($page->colori as $colore)
-                    <span class="px-4 py-1.5 bg-stone-200 text-stone-700 rounded-full text-sm font-medium">{{ $colore }}</span>
-                @endforeach
-            </div>
+        <div class="mb-8 flex items-start gap-3 bg-[#f4e7db] rounded-xl px-4 py-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 mt-0.5 text-[#9c6644]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+            </svg>
+            <p class="text-sm text-[#7f5539]">Disponibile in tantissimi colori e sfumature — contattami per scegliere il tuo preferito!</p>
         </div>
 
         @php

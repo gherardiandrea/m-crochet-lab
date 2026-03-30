@@ -4,7 +4,6 @@ section: content
 nome: S Bag
 ordine: 6
 prezzo: 30€
-colori: ["Bianco"]
 dimensioni: "L 23 cm x P 5 cm x H 17 cm"
 dettagli:
 copertina: /assets/images/s-bag/s_bag_bianca_1.jpg

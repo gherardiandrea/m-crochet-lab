@@ -4,7 +4,6 @@ section: content
 nome: M Bag Large
 ordine: 3
 prezzo: 35€
-colori: ["Rosso", "Blu", "Beige"]
 dimensioni: "L 26 cm x P 14 cm x H 15 cm"
 dettagli:
 copertina: /assets/images/m-bag-large/1.webp
