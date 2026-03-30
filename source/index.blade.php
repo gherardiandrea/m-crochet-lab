@@ -25,7 +25,7 @@
 
     <section id="modelli" class="scroll-mt-32">
         <div class="text-center mb-10 md:mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-[#7f5539] mb-4">I Nostri Modelli</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-[#7f5539] mb-4">I Modelli</h2>
             <p class="text-stone-500 max-w-xl mx-auto">Ogni borsa è un pezzo unico, realizzato interamente a mano con materiali di prima qualità.</p>
         </div>
 

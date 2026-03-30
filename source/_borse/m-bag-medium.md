@@ -1,7 +1,7 @@
 ---
 extends: _layouts.prodotto
 section: content
-nome: M Bag Medium
+nome: MBag Medium
 ordine: 2
 visibile: false
 prezzo: 30€

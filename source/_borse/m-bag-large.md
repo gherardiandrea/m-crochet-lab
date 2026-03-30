@@ -1,7 +1,7 @@
 ---
 extends: _layouts.prodotto
 section: content
-nome: M Bag Large
+nome: MBag Large
 ordine: 3
 prezzo: 35€
 dimensioni: "L 26 cm x P 14 cm x H 15 cm"

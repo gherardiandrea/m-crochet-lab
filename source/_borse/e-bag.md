@@ -1,7 +1,7 @@
 ---
 extends: _layouts.prodotto
 section: content
-nome: E Bag
+nome: EBag
 ordine: 5
 prezzo: 35€
 dimensioni: "L 34 cm x H 25 cm (manici esclusi) - altezza totale con manici 44 cm"

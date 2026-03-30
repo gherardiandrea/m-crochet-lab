@@ -1,7 +1,7 @@
 ---
 extends: _layouts.prodotto
 section: content
-nome: S Bag
+nome: SBag
 ordine: 6
 prezzo: 30€
 dimensioni: "L 23 cm x P 5 cm x H 17 cm"
