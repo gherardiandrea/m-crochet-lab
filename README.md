@@ -1,5 +1,7 @@
 # M Crochet Lab
 
+Sviluppato da [Andrea Gherardi](https://www.linkedin.com/in/andrea-gherardi-0b99b1b7/) · [GitHub](https://github.com/gherardiandrea)
+
 Sito vetrina di **M Crochet Lab**, realizzato con [Jigsaw](https://jigsaw.tighten.com/) (PHP) e asset pipeline tramite **Laravel Mix** + **Tailwind CSS**.
 
 Pubblicato su: [m-crochet-lab.netlify.app](https://m-crochet-lab.netlify.app/)
