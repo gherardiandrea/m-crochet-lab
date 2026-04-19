@@ -10,7 +10,8 @@ description: Informativa sull'uso dei cookie
 
         <div class="space-y-5 text-stone-700 leading-relaxed">
             <p>
-                Questa pagina spiega come il sito utilizza i cookie e tecnologie simili.
+                Questa pagina spiega come il sito utilizza i cookie e tecnologie simili, ai sensi del D.Lgs. 196/2003
+                e del Provvedimento del Garante Privacy dell'8 maggio 2014 e successive integrazioni.
             </p>
 
             <div>
@@ -22,26 +23,71 @@ description: Informativa sull'uso dei cookie
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Cookie utilizzati da questo sito</h3>
+                <h3 class="text-xl font-semibold text-stone-800 mb-2">Cookie tecnici</h3>
                 <p>
-                    Al momento questo sito non utilizza cookie di profilazione o marketing propri.
-                    Eventuali cookie tecnici possono essere usati solo per il funzionamento essenziale del sito e dei servizi di hosting (Netlify).
+                    Il sito utilizza un cookie tecnico (<code class="bg-stone-100 px-1 rounded text-sm">cookie_consent</code>) salvato nel
+                    <strong>localStorage</strong> del browser per ricordare la tua scelta sul consenso ai cookie analitici.
+                    Questo non richiede consenso preventivo in quanto necessario al funzionamento del banner.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-semibold text-stone-800 mb-2">Cookie analitici di terze parti (Google Analytics)</h3>
+                <p class="mb-3">
+                    Previo tuo consenso, il sito utilizza <strong>Google Analytics 4</strong> per analizzare il traffico in forma anonima e aggregata.
+                    Google Analytics installa i seguenti cookie:
+                </p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-stone-100 text-stone-800">
+                                <th class="text-left px-3 py-2 font-semibold border border-stone-200">Cookie</th>
+                                <th class="text-left px-3 py-2 font-semibold border border-stone-200">Scopo</th>
+                                <th class="text-left px-3 py-2 font-semibold border border-stone-200">Durata</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-3 py-2 border border-stone-200 font-mono">_ga</td>
+                                <td class="px-3 py-2 border border-stone-200">Distingue gli utenti unici</td>
+                                <td class="px-3 py-2 border border-stone-200">2 anni</td>
+                            </tr>
+                            <tr class="bg-stone-50">
+                                <td class="px-3 py-2 border border-stone-200 font-mono">_ga_*</td>
+                                <td class="px-3 py-2 border border-stone-200">Mantiene lo stato della sessione</td>
+                                <td class="px-3 py-2 border border-stone-200">2 anni</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mt-3">
+                    I dati raccolti sono anonimi e non consentono l'identificazione personale dell'utente.
+                    Puoi consultare la
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline">Privacy Policy di Google</a>
+                    per maggiori dettagli.
                 </p>
             </div>
 
             <div>
                 <h3 class="text-xl font-semibold text-stone-800 mb-2">Servizi di terze parti</h3>
                 <p>
-                    I link verso piattaforme esterne (ad esempio Instagram) possono portare a siti o app che applicano proprie politiche cookie e privacy.
+                    I link verso piattaforme esterne (ad esempio Instagram) possono portare a siti o app che applicano proprie politiche cookie e privacy,
+                    indipendenti da questo sito.
                 </p>
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Gestione dei cookie</h3>
+                <h3 class="text-xl font-semibold text-stone-800 mb-2">Come gestire o revocare il consenso</h3>
                 <p>
-                    Puoi gestire o disattivare i cookie dalle impostazioni del browser. La disattivazione dei cookie tecnici potrebbe influire
-                    sul corretto funzionamento di alcune pagine.
+                    Puoi modificare la tua scelta in qualsiasi momento:
                 </p>
+                <ul class="list-disc list-inside mt-2 space-y-1">
+                    <li>Cancellando i cookie e il localStorage dal tuo browser (la scelta verrà azzerata e il banner riapparirà)</li>
+                    <li>Installando il
+                        <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" class="underline">Google Analytics Opt-out Add-on</a>
+                    </li>
+                    <li>Disattivando i cookie di terze parti dalle impostazioni del tuo browser</li>
+                </ul>
             </div>
 
             <div>

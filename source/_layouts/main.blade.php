@@ -71,6 +71,20 @@
         <link rel="manifest" href="/site.webmanifest">
         
         <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
+        <style>[x-cloak]{display:none!important}</style>
+        <script>
+            function loadGA() {
+                var s = document.createElement('script');
+                s.async = true;
+                s.src = 'https://www.googletagmanager.com/gtag/js?id=G-4T9M96K0MF';
+                document.head.appendChild(s);
+                window.dataLayer = window.dataLayer || [];
+                window.gtag = function(){ dataLayer.push(arguments); };
+                gtag('js', new Date());
+                gtag('config', 'G-4T9M96K0MF');
+            }
+            if (localStorage.getItem('cookie_consent') === 'accepted') { loadGA(); }
+        </script>
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
     <body class="bg-stone-50 text-stone-800 font-sans antialiased flex flex-col min-h-screen scroll-smooth">
@@ -95,6 +109,68 @@
         <main class="container mx-auto px-4 py-12 max-w-6xl flex-grow">
             @yield('body')
         </main>
+
+        <div
+            x-data="{
+                show: false,
+                init() {
+                    if (!localStorage.getItem('cookie_consent')) this.show = true;
+                },
+                accept() {
+                    localStorage.setItem('cookie_consent', 'accepted');
+                    loadGA();
+                    this.show = false;
+                },
+                decline() {
+                    localStorage.setItem('cookie_consent', 'declined');
+                    this.show = false;
+                }
+            }"
+            x-show="show"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            x-cloak
+            role="dialog"
+            aria-label="Consenso cookie"
+            style="position:fixed;bottom:0;left:0;right:0;z-index:50;background:#fff;border-top:2px solid #e6ccb2;box-shadow:0 -4px 24px rgba(127,85,57,0.10);"
+        >
+            <div style="max-width:900px;margin:0 auto;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+
+                <div style="display:flex;align-items:flex-start;gap:12px;flex:1;min-width:260px;">
+                    <span style="font-size:1.4rem;line-height:1;margin-top:2px;" aria-hidden="true">🍪</span>
+                    <div>
+                        <p style="margin:0 0 3px;font-size:0.875rem;font-weight:600;color:#1c1917;">Questo sito usa i cookie</p>
+                        <p style="margin:0;font-size:0.75rem;color:#78716c;line-height:1.5;">
+                            Usiamo cookie analitici (Google Analytics) per capire come viene visitato il sito.
+                            Nessun dato personale identificativo viene raccolto.
+                            <a href="/cookie" style="color:#7f5539;text-decoration:underline;">Cookie Policy</a>
+                            &middot;
+                            <a href="/privacy" style="color:#7f5539;text-decoration:underline;">Privacy Policy</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:10px;flex-shrink:0;">
+                    <button
+                        @click="decline()"
+                        style="padding:9px 22px;border-radius:999px;font-size:0.875rem;font-weight:600;color:#57534e;background:transparent;border:1.5px solid #d6d3d1;cursor:pointer;transition:border-color .2s,color .2s;"
+                        onmouseover="this.style.borderColor='#a8a29e';this.style.color='#292524'"
+                        onmouseout="this.style.borderColor='#d6d3d1';this.style.color='#57534e'"
+                    >Rifiuta</button>
+                    <button
+                        @click="accept()"
+                        style="padding:9px 22px;border-radius:999px;font-size:0.875rem;font-weight:600;color:#fff;background:#7f5539;border:1.5px solid #7f5539;cursor:pointer;transition:background .2s;"
+                        onmouseover="this.style.background='#9c6644'"
+                        onmouseout="this.style.background='#7f5539'"
+                    >Accetta</button>
+                </div>
+
+            </div>
+        </div>
 
         <footer class="bg-[#7f5539] text-[#e6ccb2] text-center py-10 px-4 mt-auto">
             <div class="mb-6">
