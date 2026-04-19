@@ -66,8 +66,8 @@
         <meta name="twitter:description" content="{{ $seoDescription }}">
         <meta name="twitter:image" content="{{ $seoImage }}">
 
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/assets/images/jigsaw.png">
+        <link rel="icon" href="/favicon.png" type="image/png">
+        <link rel="apple-touch-icon" href="/favicon.png">
         <link rel="manifest" href="/site.webmanifest">
         
         <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
@@ -88,7 +88,14 @@
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
     <body class="bg-stone-50 text-stone-800 font-sans antialiased flex flex-col min-h-screen scroll-smooth">
-        
+
+        @if ($page->promoAttiva)
+        <div style="background:#7f5539;color:#e6ccb2;text-align:center;padding:10px 40px;font-size:0.82rem;font-weight:500;line-height:1.4;position:relative;">
+            {!! $page->promoBarra !!}
+            <a href="https://ig.me/m/m_crochet_lab" target="_blank" rel="noopener noreferrer" style="color:#fff;text-decoration:underline;margin-left:8px;white-space:nowrap;">Scrivimi su Instagram →</a>
+        </div>
+        @endif
+
         <header class="bg-[#e6ccb2] py-12 text-center shadow-sm px-4">
             <h1 class="text-4xl md:text-5xl font-serif text-[#7f5539] mb-2 font-bold">{{ $page->title }}</h1>
             <p class="text-[#9c6644] text-lg">{{ $page->description }}</p>

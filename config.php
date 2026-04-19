@@ -12,6 +12,10 @@ return [
         'customOrders' => 'Tempi comunicati prima della conferma',
         'costs' => 'I costi vengono indicati prima della conferma ordine in base al peso, al volume e alla destinazione.',
     ],
+    'promoAttiva' => true,
+    'promoScadenza' => '2026-05-19',
+    'promoBarra' => '🎁 Offerta di lancio: spedizione gratuita + un regalo misterioso per ogni ordine!',
+
     'collections' => [
         'borse' => [
             'path' => 'modelli/{filename}',
