@@ -96,7 +96,7 @@
         </div>
         @endif
 
-        <header class="bg-[#e6ccb2] py-12 text-center shadow-sm px-4">
+        <header class="bg-[#e6ccb2] py-10 text-center shadow-sm px-4">
             <h1 class="text-4xl md:text-5xl font-serif text-[#7f5539] mb-2 font-bold">{{ $page->title }}</h1>
             <p class="text-[#9c6644] text-lg">{{ $page->description }}</p>
         </header>
@@ -180,6 +180,9 @@
         </div>
 
         <footer class="bg-[#7f5539] text-[#e6ccb2] text-center py-10 px-4 mt-auto">
+            <div class="mb-5">
+                <img src="/assets/images/logo.webp" alt="M Crochet Lab" style="display:block;margin:0 auto;width:72px;height:72px;border-radius:50%;object-fit:cover;opacity:0.92;">
+            </div>
             <div class="mb-6">
                 <a href="https://www.instagram.com/m_crochet_lab/" 
                 target="_blank" 
