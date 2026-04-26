@@ -2,14 +2,19 @@
 
 @section('body')
 
-<div class="mb-8">
-    <a href="/" class="inline-flex items-center flex-row gap-2 w-fit text-stone-500 hover:text-[#7f5539] font-medium transition-colors group">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-        </svg>
-        <span class="whitespace-nowrap">Torna ai modelli</span>
-    </a>
-</div>
+<nav aria-label="Percorso di navigazione" class="mb-8">
+    <ol class="flex flex-wrap items-center gap-2 text-sm text-stone-500">
+        <li class="flex items-center">
+            <a href="/" class="hover:text-[#7f5539] transition-colors font-medium">Home</a>
+        </li>
+        <li aria-hidden="true" class="text-stone-300">/</li>
+        <li class="flex items-center">
+            <a href="/#modelli" class="hover:text-[#7f5539] transition-colors font-medium">Modelli</a>
+        </li>
+        <li aria-hidden="true" class="text-stone-300">/</li>
+        <li aria-current="page" class="text-[#7f5539] font-semibold truncate max-w-[60vw] sm:max-w-none">{{ $page->nome }}</li>
+    </ol>
+</nav>
 
 {{-- Inizializziamo lo stato della gallery con Alpine.js aggiungendo la logica per le frecce --}}
 <div x-data="{ 
@@ -28,7 +33,7 @@
     
     <div class="md:w-1/2">
         <div class="relative group cursor-zoom-in" @click="open = true">
-            <img :src="currentImg" class="w-full rounded-2xl shadow-lg mb-4 object-contain md:object-cover aspect-square bg-stone-100">
+            <img :src="currentImg" alt="{{ $page->nome }}" fetchpriority="high" decoding="async" class="w-full rounded-2xl shadow-lg mb-4 object-contain md:object-cover aspect-square bg-stone-100">
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-2xl flex items-center justify-center">
                 <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 p-3 rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -40,7 +45,10 @@
 
         <div class="grid grid-cols-4 gap-4">
             @foreach($page->gallery as $foto)
-                <img src="{{ $foto }}" 
+                <img src="{{ $foto }}"
+                     alt="{{ $page->nome }} — foto {{ $loop->iteration }}"
+                     loading="lazy"
+                     decoding="async"
                      @click="currentImg = '{{ $foto }}'"
                      :class="currentImg === '{{ $foto }}' ? 'ring-2 ring-[#7f5539] scale-95' : 'opacity-70 hover:opacity-100'"
                      class="cursor-pointer rounded-lg transition-all duration-200 aspect-square object-cover w-full">
@@ -141,7 +149,7 @@
                 </svg>
             </button>
 
-            <img :src="currentImg" @click.outside="open = false" class="max-w-full max-h-[90vh] rounded shadow-2xl relative z-40 object-contain">
+            <img :src="currentImg" alt="{{ $page->nome }}" decoding="async" @click.outside="open = false" class="max-w-full max-h-[90vh] rounded shadow-2xl relative z-40 object-contain">
 
             <button @click.stop="next()" class="absolute right-2 md:right-8 text-white/70 hover:text-white transition-colors z-50 p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 md:h-14 md:w-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">

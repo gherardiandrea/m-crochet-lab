@@ -1,15 +1,32 @@
 {
   "name": "M Crochet Lab",
   "short_name": "M Crochet",
+  "description": "Borse all'uncinetto fatte a mano con passione e cura artigianale.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#f8f6f2",
   "theme_color": "#7f5539",
+  "lang": "it-IT",
   "icons": [
     {
-      "src": "/assets/images/jigsaw.png",
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

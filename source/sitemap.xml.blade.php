@@ -5,6 +5,7 @@
         '/',
         '/privacy',
         '/cookie',
+        '/termini-vendita',
         '/spedizioni',
     ];
 

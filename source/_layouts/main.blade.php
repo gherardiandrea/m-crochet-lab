@@ -67,9 +67,99 @@
         <meta name="twitter:image" content="{{ $seoImage }}">
 
         <link rel="icon" href="/favicon.png" type="image/png">
-        <link rel="apple-touch-icon" href="/favicon.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/icon-192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/assets/images/icon-512.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
         <link rel="manifest" href="/site.webmanifest">
-        
+        <meta name="theme-color" content="#7f5539">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <meta name="apple-mobile-web-app-title" content="M Crochet">
+
+        <script type="application/ld+json">
+        {!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            'name' => $siteName,
+            'description' => 'Borse all\'uncinetto fatte a mano con passione e cura artigianale.',
+            'url' => $baseUrl !== '' ? $baseUrl : 'https://m-crochet-lab.netlify.app',
+            'logo' => ($baseUrl !== '' ? $baseUrl : 'https://m-crochet-lab.netlify.app') . '/assets/images/logo.webp',
+            'sameAs' => [
+                'https://www.instagram.com/m_crochet_lab/',
+            ],
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+        </script>
+
+        @if ($productName !== '')
+            @php
+                $productPriceRaw = method_exists($page, 'get') ? (string) $page->get('prezzo', '') : '';
+                $productPrice = preg_replace('/[^\d,\.]/', '', $productPriceRaw);
+                $productPrice = str_replace(',', '.', $productPrice);
+                $productGallery = method_exists($page, 'get') ? (array) $page->get('gallery', []) : [];
+                $absoluteBase = $baseUrl !== '' ? $baseUrl : 'https://m-crochet-lab.netlify.app';
+                $productImages = array_values(array_map(function ($img) use ($absoluteBase) {
+                    return $absoluteBase . $img;
+                }, $productGallery));
+                if (empty($productImages)) {
+                    $productImages = [$absoluteBase . $seoImagePath];
+                }
+                $productSchema = [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'Product',
+                    'name' => $productName,
+                    'description' => $seoDescription,
+                    'image' => $productImages,
+                    'brand' => [
+                        '@type' => 'Brand',
+                        'name' => $siteName,
+                    ],
+                ];
+                if ($productPrice !== '') {
+                    $productSchema['offers'] = [
+                        '@type' => 'Offer',
+                        'price' => $productPrice,
+                        'priceCurrency' => 'EUR',
+                        'availability' => 'https://schema.org/InStock',
+                        'url' => $canonicalUrl !== '' ? $canonicalUrl : ($absoluteBase . $pagePath),
+                        'itemCondition' => 'https://schema.org/NewCondition',
+                    ];
+                }
+            @endphp
+            <script type="application/ld+json">
+            {!! json_encode($productSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+            </script>
+
+            @php
+                $breadcrumbSchema = [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'BreadcrumbList',
+                    'itemListElement' => [
+                        [
+                            '@type' => 'ListItem',
+                            'position' => 1,
+                            'name' => 'Home',
+                            'item' => $absoluteBase . '/',
+                        ],
+                        [
+                            '@type' => 'ListItem',
+                            'position' => 2,
+                            'name' => 'Modelli',
+                            'item' => $absoluteBase . '/#modelli',
+                        ],
+                        [
+                            '@type' => 'ListItem',
+                            'position' => 3,
+                            'name' => $productName,
+                            'item' => $canonicalUrl !== '' ? $canonicalUrl : ($absoluteBase . $pagePath),
+                        ],
+                    ],
+                ];
+            @endphp
+            <script type="application/ld+json">
+            {!! json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+            </script>
+        @endif
+
         <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
         <style>[x-cloak]{display:none!important}</style>
         <script>
@@ -125,14 +215,19 @@
                 },
                 accept() {
                     localStorage.setItem('cookie_consent', 'accepted');
-                    loadGA();
+                    if (typeof loadGA === 'function' && !window.__gaLoaded) { loadGA(); window.__gaLoaded = true; }
                     this.show = false;
                 },
                 decline() {
                     localStorage.setItem('cookie_consent', 'declined');
                     this.show = false;
+                },
+                reopen() {
+                    localStorage.removeItem('cookie_consent');
+                    this.show = true;
                 }
             }"
+            @reopen-cookie-banner.window="reopen()"
             x-show="show"
             x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0"
@@ -181,7 +276,7 @@
 
         <footer class="bg-[#7f5539] text-[#e6ccb2] text-center py-10 px-4 mt-auto">
             <div class="mb-5">
-                <img src="/assets/images/logo.webp" alt="M Crochet Lab" style="display:block;margin:0 auto;width:72px;height:72px;border-radius:50%;object-fit:cover;opacity:0.92;">
+                <img src="/assets/images/logo.webp" alt="M Crochet Lab" loading="lazy" decoding="async" width="72" height="72" style="display:block;margin:0 auto;width:72px;height:72px;border-radius:50%;object-fit:cover;opacity:0.92;">
             </div>
             <div class="mb-6">
                 <a href="https://www.instagram.com/m_crochet_lab/" 
@@ -195,13 +290,25 @@
                 </a>
             </div>
 
-            <div class="mb-5 text-sm flex flex-wrap items-center justify-center gap-3">
+            <div class="mb-5 text-sm flex flex-wrap items-center justify-center gap-4">
                 <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
-                <span aria-hidden="true" class="opacity-60">|</span>
+                <span aria-hidden="true" class="opacity-50">·</span>
                 <a href="/cookie" class="hover:text-white transition-colors">Cookie Policy</a>
-                <span aria-hidden="true" class="opacity-60">|</span>
+                <span aria-hidden="true" class="opacity-50">·</span>
+                <a href="/termini-vendita" class="hover:text-white transition-colors">Termini di Vendita</a>
+                <span aria-hidden="true" class="opacity-50">·</span>
                 <a href="/spedizioni" class="hover:text-white transition-colors">Spedizioni</a>
+                <span aria-hidden="true" class="opacity-50">·</span>
+                <button
+                    type="button"
+                    onclick="window.dispatchEvent(new CustomEvent('reopen-cookie-banner'))"
+                    class="hover:text-white transition-colors hover:underline cursor-pointer"
+                    style="font: inherit; color: inherit; background: transparent; border: 0; padding: 0; margin: 0;"
+                >Gestisci preferenze cookie</button>
+                <span aria-hidden="true" class="opacity-50">·</span>
+                <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Risoluzione controversie online (ODR)</a>
             </div>
+            <p class="text-xs opacity-70 mb-3">M Crochet Lab di Mara Benintendi &mdash; Paladina (BG) &mdash; Attività artigianale occasionale non professionale</p>
 
             <p class="text-sm opacity-80">&copy; {{ date('Y') }} {{ $page->title }}. Fatte a mano con il ❤️.</p>
             <p class="text-xs opacity-50 mt-2">Sito sviluppato da <a href="https://www.linkedin.com/in/andrea-gherardi-0b99b1b7/" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-80">Andrea Gherardi</a> &middot; <a href="https://github.com/gherardiandrea" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-80">GitHub</a></p>
