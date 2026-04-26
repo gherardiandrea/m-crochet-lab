@@ -57,7 +57,7 @@
     </div>
 
     <div class="md:w-1/2">
-        <h1 class="text-4xl font-bold text-[#7f5539] mb-4">{{ $page->nome }}</h1>
+        <h1 class="font-serif text-4xl font-bold text-[#7f5539] mb-4">{{ $page->nome }}</h1>
         <p class="text-2xl font-semibold mb-6 text-stone-700">{{ $page->prezzo }}</p>
         
         <div class="prose text-stone-600 mb-8">

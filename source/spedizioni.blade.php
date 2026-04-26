@@ -15,7 +15,7 @@ description: Tempi, costi e modalita di consegna
     @endphp
 
     <section class="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm p-6 md:p-10">
-        <h2 class="text-3xl md:text-4xl font-bold text-[#7f5539] mb-6">Spedizioni</h2>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-6">Spedizioni</h2>
 
         <div class="space-y-6 text-stone-700 leading-relaxed">
             <p>
