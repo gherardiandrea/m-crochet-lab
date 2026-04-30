@@ -172,7 +172,7 @@
                     @endif
                 </p>
                 <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-3">Pronte per te</h2>
-                <p class="text-stone-500 leading-relaxed max-w-lg">Pezzi unici, gia pronti per essere indossati. Basta scegliere il tuo.</p>
+                <p class="text-stone-500 leading-relaxed max-w-lg">Pezzi unici, già pronti per essere indossati. Basta scegliere il tuo.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -198,7 +198,7 @@
                             @endif
                             @if(!empty($borsa['prezzoOriginale']))
                             <span class="inline-flex items-center text-xs font-bold px-3 py-1.5 rounded-full shadow-sm" style="background:#f4e7db;color:#7f5539;">
-                                In sconto
+                                In sconto per la festa della mamma
                             </span>
                             @endif
                         </div>
@@ -255,7 +255,7 @@
 
             <div>
                 <p class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#9c6644] bg-[#f4e7db] px-3 py-2 rounded-full mb-5">Chi sono</p>
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-5">Creativita, filati e passione artigianale</h2>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-5">Creatività, filati e passione artigianale</h2>
                 <p class="text-stone-600 mb-4 leading-relaxed">Mi chiamo Mara, ho 27 anni e, se qualche anno fa mi avessero detto che avrei creato borse all'uncinetto, probabilmente avrei riso. Non mi sono mai considerata una persona particolarmente creativa... e forse è proprio per questo che quello che faccio oggi mi sembra ancora più magico.</p>
                 <p class="text-stone-600 mb-4 leading-relaxed">L'uncinetto mi ha insegnato qualcosa di importante: che dal nulla può nascere qualcosa di bello. Un filo, un uncino, un po' di pazienza... e piano piano prende forma una borsa unica.</p>
                 <p class="text-stone-600 mb-4 leading-relaxed">Mi ha insegnato anche che non sempre le cose riescono al primo tentativo. A volte bisogna fermarsi, disfare qualche punto e ricominciare. Ma in fondo è proprio così che si impara, e forse è anche così che funziona la vita.</p>
@@ -314,7 +314,7 @@
     <section id="contatti" class="mt-10 md:mt-14 scroll-mt-32">
         <div class="bg-[#e6ccb2] rounded-3xl p-6 md:p-10 text-center">
             <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-4">Contatti</h2>
-            <p class="text-[#7f5539] max-w-2xl mx-auto mb-8">Scrivimi per disponibilita, colori personalizzati o tempi di realizzazione. Ti rispondo volentieri su Instagram.</p>
+            <p class="text-[#7f5539] max-w-2xl mx-auto mb-8">Scrivimi per disponibilità, colori personalizzati o tempi di realizzazione. Ti rispondo volentieri su Instagram.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="https://ig.me/m/m_crochet_lab"
                    target="_blank"

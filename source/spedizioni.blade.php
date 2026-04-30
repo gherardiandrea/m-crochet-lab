@@ -1,6 +1,6 @@
 ---
 title: Spedizioni
-description: Tempi, costi e modalita di consegna
+description: Tempi, costi e modalità di consegna
 ---
 @extends('_layouts.main')
 
@@ -19,7 +19,7 @@ description: Tempi, costi e modalita di consegna
 
         <div class="space-y-6 text-stone-700 leading-relaxed">
             <p>
-                Ogni borsa viene realizzata a mano. Per questo i tempi possono cambiare in base alla disponibilita del modello
+                Ogni borsa viene realizzata a mano. Per questo i tempi possono cambiare in base alla disponibilità del modello
                 e ad eventuali personalizzazioni.
             </p>
 
@@ -79,7 +79,7 @@ description: Tempi, costi e modalita di consegna
             <div>
                 <h3 class="text-xl font-semibold text-stone-800 mb-2">Supporto</h3>
                 <p>
-                    Per aggiornamenti su tempi e disponibilita puoi scrivermi direttamente su Instagram.
+                    Per aggiornamenti su tempi e disponibilità puoi scrivermi direttamente su Instagram.
                 </p>
             </div>
 
