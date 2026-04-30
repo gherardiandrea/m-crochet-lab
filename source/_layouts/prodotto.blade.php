@@ -76,7 +76,7 @@
             $dimensioni = method_exists($page, 'get') ? $page->get('dimensioni') : null;
             $dettagli = method_exists($page, 'get') ? $page->get('dettagli') : null;
             $shipping = method_exists($page, 'get') ? (array) $page->get('shipping', []) : [];
-            $shippingPreparation = (string) ($shipping['preparationTime'] ?? '4-7 giorni lavorativi');
+            $shippingPreparation = (string) ($shipping['preparationTime'] ?? '5-8 giorni lavorativi');
             $shippingDelivery = (string) ($shipping['deliveryTime'] ?? '24-72 ore dopo la spedizione');
         @endphp
 
