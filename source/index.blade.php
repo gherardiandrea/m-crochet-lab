@@ -172,16 +172,19 @@
                     @endif
                 </p>
                 <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-3">Pronte per te</h2>
-                <p class="text-stone-500 leading-relaxed max-w-lg">Pezzi unici, già pronti per essere indossati. Basta scegliere il tuo.</p>
+                <p class="text-stone-500 leading-relaxed max-w-lg">Pezzi unici, già pronti per essere indossati.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($prontaConsegna as $borsa)
                 @php $galleryJson = json_encode(array_values((array)($borsa['gallery'] ?? []))); @endphp
-                <div x-data="{ foto: 0, gallery: {{ $galleryJson }} }"
+                <div x-data="{ foto: 0, gallery: {{ $galleryJson }}, _tx: 0, swipeStart(e){ _tx = e.touches[0].clientX }, swipeEnd(e){ let dx = e.changedTouches[0].clientX - _tx; if(Math.abs(dx) > 40){ foto = dx < 0 ? (foto + 1) % gallery.length : (foto - 1 + gallery.length) % gallery.length } } }"
                      class="group bg-stone-50 border border-stone-100 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
 
-                    <div class="relative aspect-square overflow-hidden bg-stone-100 cursor-pointer" @click="foto = (foto + 1) % gallery.length">
+                    <div class="relative aspect-square overflow-hidden bg-stone-100 cursor-pointer"
+                         @click="foto = (foto + 1) % gallery.length"
+                         @touchstart.passive="swipeStart($event)"
+                         @touchend.passive="swipeEnd($event)">
                         <img :src="gallery[foto]"
                              alt="{{ $borsa['nome'] }}"
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
