@@ -48,6 +48,28 @@ description: Tempi, costi e modalita di consegna
             </div>
 
             <div>
+                <h3 class="text-xl font-semibold text-stone-800 mb-3">InPost — Locker e InPost Point</h3>
+                <p class="mb-4">
+                    Un metodo comodo ed economico: ritiri il pacco quando vuoi, senza aspettare il corriere a casa.
+                    Puoi scegliere tra migliaia di locker e punti di ritiro in tutta Italia.
+                </p>
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="rounded-xl border border-stone-200 bg-stone-50 p-4 text-center">
+                        <p class="text-xs font-semibold uppercase tracking-wide text-stone-500 mb-1">Small</p>
+                        <p class="text-2xl font-bold text-[#7f5539]">4,99€</p>
+                    </div>
+                    <div class="rounded-xl border border-stone-200 bg-stone-50 p-4 text-center">
+                        <p class="text-xs font-semibold uppercase tracking-wide text-stone-500 mb-1">Medium</p>
+                        <p class="text-2xl font-bold text-[#7f5539]">5,99€</p>
+                    </div>
+                    <div class="rounded-xl border border-stone-200 bg-stone-50 p-4 text-center">
+                        <p class="text-xs font-semibold uppercase tracking-wide text-stone-500 mb-1">Large</p>
+                        <p class="text-2xl font-bold text-[#7f5539]">6,99€</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
                 <h3 class="text-xl font-semibold text-stone-800 mb-2">Tracciamento</h3>
                 <p>
                     {{ $shippingTracking }}.
