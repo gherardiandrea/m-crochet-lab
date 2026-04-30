@@ -264,7 +264,7 @@
                 <p class="text-stone-600 mb-6 leading-relaxed">Se sei qui, probabilmente anche tu credi che le cose fatte con calma, pazienza e un pizzico di magia abbiano qualcosa di speciale.</p>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 text-sm">
-                    <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 font-medium text-stone-700">100% handmade</div>
+                    <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 font-medium text-stone-700">100% fatte a mano</div>
                     <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 font-medium text-stone-700">Pezzi unici</div>
                     <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 font-medium text-stone-700">Personalizzabili</div>
                 </div>

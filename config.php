@@ -25,8 +25,8 @@ return [
             'nome' => 'SBag',
             'prezzo' => '30€',
             'gallery' => [
-                '/assets/images/disponibili-ora/2/2_1.webp',
                 '/assets/images/disponibili-ora/2/2_2.webp',
+                '/assets/images/disponibili-ora/2/2_1.webp',
             ],
         ],
         [
