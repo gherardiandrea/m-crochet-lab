@@ -169,7 +169,7 @@
             <div>
                 <p class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#9c6644] bg-[#f4e7db] px-3 py-2 rounded-full mb-5">Chi sono</p>
                 <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-5">Creativita, filati e passione artigianale</h2>
-                <p class="text-stone-600 mb-4 leading-relaxed">Mi chiamo Mara, ho quasi 27 anni e, se qualche anno fa mi avessero detto che avrei creato borse all'uncinetto, probabilmente avrei riso. Non mi sono mai considerata una persona particolarmente creativa... e forse è proprio per questo che quello che faccio oggi mi sembra ancora più magico.</p>
+                <p class="text-stone-600 mb-4 leading-relaxed">Mi chiamo Mara, ho 27 anni e, se qualche anno fa mi avessero detto che avrei creato borse all'uncinetto, probabilmente avrei riso. Non mi sono mai considerata una persona particolarmente creativa... e forse è proprio per questo che quello che faccio oggi mi sembra ancora più magico.</p>
                 <p class="text-stone-600 mb-4 leading-relaxed">L'uncinetto mi ha insegnato qualcosa di importante: che dal nulla può nascere qualcosa di bello. Un filo, un uncino, un po' di pazienza... e piano piano prende forma una borsa unica.</p>
                 <p class="text-stone-600 mb-4 leading-relaxed">Mi ha insegnato anche che non sempre le cose riescono al primo tentativo. A volte bisogna fermarsi, disfare qualche punto e ricominciare. Ma in fondo è proprio così che si impara, e forse è anche così che funziona la vita.</p>
                 <p class="text-stone-600 mb-4 leading-relaxed">Ogni borsa che realizzo è diversa, imperfetta nel modo più bello possibile, perché fatta a mano e con il suo carattere. Un po' come noi.</p>
