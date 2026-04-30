@@ -178,13 +178,10 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($prontaConsegna as $borsa)
                 @php $galleryJson = json_encode(array_values((array)($borsa['gallery'] ?? []))); @endphp
-                <div x-data="{ foto: 0, gallery: {{ $galleryJson }}, _tx: 0, swipeStart(e){ this._tx = e.touches[0].clientX }, swipeEnd(e){ let dx = e.changedTouches[0].clientX - this._tx; if(Math.abs(dx) > 40){ this.foto = dx < 0 ? (this.foto + 1) % this.gallery.length : (this.foto - 1 + this.gallery.length) % this.gallery.length } } }"
+                <div x-data="{ foto: 0, gallery: {{ $galleryJson }} }"
                      class="group bg-stone-50 border border-stone-100 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
 
-                    <div class="relative aspect-square overflow-hidden bg-stone-100 cursor-pointer"
-                         @click="foto = (foto + 1) % gallery.length"
-                         @touchstart.passive="swipeStart($event)"
-                         @touchend.passive="swipeEnd($event)">
+                    <div class="relative aspect-square overflow-hidden bg-stone-100 cursor-pointer" @click="foto = (foto + 1) % gallery.length">
                         <img :src="gallery[foto]"
                              alt="{{ $borsa['nome'] }}"
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
