@@ -156,6 +156,74 @@
         </div>
     </section>
 
+    @php
+        $prontaConsegna = json_decode(json_encode($page->get('prontaConsegna', [])), true) ?? [];
+    @endphp
+    @if(count($prontaConsegna) > 0)
+    <section id="pronte-per-te" class="mt-10 md:mt-14 scroll-mt-32">
+        <div class="bg-white rounded-3xl shadow-sm p-6 md:p-10">
+            <div class="mb-8 md:mb-10">
+                <p class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-emerald-700 bg-emerald-50 px-3 py-2 rounded-full mb-4">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Disponibile ora
+                </p>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-3">Pronte per te</h2>
+                <p class="text-stone-500 leading-relaxed max-w-lg">Pezzi unici, gia pronti per essere indossati. Basta scegliere il tuo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($prontaConsegna as $borsa)
+                @php $galleryJson = json_encode(array_values((array)($borsa['gallery'] ?? []))); @endphp
+                <div x-data="{ foto: 0, gallery: {{ $galleryJson }} }"
+                     class="group bg-stone-50 border border-stone-100 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
+
+                    <div class="relative aspect-square overflow-hidden bg-stone-100 cursor-pointer" @click="foto = (foto + 1) % gallery.length">
+                        <img :src="gallery[foto]"
+                             alt="{{ $borsa['nome'] }}"
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                        <div class="absolute top-3 left-3">
+                            <span class="inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-sm text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                Disponibile
+                            </span>
+                        </div>
+
+                        @if(count($borsa['gallery'] ?? []) > 1)
+                        <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
+                            @foreach($borsa['gallery'] as $idx => $f)
+                            <button @click.stop="foto = {{ $idx }}"
+                                    :class="foto === {{ $idx }} ? 'bg-white w-4' : 'bg-white/50 w-1.5'"
+                                    class="h-1.5 rounded-full transition-all duration-300"></button>
+                            @endforeach
+                        </div>
+                        @endif
+                    </div>
+
+                    <div class="p-5">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <p class="font-bold text-stone-800 text-lg leading-tight">{{ $borsa['nome'] }}</p>
+                                @if(!empty($borsa['colore']))
+                                <p class="text-xs text-stone-400 mt-0.5">{{ $borsa['colore'] }}</p>
+                                @endif
+                            </div>
+                            <p class="font-bold text-[#7f5539] text-xl shrink-0">{{ $borsa['prezzo'] }}</p>
+                        </div>
+                        <a href="https://ig.me/m/m_crochet_lab"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="mt-4 w-full text-center block py-2.5 px-4 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition text-sm shadow-sm">
+                            Scrivimi per prenotare
+                        </a>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
     <section id="chi-sono" class="mt-10 md:mt-14 scroll-mt-32">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl shadow-sm p-6 md:p-10">
             <div class="aspect-[4/3] sm:aspect-[4/5] -mx-6 -mt-6 sm:mx-0 sm:mt-0 rounded-t-2xl sm:rounded-2xl overflow-hidden bg-stone-100">

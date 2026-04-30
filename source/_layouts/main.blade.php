@@ -200,6 +200,9 @@
                 <div class="flex gap-2 sm:gap-3 overflow-x-auto py-3 text-sm sm:text-base whitespace-nowrap">
                     <a href="/#home-section" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Home</a>
                     <a href="/#modelli" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Modelli</a>
+                    @if(count(json_decode(json_encode($page->get('prontaConsegna', [])), true) ?? []) > 0)
+                    <a href="/#pronte-per-te" class="px-4 py-2 rounded-full font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition">Pronte per te</a>
+                    @endif
                     <a href="/#chi-sono" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Chi sono</a>
                     <a href="/#spedizioni" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Spedizioni</a>
                     <a href="/#contatti" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Contatti</a>
