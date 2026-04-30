@@ -165,7 +165,11 @@
             <div class="mb-8 md:mb-10">
                 <p class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-emerald-700 bg-emerald-50 px-3 py-2 rounded-full mb-4">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Disponibile ora
+                    @if(count($prontaConsegna) == 1)
+                        Disponibile ora
+                    @else
+                        Disponibili ora
+                    @endif
                 </p>
                 <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-3">Pronte per te</h2>
                 <p class="text-stone-500 leading-relaxed max-w-lg">Pezzi unici, gia pronti per essere indossati. Basta scegliere il tuo.</p>
@@ -182,11 +186,21 @@
                              alt="{{ $borsa['nome'] }}"
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
 
-                        <div class="absolute top-3 left-3">
+                        <div class="absolute top-3 left-3 flex flex-col items-start gap-1.5">
                             <span class="inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-sm text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                                 Disponibile
                             </span>
+                            @if(!empty($borsa['novita']))
+                            <span class="inline-flex items-center bg-[#7f5539] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                Novità assoluta
+                            </span>
+                            @endif
+                            @if(!empty($borsa['prezzoOriginale']))
+                            <span class="inline-flex items-center text-xs font-bold px-3 py-1.5 rounded-full shadow-sm" style="background:#f4e7db;color:#7f5539;">
+                                In sconto
+                            </span>
+                            @endif
                         </div>
 
                         @if(count($borsa['gallery'] ?? []) > 1)
@@ -208,7 +222,12 @@
                                 <p class="text-xs text-stone-400 mt-0.5">{{ $borsa['colore'] }}</p>
                                 @endif
                             </div>
-                            <p class="font-bold text-[#7f5539] text-xl shrink-0">{{ $borsa['prezzo'] }}</p>
+                            <div class="text-right shrink-0">
+                                @if(!empty($borsa['prezzoOriginale']))
+                                <p class="text-xs text-stone-400 line-through">{{ $borsa['prezzoOriginale'] }}</p>
+                                @endif
+                                <p class="font-bold text-xl" style="color:#7f5539;">{{ $borsa['prezzo'] }}</p>
+                            </div>
                         </div>
                         <a href="https://ig.me/m/m_crochet_lab"
                            target="_blank"
