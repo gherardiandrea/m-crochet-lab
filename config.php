@@ -31,8 +31,7 @@ return [
         ],
         [
             'nome' => 'MBag Large',
-            'prezzo' => '30€',
-            'prezzoOriginale' => '35€',
+            'prezzo' => '35€',
             'gallery' => [
                 '/assets/images/disponibili-ora/3/3_1.webp',
                 '/assets/images/disponibili-ora/3/3_2.webp',
@@ -50,8 +49,7 @@ return [
         ],
         [
             'nome' => 'MBag Extra Large',
-            'prezzo' => '35€',
-            'prezzoOriginale' => '40€',
+            'prezzo' => '40€',
             'gallery' => [
                 '/assets/images/disponibili-ora/5/5_1.webp',
                 '/assets/images/disponibili-ora/5/5_2.webp',
