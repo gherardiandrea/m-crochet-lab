@@ -67,8 +67,9 @@
             @foreach ($gallery as $foto)
                 <li class="shrink-0 w-[88%] md:w-auto snap-center {{ $loop->first ? 'md:col-span-2' : '' }}">
                     <button type="button" class="block w-full cursor-zoom-in {{ $loop->first ? 'rounded-3xl' : 'rounded-2xl' }} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7f5539]" @click="apri({{ $loop->index }})" aria-label="Ingrandisci la foto {{ $loop->iteration }} di {{ count($gallery) }}">
+                        {{-- Solo la prima foto a piena risoluzione: le altre (fino a 800 px) restano nitide anche su mobile e pesano molto meno --}}
                         <img src="{{ $foto }}"
-                             srcset="{{ $page->srcset($foto) }}"
+                             srcset="{{ $page->srcset($foto, $loop->first ? null : 800) }}"
                              sizes="{{ $loop->first ? '(min-width: 1152px) 650px, (min-width: 768px) 58vw, 88vw' : '(min-width: 1152px) 320px, (min-width: 768px) 29vw, 88vw' }}"
                              alt="{{ $page->nome }} — foto {{ $loop->iteration }}"
                              @if ($loop->first) fetchpriority="high" @else loading="lazy" @endif
