@@ -73,13 +73,25 @@
                         @php $foto = $borsa->indossata ?: $borsa->copertina; @endphp
                         <li>
                             <a href="{{ $borsa->getPath() }}" class="group block">
-                                <img src="{{ $foto }}"
-                                     srcset="{{ $page->srcset($foto, 800) }}"
-                                     sizes="(min-width: 1024px) 340px, 30vw"
-                                     alt="{{ $borsa->nome }}{{ $borsa->indossata ? ' indossata' : '' }}"
-                                     loading="lazy"
-                                     decoding="async"
-                                     class="w-full aspect-[3/4] object-cover rounded-2xl">
+                                {{-- Indossata per confrontare le misure; al passaggio del mouse la borsa da sola --}}
+                                <div class="relative aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100">
+                                    <img src="{{ $foto }}"
+                                         srcset="{{ $page->srcset($foto, 800) }}"
+                                         sizes="(min-width: 1024px) 340px, 30vw"
+                                         alt="{{ $borsa->nome }}{{ $borsa->indossata ? ' indossata' : '' }}"
+                                         loading="lazy"
+                                         decoding="async"
+                                         class="absolute inset-0 w-full h-full object-cover {{ $borsa->indossata ? 'transition-opacity duration-500 group-hover:opacity-0' : '' }}">
+                                    @if ($borsa->indossata)
+                                        <img src="{{ $borsa->copertina }}"
+                                             srcset="{{ $page->srcset($borsa->copertina, 800) }}"
+                                             sizes="(min-width: 1024px) 340px, 30vw"
+                                             alt=""
+                                             loading="lazy"
+                                             decoding="async"
+                                             class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                                    @endif
+                                </div>
                                 <div class="mt-2 md:mt-3 md:flex md:items-baseline md:justify-between md:gap-3">
                                     <h4 class="font-semibold text-stone-800 group-hover:text-[#7f5539] transition-colors">{{ $borsa->misura ?: $borsa->nome }}</h4>
                                     <p class="text-sm md:text-base font-medium text-[#9c6644]">{{ $borsa->prezzo }}</p>
