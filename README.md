@@ -121,6 +121,9 @@ dettagli:
   - "Dettaglio 1"
 copertina: /assets/images/nome-borsa/1.webp
 indossata: /assets/images/nome-borsa/4.webp # facoltativa: foto indossata per il catalogo
+colori:                                     # facoltativo: foto di colori già realizzati, nella scheda
+  - /assets/images/nome-borsa/1.webp
+  - /assets/images/disponibili-ora/2/2_1.webp
 gallery:
   - /assets/images/nome-borsa/1.webp
   - /assets/images/nome-borsa/2.webp
@@ -131,7 +134,10 @@ Descrizione della borsa.
 
 Le borse che sono misure dello stesso modello hanno anche `famiglia` e `misura` (es. `famiglia: MBag`, `misura: Small`):
 nel catalogo compaiono insieme in un unico blocco, con le foto indossate affiancate.
-La frase descrittiva del blocco si imposta in `config.php`, sotto `famiglie`.
+La frase descrittiva del blocco e i colori già realizzati della famiglia si impostano in `config.php`, sotto `famiglie`.
+
+Nella scheda prodotto compaiono in automatico: le altre misure della stessa famiglia, l'avviso "Pronta da spedire"
+se in `prontaConsegna` c'è una borsa con lo stesso `nome`, e gli altri modelli in fondo.
 
 ## Ottimizzazione immagini
 

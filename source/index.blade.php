@@ -57,7 +57,7 @@
 
         @foreach ($famiglie as $famiglia => $misure)
             @php
-                $descrizione = (string) $page->get('famiglie')?->get($famiglia);
+                $descrizione = (string) $page->get('famiglie')?->get($famiglia)?->get('descrizione');
                 $quante = $numeri[$misure->count()] ?? $misure->count();
             @endphp
             <div class="bg-white rounded-3xl p-4 md:p-8 mb-4 md:mb-6">

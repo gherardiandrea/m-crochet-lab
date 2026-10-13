@@ -2,7 +2,7 @@
 
 @section('body')
 
-<nav aria-label="Percorso di navigazione" class="mb-8">
+<nav aria-label="Percorso di navigazione" class="mb-6 md:mb-8">
     <ol class="flex flex-wrap items-center gap-2 text-sm text-stone-500">
         <li class="flex items-center">
             <a href="/" class="hover:text-[#7f5539] transition-colors font-medium">Home</a>
@@ -20,117 +20,172 @@
     $gallery = collect($page->get('gallery', []))->values()->all();
     $startIndex = array_search($page->copertina, $gallery, true);
     $current = $startIndex === false ? 0 : $startIndex;
-    $srcsets = array_map(fn ($foto) => $page->srcset($foto), $gallery);
+
+    // With Jigsaw page data, empty($page->field) can be unreliable on dynamic properties.
+    $dimensioni = method_exists($page, 'get') ? $page->get('dimensioni') : null;
+    $dettagli = method_exists($page, 'get') ? $page->get('dettagli') : null;
+    $shipping = method_exists($page, 'get') ? (array) $page->get('shipping', []) : [];
+    $shippingPreparation = (string) ($shipping['preparationTime'] ?? '5-8 giorni lavorativi');
+    $shippingDelivery = (string) ($shipping['deliveryTime'] ?? '24-72 ore dopo la spedizione');
+
+    // Misure dello stesso modello (campo "famiglia" nel frontmatter) e colori già realizzati
+    $famiglia = (string) $page->famiglia;
+    $misure = $famiglia !== '' ? $borse->filter(fn ($borsa) => $borsa->famiglia === $famiglia) : collect();
+    $colori = collect($page->colori ?: ($famiglia !== '' ? $page->get('famiglie')?->get($famiglia)?->get('colori') : []))->values()->all();
+
+    // Borse uguali già pronte da spedire, collegate per nome a "Pronte per te"
+    $pronte = collect(json_decode(json_encode($page->get('prontaConsegna', [])), true) ?? [])->where('nome', $page->nome)->values();
+
+    $altriModelli = $borse->reject(fn ($borsa) => $borsa->getPath() === $page->getPath() || ($famiglia !== '' && $borsa->famiglia === $famiglia));
 @endphp
 
-{{-- Stato della gallery per indice: con l'URL una foto ripetuta bloccherebbe la navigazione --}}
 <div x-data="{
     open: false,
     current: {{ $current }},
     images: {{ json_encode($gallery) }},
-    srcsets: {{ json_encode($srcsets) }},
     get currentImg() { return this.images[this.current]; },
     next() { this.current = (this.current + 1) % this.images.length; },
-    prev() { this.current = (this.current - 1 + this.images.length) % this.images.length; }
-}" class="flex flex-col md:flex-row gap-12">
-    
-    <div class="md:w-1/2">
-        <div class="relative group cursor-zoom-in" @click="open = true">
-            <img src="{{ $gallery[$current] ?? $page->copertina }}"
-                 srcset="{{ $srcsets[$current] ?? '' }}"
-                 :src="currentImg"
-                 :srcset="srcsets[current]"
-                 sizes="(min-width: 1152px) 540px, (min-width: 768px) 50vw, 100vw"
-                 alt="{{ $page->nome }}" fetchpriority="high" decoding="async" class="w-full rounded-2xl shadow-lg mb-4 object-cover aspect-square">
-            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-2xl flex items-center justify-center">
-                <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 p-3 rounded-full">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                    </svg>
-                </span>
-            </div>
-        </div>
+    prev() { this.current = (this.current - 1 + this.images.length) % this.images.length; },
+    apri(indice) { this.current = indice; this.open = true; },
+    {{-- Su mobile la galleria scorre: la foto al centro è quella corrente --}}
+    aggiornaIndice(lista) {
+        const centro = lista.scrollLeft + lista.clientWidth / 2;
+        let migliore = 0, distanza = Infinity;
+        [...lista.children].forEach((foto, indice) => {
+            const d = Math.abs(foto.offsetLeft + foto.offsetWidth / 2 - centro);
+            if (d < distanza) { distanza = d; migliore = indice; }
+        });
+        this.current = migliore;
+    }
+}" class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
 
-        <div class="grid grid-cols-4 gap-4">
-            @foreach($gallery as $foto)
-                <img src="{{ $foto }}"
-                     srcset="{{ $page->srcset($foto, 800) }}"
-                     sizes="(min-width: 768px) 120px, 25vw"
-                     alt="{{ $page->nome }} — foto {{ $loop->iteration }}"
-                     loading="lazy"
-                     decoding="async"
-                     @click="current = {{ $loop->index }}"
-                     :class="current === {{ $loop->index }} ? 'ring-2 ring-[#7f5539] scale-95' : 'opacity-70 hover:opacity-100'"
-                     class="cursor-pointer rounded-lg transition-all duration-200 aspect-square object-cover w-full">
+    {{-- Un'unica lista di foto: su mobile scorre in orizzontale, da desktop è una griglia --}}
+    <div class="md:col-span-7 relative">
+        <ul class="flex md:grid md:grid-cols-2 gap-2 md:gap-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0"
+            @scroll.debounce.60ms="aggiornaIndice($el)">
+            @foreach ($gallery as $foto)
+                <li class="shrink-0 w-[88%] md:w-auto snap-center {{ $loop->first ? 'md:col-span-2' : '' }}">
+                    <button type="button" class="block w-full cursor-zoom-in {{ $loop->first ? 'rounded-3xl' : 'rounded-2xl' }} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7f5539]" @click="apri({{ $loop->index }})" aria-label="Ingrandisci la foto {{ $loop->iteration }} di {{ count($gallery) }}">
+                        <img src="{{ $foto }}"
+                             srcset="{{ $page->srcset($foto) }}"
+                             sizes="{{ $loop->first ? '(min-width: 1152px) 650px, (min-width: 768px) 58vw, 88vw' : '(min-width: 1152px) 320px, (min-width: 768px) 29vw, 88vw' }}"
+                             alt="{{ $page->nome }} — foto {{ $loop->iteration }}"
+                             @if ($loop->first) fetchpriority="high" @else loading="lazy" @endif
+                             decoding="async"
+                             class="w-full object-cover aspect-[4/5] {{ $loop->first ? 'rounded-3xl' : 'md:aspect-[3/4] rounded-2xl' }}">
+                    </button>
+                </li>
             @endforeach
-        </div>
+        </ul>
+        @if (count($gallery) > 1)
+            <span class="md:hidden absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs font-semibold px-2.5 py-1 rounded-full pointer-events-none" aria-hidden="true">
+                <span x-text="current + 1">1</span> / {{ count($gallery) }}
+            </span>
+        @endif
     </div>
 
-    <div class="md:w-1/2">
-        <h1 class="font-serif text-4xl font-bold text-[#7f5539] mb-4">{{ $page->nome }}</h1>
-        <p class="text-2xl font-semibold mb-6 text-stone-700">{{ $page->prezzo }}</p>
-        
-        <div class="prose text-stone-600 mb-8">
+    {{-- Su desktop la colonna resta ferma mentre scorrono le foto --}}
+    <div class="md:col-span-5 md:sticky md:top-28">
+        <h1 class="font-serif text-4xl md:text-5xl font-bold text-[#7f5539]">{{ $page->nome }}</h1>
+        <p class="mt-2 text-2xl font-semibold text-stone-800">{{ $page->prezzo }}</p>
+
+        <div class="mt-5 text-stone-600 leading-relaxed">
             @yield('content')
         </div>
 
-        <div class="mb-8 flex items-start gap-3 bg-[#f4e7db] rounded-xl px-4 py-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 mt-0.5 text-[#9c6644]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-            </svg>
-            <p class="text-sm text-[#7f5539]">Disponibile in tantissimi colori e sfumature — contattami per scegliere il tuo preferito!</p>
-        </div>
-
-        @php
-            // With Jigsaw page data, empty($page->field) can be unreliable on dynamic properties.
-            $dimensioni = method_exists($page, 'get') ? $page->get('dimensioni') : null;
-            $dettagli = method_exists($page, 'get') ? $page->get('dettagli') : null;
-            $shipping = method_exists($page, 'get') ? (array) $page->get('shipping', []) : [];
-            $shippingPreparation = (string) ($shipping['preparationTime'] ?? '5-8 giorni lavorativi');
-            $shippingDelivery = (string) ($shipping['deliveryTime'] ?? '24-72 ore dopo la spedizione');
-        @endphp
+        @if ($misure->count() > 1)
+            <div class="mt-7">
+                <p class="text-sm font-semibold text-stone-800 mb-2">Misura</p>
+                <div class="grid grid-cols-3 gap-2">
+                    @foreach ($misure as $borsa)
+                        @php $attuale = $borsa->getPath() === $page->getPath(); @endphp
+                        <a href="{{ $borsa->getPath() }}"
+                           @if ($attuale) aria-current="page" @endif
+                           class="rounded-xl px-2 py-2.5 text-center transition {{ $attuale ? 'border-2 border-[#7f5539] bg-[#f4e7db]' : 'border border-stone-300 hover:border-[#7f5539]' }}">
+                            <span class="block font-semibold text-stone-800 leading-tight">{{ $borsa->misura ?: $borsa->nome }}</span>
+                            <span class="block text-sm text-stone-500">{{ $borsa->prezzo }}</span>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        @endif
 
         @if ($dimensioni)
-            <div class="mb-8">
-                <h2 class="font-bold mb-3 text-stone-800">Dimensioni:</h2>
-                <p class="inline-flex items-center px-4 py-2 bg-stone-100 text-stone-700 rounded-lg text-sm font-medium">{{ $dimensioni }}</p>
-            </div>
+            <p class="{{ $misure->count() > 1 ? 'mt-2' : 'mt-7' }} text-sm text-stone-500"><span class="sr-only">Dimensioni: </span>{{ $dimensioni }}</p>
         @endif
 
         @if (is_array($dettagli) && count($dettagli) > 0)
-            <div class="mb-8">
-                <h2 class="font-bold mb-3 text-stone-800">Dettagli:</h2>
-                <ul class="space-y-2 text-stone-700 text-sm">
-                    @foreach($dettagli as $dettaglio)
-                        <li class="flex items-start gap-2">
-                            <span class="mt-1 h-2 w-2 rounded-full bg-[#9c6644] shrink-0"></span>
-                            <span>{{ $dettaglio }}</span>
+            <ul class="mt-2 space-y-1 text-sm text-stone-500">
+                @foreach ($dettagli as $dettaglio)
+                    <li>{{ $dettaglio }}</li>
+                @endforeach
+            </ul>
+        @elseif (is_string($dettagli) && $dettagli)
+            <p class="mt-2 text-sm text-stone-500">{{ $dettagli }}</p>
+        @endif
+
+        <div class="mt-7">
+            <p class="text-sm font-semibold text-stone-800">Colore</p>
+            @if (count($colori) > 1)
+                <p class="mt-1 text-sm text-stone-600">Lo scegliamo insieme. Alcuni colori già realizzati:</p>
+                <ul class="mt-3 flex flex-wrap gap-2">
+                    @foreach ($colori as $foto)
+                        <li>
+                            <img src="{{ $foto }}" srcset="{{ $page->srcset($foto, 400) }}" sizes="56px" alt="" loading="lazy" decoding="async" class="w-14 h-[4.5rem] object-cover rounded-lg">
                         </li>
                     @endforeach
                 </ul>
-            </div>
-        @elseif (is_string($dettagli) && $dettagli)
-            <div class="mb-8">
-                <h2 class="font-bold mb-3 text-stone-800">Dettagli:</h2>
-                <p class="text-stone-700 text-sm">{{ $dettagli }}</p>
-            </div>
-        @endif
-
-        <div class="mb-8 rounded-xl border border-stone-200 bg-stone-50 p-4">
-            <p class="text-sm font-semibold text-stone-800 mb-1">Spedizione</p>
-            <p class="text-sm text-stone-600">Preparazione in {{ $shippingPreparation }}. Consegna in Italia in {{ $shippingDelivery }}.</p>
-            <a href="/spedizioni" class="inline-flex mt-3 text-sm font-semibold text-[#7f5539] hover:text-[#9c6644] transition-colors">Leggi tempi e dettagli</a>
+            @else
+                <p class="mt-1 text-sm text-stone-600">Lo scegliamo insieme: scrivimi quale ti piace.</p>
+            @endif
         </div>
 
         <a href="https://ig.me/m/m_crochet_lab"
            target="_blank"
            rel="noopener noreferrer"
-           class="inline-flex w-full justify-center items-center gap-2 bg-[#7f5539] hover:bg-[#9c6644] text-white py-4 rounded-xl font-bold shadow-lg transition-colors duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+           class="mt-8 flex w-full items-center justify-center gap-2 bg-[#7f5539] hover:bg-[#9c6644] text-white py-4 rounded-xl font-bold shadow-lg transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                 <path d="M8 0C5.826 0 5.555.01 4.703.048 3.85.088 3.27.222 2.762.42a5.06 5.06 0 0 0-1.83 1.191A5.06 5.06 0 0 0 .42 3.44c-.198.507-.332 1.087-.372 1.94C.01 6.232 0 6.503 0 8.677c0 2.174.01 2.445.048 3.297.04.853.174 1.433.372 1.94.22.56.513 1.036.93 1.453.417.417.893.71 1.453.93.507.198 1.087.332 1.94.372.852.038 1.123.048 3.297.048 2.174 0 2.445-.01 3.297-.048.853-.04 1.433-.174 1.94-.372a5.06 5.06 0 0 0 1.453-.93c.417-.417.71-.893.93-1.453.198-.507.332-1.087.372-1.94.038-.852.048-1.123.048-3.297 0-2.174-.01-2.445-.048-3.297-.04-.853-.174-1.433-.372-1.94a5.06 5.06 0 0 0-.93-1.453 5.06 5.06 0 0 0-1.453-.93c-.507-.198-1.087-.332-1.94-.372C10.445.01 10.174 0 8 0zm0 1.441c2.137 0 2.39.008 3.232.046.778.036 1.2.166 1.48.275.37.144.633.316.91.593.277.277.45.54.594.91.109.28.239.702.275 1.48.038.842.046 1.095.046 3.232 0 2.137-.008 2.39-.046 3.232-.036.778-.166 1.2-.275 1.48a3.62 3.62 0 0 1-.593.91 3.62 3.62 0 0 1-.91.594c-.28.109-.702.239-1.48.275-.842.038-1.095.046-3.232.046-2.137 0-2.39-.008-3.232-.046-.778-.036-1.2-.166-1.48-.275a3.62 3.62 0 0 1-.91-.593 3.62 3.62 0 0 1-.594-.91c-.109-.28-.239-.702-.275-1.48-.038-.842-.046-1.095-.046-3.232 0-2.137.008-2.39.046-3.232.036-.778.166-1.2.275-1.48.144-.37.316-.633.593-.91.277-.277.54-.45.91-.594.28-.109.702-.239 1.48-.275.842-.038 1.095-.046 3.232-.046zm0 2.456A4.103 4.103 0 1 0 8 12.103 4.103 4.103 0 0 0 8 3.897zm0 6.765A2.662 2.662 0 1 1 8 5.338a2.662 2.662 0 0 1 0 5.324zm5.224-6.927a.959.959 0 1 1-1.918 0 .959.959 0 0 1 1.918 0z"/>
             </svg>
-            Contattami per personalizzazioni
+            Scrivimi per ordinarla
         </a>
+
+        @if ($pronte->count() > 0)
+            @php $primaFoto = $pronte[0]['gallery'][0] ?? null; @endphp
+            <a href="/#pronte-per-te" class="mt-3 flex items-center gap-4 rounded-2xl bg-[#f4e7db] p-3 hover:bg-[#e6ccb2] transition-colors">
+                @if ($primaFoto)
+                    <img src="{{ $primaFoto }}" srcset="{{ $page->srcset($primaFoto, 400) }}" sizes="56px" alt="" loading="lazy" decoding="async" class="w-14 h-[4.5rem] object-cover rounded-lg shrink-0">
+                @endif
+                <span class="text-sm text-stone-700">
+                    <strong class="text-[#7f5539]">Pronta da spedire:</strong>
+                    @if ($pronte->count() == 1)
+                        una {{ $page->nome }} è già disponibile, senza attesa.
+                    @else
+                        {{ $pronte->count() }} {{ $page->nome }} sono già disponibili, senza attesa.
+                    @endif
+                    <span class="font-semibold text-[#7f5539] underline underline-offset-2">{{ $pronte->count() == 1 ? 'Guardala' : 'Guardale' }}</span>
+                </span>
+            </a>
+        @endif
+
+        <div class="mt-8 border-t border-stone-200 pt-6">
+            <h2 class="font-semibold text-stone-800 mb-4">Come si ordina</h2>
+            <ol class="space-y-3 text-sm text-stone-600 leading-relaxed">
+                <li class="flex gap-3">
+                    <span class="shrink-0 w-6 h-6 rounded-full bg-[#7f5539] text-white text-xs font-bold flex items-center justify-center" aria-hidden="true">1</span>
+                    <span>Scrivimi su Instagram il modello{{ $misure->count() > 1 ? ', la misura' : '' }} e il colore che ti piace.</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="shrink-0 w-6 h-6 rounded-full bg-[#7f5539] text-white text-xs font-bold flex items-center justify-center" aria-hidden="true">2</span>
+                    <span>Ti confermo prezzo e spedizione; paghi con PayPal o bonifico.</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="shrink-0 w-6 h-6 rounded-full bg-[#7f5539] text-white text-xs font-bold flex items-center justify-center" aria-hidden="true">3</span>
+                    <span>La realizzo in {{ $shippingPreparation }}, poi te la spedisco (consegna in Italia: {{ $shippingDelivery }}).</span>
+                </li>
+            </ol>
+            <a href="/spedizioni" class="mt-4 inline-block text-sm font-semibold text-[#7f5539] underline underline-offset-2 hover:text-[#9c6644]">Costi e dettagli di spedizione</a>
+        </div>
     </div>
 
     <template x-teleport="body">
@@ -147,13 +202,13 @@
              @keydown.left.window="open && prev()"
              style="display: none;">
             
-            <button @click="open = false" class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white transition-colors z-50">
+            <button type="button" aria-label="Chiudi" @click="open = false" class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white transition-colors z-50">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 md:h-12 md:w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
 
-            <button @click.stop="prev()" class="absolute left-2 md:left-8 text-white/70 hover:text-white transition-colors z-50 p-2">
+            <button type="button" aria-label="Foto precedente" @click.stop="prev()" class="absolute left-2 md:left-8 text-white/70 hover:text-white transition-colors z-50 p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 md:h-14 md:w-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
@@ -162,7 +217,7 @@
             {{-- src solo a lightbox aperto: anche nascosta, l'immagine a piena risoluzione verrebbe scaricata --}}
             <img :src="open ? currentImg : null" alt="{{ $page->nome }}" decoding="async" @click.outside="open = false" class="max-w-full max-h-[90vh] rounded shadow-2xl relative z-40 object-contain">
 
-            <button @click.stop="next()" class="absolute right-2 md:right-8 text-white/70 hover:text-white transition-colors z-50 p-2">
+            <button type="button" aria-label="Foto successiva" @click.stop="next()" class="absolute right-2 md:right-8 text-white/70 hover:text-white transition-colors z-50 p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 md:h-14 md:w-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
@@ -170,4 +225,27 @@
         </div>
     </template>
 </div>
+
+@if ($altriModelli->count() > 0)
+    <section class="mt-14 md:mt-20">
+        <h2 class="font-serif text-2xl md:text-3xl font-bold text-[#7f5539] mb-5">Altri modelli</h2>
+        <ul class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            @foreach ($altriModelli as $borsa)
+                <li>
+                    <a href="{{ $borsa->getPath() }}" class="group block">
+                        <img src="{{ $borsa->copertina }}"
+                             srcset="{{ $page->srcset($borsa->copertina, 800) }}"
+                             sizes="(min-width: 1024px) 260px, 45vw"
+                             alt="{{ $borsa->nome }}"
+                             loading="lazy"
+                             decoding="async"
+                             class="w-full aspect-[3/4] object-cover rounded-2xl">
+                        <p class="mt-2 font-semibold text-stone-800 group-hover:text-[#7f5539] transition-colors">{{ $borsa->nome }}</p>
+                        <p class="text-sm text-[#9c6644]">{{ $borsa->prezzo }}</p>
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </section>
+@endif
 @endsection

@@ -71,9 +71,19 @@ return [
     'promoScadenza' => '2026-05-19',
     'promoBarra' => '🎁 Offerta di lancio: spedizione gratuita + un regalo misterioso per ogni ordine!',
 
-    // Descrizione dei blocchi del catalogo per le borse con "famiglia" nel frontmatter
+    // Borse con "famiglia" nel frontmatter: descrizione del blocco nel catalogo e colori già
+    // realizzati mostrati nelle schede (le borse senza famiglia usano "colori" nel frontmatter)
     'famiglie' => [
-        'MBag' => 'La borsa a mano con chiusura clip clap',
+        'MBag' => [
+            'descrizione' => 'La borsa a mano con chiusura clip clap',
+            'colori' => [
+                '/assets/images/m-bag-small/1.webp',
+                '/assets/images/m-bag-large/1.webp',
+                '/assets/images/m-bag-extra-large/1.webp',
+                '/assets/images/disponibili-ora/3/3_1.webp',
+                '/assets/images/disponibili-ora/6/6_1.webp',
+            ],
+        ],
     ],
 
     // srcset con le varianti -400/-800.webp create da scripts/ottimizza-immagini.py.

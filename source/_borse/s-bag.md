@@ -7,6 +7,9 @@ prezzo: 30€
 dimensioni: "L 23 cm x P 5 cm x H 17 cm"
 dimensioniBrevi: "L 23 × H 17 cm"
 indossata: /assets/images/s-bag/s_bag_bianca_5.webp
+colori:
+  - /assets/images/s-bag/s_bag_bianca_1.webp
+  - /assets/images/disponibili-ora/2/2_1.webp
 dettagli:
 copertina: /assets/images/s-bag/s_bag_bianca_1.webp
 gallery:
