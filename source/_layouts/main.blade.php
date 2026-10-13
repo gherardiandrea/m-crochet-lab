@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="scroll-smooth">
     <head>
         @php
             $siteName = (string) $page->siteName;
@@ -188,7 +188,7 @@
         </script>
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
-    <body class="bg-stone-50 text-stone-800 font-sans antialiased flex flex-col min-h-screen scroll-smooth">
+    <body class="bg-stone-50 text-stone-800 font-sans antialiased flex flex-col min-h-screen">
 
         @php
             $promoScadenza = (string) $page->get('promoScadenza', '');
