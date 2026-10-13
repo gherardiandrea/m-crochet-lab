@@ -37,11 +37,6 @@ description: Informativa sull'uso dei cookie
                     (chiave <code class="bg-stone-100 px-1 rounded text-sm">cookie_consent</code>) per ricordare la tua scelta sul consenso ai cookie analitici.
                     Questa memorizzazione è strettamente necessaria al funzionamento del banner e non richiede consenso preventivo.
                 </p>
-                <p class="mt-2">
-                    Allo stesso modo, una volta visualizzato il modale promozionale, viene salvata una preferenza temporanea
-                    (chiave <code class="bg-stone-100 px-1 rounded text-sm">promo_seen</code>) nel <strong>sessionStorage</strong>
-                    per non riproporre il modale nella stessa sessione.
-                </p>
             </div>
 
             <div>
@@ -108,7 +103,7 @@ description: Informativa sull'uso dei cookie
             <div>
                 <h2 class="text-xl font-semibold text-stone-800 mb-2">Aggiornamenti</h2>
                 <p>
-                    Questa policy può essere aggiornata in caso di modifiche tecniche o normative. Ultimo aggiornamento: <strong>26 aprile 2026</strong>.
+                    Questa policy può essere aggiornata in caso di modifiche tecniche o normative. Ultimo aggiornamento: <strong>13 ottobre 2026</strong>.
                 </p>
             </div>
         </div>

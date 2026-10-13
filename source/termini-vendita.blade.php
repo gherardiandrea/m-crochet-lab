@@ -163,11 +163,6 @@ description: Condizioni applicate alle vendite di M Crochet Lab
                     In caso di mancato accordo, il foro competente è quello di residenza o domicilio dell'acquirente,
                     qualora consumatore residente in Italia.
                 </p>
-                <p class="mt-2">
-                    Ai sensi del Regolamento UE 524/2013, l'acquirente residente nell'Unione Europea può accedere alla
-                    piattaforma europea di risoluzione online delle controversie:
-                    <a class="underline" href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">ec.europa.eu/consumers/odr</a>.
-                </p>
             </div>
 
             <div>
@@ -184,7 +179,7 @@ description: Condizioni applicate alle vendite di M Crochet Lab
                     Le presenti condizioni sono regolate dalla legge italiana.
                     Il Venditore si riserva di modificarle in qualsiasi momento; le modifiche si applicano agli ordini conclusi
                     successivamente alla pubblicazione del nuovo testo.
-                    Ultimo aggiornamento: <strong>26 aprile 2026</strong>.
+                    Ultimo aggiornamento: <strong>13 ottobre 2026</strong>.
                 </p>
             </div>
         </div>

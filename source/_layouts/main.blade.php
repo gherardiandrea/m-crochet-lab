@@ -327,8 +327,6 @@
                     class="hover:text-white transition-colors hover:underline cursor-pointer"
                     style="font: inherit; color: inherit; background: transparent; border: 0; padding: 0; margin: 0;"
                 >Gestisci preferenze cookie</button>
-                <span aria-hidden="true" class="opacity-50">·</span>
-                <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Risoluzione controversie online (ODR)</a>
             </div>
             <p class="text-xs opacity-70 mb-3">M Crochet Lab di Mara Benintendi &mdash; Paladina (BG) &mdash; Attività artigianale occasionale non professionale</p>
 
