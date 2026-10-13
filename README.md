@@ -90,13 +90,15 @@ Tutto in `config.php`:
 
 - **Titolo e descrizione** del sito
 - **Dati spedizioni** (tempi, costi, tracking)
-- **Promozione di lancio** — per attivarla/disattivarla:
+- **Barra promozionale** — per attivarla/disattivarla:
 
 ```php
-'promoAttiva' => true,   // false per disattivare
-'promoScadenza' => '2026-05-19',
-'promoBarra' => '...',   // testo della barra in cima
+'promoAttiva' => true,           // false per disattivare
+'promoScadenza' => '2026-05-19', // ultimo giorno incluso; '' = nessuna scadenza
+'promoBarra' => '...',           // testo della barra in cima
 ```
+
+Dopo `promoScadenza` la barra sparisce da sola, anche senza un nuovo deploy.
 
 ## Aggiungere un prodotto
 

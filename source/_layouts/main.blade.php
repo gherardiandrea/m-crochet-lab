@@ -183,11 +183,19 @@
     </head>
     <body class="bg-stone-50 text-stone-800 font-sans antialiased flex flex-col min-h-screen scroll-smooth">
 
-        @if ($page->promoAttiva)
-        <div style="background:#7f5539;color:#e6ccb2;text-align:center;padding:10px 40px;font-size:0.82rem;font-weight:500;line-height:1.4;position:relative;">
+        @php
+            $promoScadenza = (string) $page->get('promoScadenza', '');
+            $promoVisibile = $page->promoAttiva && ($promoScadenza === '' || date('Y-m-d') <= $promoScadenza);
+        @endphp
+        @if ($promoVisibile)
+        <div id="promo-bar" style="background:#7f5539;color:#e6ccb2;text-align:center;padding:10px 40px;font-size:0.82rem;font-weight:500;line-height:1.4;position:relative;">
             {!! $page->promoBarra !!}
             <a href="https://ig.me/m/m_crochet_lab" target="_blank" rel="noopener noreferrer" style="color:#fff;text-decoration:underline;margin-left:8px;white-space:nowrap;">Scrivimi su Instagram →</a>
         </div>
+        @if ($promoScadenza !== '')
+            {{-- Il sito è statico: senza questo controllo la barra resterebbe online fino al deploy successivo --}}
+            <script>if (new Date() > new Date('{{ $promoScadenza }}T23:59:59')) document.getElementById('promo-bar').remove();</script>
+        @endif
         @endif
 
         <header class="bg-[#e6ccb2] py-10 text-center shadow-sm px-4">

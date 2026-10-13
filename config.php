@@ -66,7 +66,7 @@ return [
         ],
     ],
 
-    'promoAttiva' => true,
+    'promoAttiva' => false,
     'promoScadenza' => '2026-05-19',
     'promoBarra' => '🎁 Offerta di lancio: spedizione gratuita + un regalo misterioso per ogni ordine!',
 
