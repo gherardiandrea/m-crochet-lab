@@ -39,17 +39,17 @@ permalink: 404.html
         </svg>
 
         <div>
-            <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#7f5539] leading-tight text-balance mb-5">Qui si è perso il filo</h1>
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#7f5539] leading-tight text-balance mb-5">Qui si è perso il filo</h1>
             <p class="text-stone-700 text-lg leading-relaxed max-w-md mb-8">
                 Questa pagina non esiste (errore 404): il link potrebbe essere sbagliato o la pagina è stata spostata.
                 Riparti dalla home o scegli una borsa qui sotto.
             </p>
-            <div class="flex flex-col sm:flex-row gap-3">
-                <a href="/" class="py-3 px-6 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md text-center">Torna alla home</a>
+            <div class="flex flex-col sm:flex-row sm:flex-wrap gap-3">
+                <a href="/" class="py-3 px-6 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md text-center whitespace-nowrap">Torna alla home</a>
                 <a href="https://ig.me/m/m_crochet_lab"
                    target="_blank"
                    rel="noopener noreferrer"
-                   class="py-3 px-6 rounded-xl border border-[#7f5539] text-[#7f5539] font-semibold hover:bg-white/60 transition text-center">
+                   class="py-3 px-6 rounded-xl border border-[#7f5539] text-[#7f5539] font-semibold hover:bg-white/60 transition text-center whitespace-nowrap">
                     Scrivimi su Instagram
                 </a>
             </div>

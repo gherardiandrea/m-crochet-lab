@@ -87,7 +87,7 @@
     </div>
 
     {{-- Su desktop la colonna resta ferma mentre scorrono le foto --}}
-    <div class="md:col-span-5 md:sticky md:top-28">
+    <div class="md:col-span-5 md:sticky md:top-16 lg:top-28">
         <h1 class="font-serif text-4xl md:text-5xl font-bold text-[#7f5539]">{{ $page->nome }}</h1>
         <p class="mt-2 text-2xl font-semibold text-stone-800">{{ $page->prezzo }}</p>
 

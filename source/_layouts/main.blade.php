@@ -214,21 +214,21 @@
                 '#contatti' => 'Contatti',
             ]);
         @endphp
-        {{-- Su desktop resta fissa tutta la barra; su mobile solo la riga del menu, per non occupare mezzo schermo --}}
-        <header class="md:sticky md:top-0 z-20 bg-stone-50/95 backdrop-blur md:border-b border-stone-200">
+        {{-- Da 1024 px resta fissa tutta la barra; sotto, solo la riga del menu (su tablet le voci non stanno accanto al logo) --}}
+        <header class="lg:sticky lg:top-0 z-20 bg-stone-50/95 backdrop-blur lg:border-b border-stone-200">
             <div class="container mx-auto px-4 max-w-6xl flex items-center justify-between gap-6 h-16 md:h-20">
                 <a href="/" class="flex items-center gap-3 shrink-0">
                     <img src="/assets/images/logo.webp" srcset="{{ $page->srcset('/assets/images/logo.webp', 400) }}" sizes="48px" alt="" width="48" height="48" class="w-11 h-11 md:w-12 md:h-12 rounded-full ring-1 ring-[#e6ccb2] bg-white">
                     <span class="font-serif text-xl md:text-2xl font-bold text-[#7f5539]">{{ $siteName }}</span>
                 </a>
-                <nav class="hidden md:flex items-center gap-1 font-semibold text-[#7f5539]" aria-label="Navigazione principale">
+                <nav class="hidden lg:flex items-center gap-1 font-semibold text-[#7f5539]" aria-label="Navigazione principale">
                     @foreach ($menu as $href => $voce)
                         <a href="{{ $href }}" class="px-3 py-2 rounded-full hover:bg-[#f4e7db] transition">{{ $voce }}</a>
                     @endforeach
                 </nav>
             </div>
         </header>
-        <nav class="md:hidden sticky top-0 z-20 bg-stone-50/95 backdrop-blur border-b border-stone-200" aria-label="Navigazione principale">
+        <nav class="lg:hidden sticky top-0 z-20 bg-stone-50/95 backdrop-blur border-b border-stone-200" aria-label="Navigazione principale">
             <div class="flex gap-1 overflow-x-auto px-2 py-2 text-sm font-semibold text-[#7f5539] whitespace-nowrap">
                 @foreach ($menu as $href => $voce)
                     <a href="{{ $href }}" class="px-3 py-1.5 rounded-full hover:bg-[#f4e7db] transition">{{ $voce }}</a>
