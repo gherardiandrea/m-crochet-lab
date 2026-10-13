@@ -71,6 +71,11 @@ return [
     'promoScadenza' => '2026-05-19',
     'promoBarra' => '🎁 Offerta di lancio: spedizione gratuita + un regalo misterioso per ogni ordine!',
 
+    // Descrizione dei blocchi del catalogo per le borse con "famiglia" nel frontmatter
+    'famiglie' => [
+        'MBag' => 'La borsa a mano con chiusura clip clap',
+    ],
+
     // srcset con le varianti -400/-800.webp create da scripts/ottimizza-immagini.py.
     // $maxWidth esclude le versioni più grandi (es. miniature); senza varianti resta l'originale.
     'srcset' => function ($page, $path, $maxWidth = null) {
@@ -102,8 +107,9 @@ return [
                     return $page->excerpt;
                 }
                 
-                $content = preg_replace('#<[^>]+>#', ' ', $page->getContent());
-                return trim(substr($content, 0, $length)) . '...';
+                $content = trim(preg_replace('/\s+/', ' ', preg_replace('#<[^>]+>#', ' ', (string) $page->getContent())));
+                // mb_substr per non spezzare le lettere accentate; "…" solo se il testo viene tagliato
+                return mb_strlen($content) > $length ? rtrim(mb_substr($content, 0, $length)) . '…' : $content;
             },
         ],
     ],

@@ -5,6 +5,10 @@ nome: MBag Large
 ordine: 3
 prezzo: 35€
 dimensioni: "L 26 cm x P 14 cm x H 15 cm"
+famiglia: MBag
+misura: Large
+dimensioniBrevi: "L 26 × H 15 cm"
+indossata: /assets/images/m-bag-large/4.webp
 dettagli:
 copertina: /assets/images/m-bag-large/1.webp
 gallery:

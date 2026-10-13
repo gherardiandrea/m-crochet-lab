@@ -42,69 +42,96 @@
     </section>
 
     <section id="modelli" class="scroll-mt-32">
-        <div class="text-center mb-10 md:mb-12">
-            <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-4">I Modelli</h2>
-            <p class="text-stone-500 max-w-xl mx-auto">Ogni borsa è un pezzo unico, realizzato interamente a mano con materiali di prima qualità.</p>
+        <div class="md:flex md:items-end md:justify-between md:gap-12 mb-8">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539]">I modelli</h2>
+            <p class="mt-2 md:mt-0 text-stone-600 leading-relaxed max-w-md">Scegli il modello e il colore: la realizzo a mano dopo il tuo ordine, in {{ $shippingPreparation }}.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            
-            @foreach ($borse->sortBy('ordine') as $borsa)
-                @php
-                    $isVisible = method_exists($borsa, 'get') ? (bool) $borsa->get('visibile', true) : true;
-                @endphp
-                @continue(!$isVisible)
+        @php
+            // Le borse con la stessa "famiglia" nel frontmatter (le misure della MBag) stanno in un blocco unico
+            $famiglie = $borse->filter(fn ($borsa) => $borsa->famiglia)->groupBy(fn ($borsa) => $borsa->famiglia);
+            $singole = $borse->reject(fn ($borsa) => $borsa->famiglia);
+            $numeri = [2 => 'due', 3 => 'tre', 4 => 'quattro', 5 => 'cinque'];
+            $colonne = [2 => 'grid-cols-2', 3 => 'grid-cols-3', 4 => 'grid-cols-2 md:grid-cols-4'];
+        @endphp
 
-                <div class="group w-full max-w-sm mx-auto md:max-w-none bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
-                    
-                    @php
-                        $path = (string) $borsa->getPath();
-                        $useLowerCropFocus = str_contains($path, 'm-bag-small') || str_contains($path, 'm-bag-extra-large') || str_contains($path, 'e-bag') || str_contains($path, 's-bag');
-                    @endphp
-                    <a href="{{ $borsa->getPath() }}" class="block aspect-[4/3] sm:aspect-[4/5] overflow-hidden bg-stone-100">
-                        <img src="{{ $borsa->copertina }}"
-                             srcset="{{ $page->srcset($borsa->copertina, 800) }}"
-                             sizes="(min-width: 1024px) 350px, (min-width: 768px) 50vw, 384px"
-                             alt="{{ $borsa->nome }}"
-                             loading="lazy"
-                             decoding="async"
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                             style="{{ $useLowerCropFocus ? 'object-position: center 72%;' : '' }}">
-                    </a>
-                    
-                    <div class="p-8 flex flex-col flex-grow">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold text-stone-800">
-                                <a href="{{ $borsa->getPath() }}" class="hover:text-[#7f5539] transition-colors">
-                                    {{ $borsa->nome }}
-                                </a>
-                            </h3>
-                            <span class="text-lg font-medium text-[#9c6644]">{{ $borsa->prezzo }}</span>
-                        </div>
-                        
-                        <p class="text-stone-500 text-sm line-clamp-2 mb-6 flex-grow">
-                            {{-- Estrae automaticamente le prime righe dal file Markdown --}}
-                            {{ $borsa->getExcerpt(120) }}
-                        </p>
-                        
-                        <div class="flex flex-col gap-3">
-                            <a href="{{ $borsa->getPath() }}" 
-                               class="w-full text-center py-3 px-4 rounded-xl border-2 border-stone-100 font-semibold text-stone-700 hover:bg-stone-50 transition">
-                                Vedi Dettagli
-                            </a>
-                            
-                            <a href="https://ig.me/m/m_crochet_lab"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               class="w-full text-center py-3 px-4 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md">
-                                Contattami su Instagram
-                            </a>
-                        </div>
-                    </div>
+        @foreach ($famiglie as $famiglia => $misure)
+            @php
+                $descrizione = (string) $page->get('famiglie')?->get($famiglia);
+                $quante = $numeri[$misure->count()] ?? $misure->count();
+            @endphp
+            <div class="bg-white rounded-3xl p-4 md:p-8 mb-4 md:mb-6">
+                <div class="md:flex md:items-end md:justify-between md:gap-12 mb-5 md:mb-6">
+                    <h3 class="font-serif text-2xl md:text-3xl font-bold text-[#7f5539]">{{ $famiglia }}</h3>
+                    <p class="mt-1 md:mt-0 text-stone-600 leading-relaxed max-w-md">
+                        {{ $descrizione !== '' ? $descrizione . ', in ' . $quante . ' misure.' : 'In ' . $quante . ' misure.' }}
+                        Qui le vedi indossate, per confrontarle.
+                    </p>
                 </div>
-            @endforeach
+                <ul class="grid {{ $colonne[$misure->count()] ?? 'grid-cols-2 md:grid-cols-3' }} gap-3 md:gap-6">
+                    @foreach ($misure as $borsa)
+                        @php $foto = $borsa->indossata ?: $borsa->copertina; @endphp
+                        <li>
+                            <a href="{{ $borsa->getPath() }}" class="group block">
+                                <img src="{{ $foto }}"
+                                     srcset="{{ $page->srcset($foto, 800) }}"
+                                     sizes="(min-width: 1024px) 340px, 30vw"
+                                     alt="{{ $borsa->nome }}{{ $borsa->indossata ? ' indossata' : '' }}"
+                                     loading="lazy"
+                                     decoding="async"
+                                     class="w-full aspect-[3/4] object-cover rounded-2xl">
+                                <div class="mt-2 md:mt-3 md:flex md:items-baseline md:justify-between md:gap-3">
+                                    <h4 class="font-semibold text-stone-800 group-hover:text-[#7f5539] transition-colors">{{ $borsa->misura ?: $borsa->nome }}</h4>
+                                    <p class="text-sm md:text-base font-medium text-[#9c6644]">{{ $borsa->prezzo }}</p>
+                                </div>
+                                @if ($borsa->dimensioniBrevi)
+                                    <p class="text-xs md:text-sm text-stone-500">{{ $borsa->dimensioniBrevi }}</p>
+                                @endif
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endforeach
 
-        </div>
+        @if ($singole->count() > 0)
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                @foreach ($singole as $borsa)
+                    <li>
+                        <a href="{{ $borsa->getPath() }}" class="group grid grid-cols-5 gap-4 md:gap-6 items-center h-full bg-white rounded-3xl p-3 md:p-4">
+                            {{-- Copertina; al passaggio del mouse compare la foto indossata --}}
+                            <div class="col-span-2 relative aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100">
+                                <img src="{{ $borsa->copertina }}"
+                                     srcset="{{ $page->srcset($borsa->copertina, 800) }}"
+                                     sizes="(min-width: 768px) 210px, 40vw"
+                                     alt="{{ $borsa->nome }}"
+                                     loading="lazy"
+                                     decoding="async"
+                                     class="absolute inset-0 w-full h-full object-cover {{ $borsa->indossata ? 'transition-opacity duration-500 group-hover:opacity-0' : '' }}">
+                                @if ($borsa->indossata)
+                                    <img src="{{ $borsa->indossata }}"
+                                         srcset="{{ $page->srcset($borsa->indossata, 800) }}"
+                                         sizes="(min-width: 768px) 210px, 40vw"
+                                         alt=""
+                                         loading="lazy"
+                                         decoding="async"
+                                         class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                                @endif
+                            </div>
+                            <div class="col-span-3 pr-2">
+                                <h3 class="font-serif text-2xl md:text-3xl font-bold text-[#7f5539]">{{ $borsa->nome }}</h3>
+                                <p class="mt-1 font-medium text-[#9c6644]">{{ $borsa->prezzo }}</p>
+                                <p class="mt-3 text-sm md:text-base text-stone-600 leading-relaxed line-clamp-3">{{ $borsa->getExcerpt(200) }}</p>
+                                @if ($borsa->dimensioniBrevi)
+                                    <p class="mt-2 text-sm text-stone-500">{{ $borsa->dimensioniBrevi }}</p>
+                                @endif
+                                <p class="mt-4 text-sm font-semibold text-[#7f5539] underline underline-offset-2 group-hover:text-[#9c6644]">Vedi il modello</p>
+                            </div>
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
     </section>
 
     @if(count($prontaConsegna) > 0)

@@ -115,10 +115,12 @@ section: content
 nome: Nome Borsa
 ordine: 1
 prezzo: 35€
-dimensioni: "L 34 cm x H 25 cm"
+dimensioni: "L 34 cm x H 25 cm"           # misure complete, nella scheda prodotto
+dimensioniBrevi: "L 34 × H 25 cm"          # misure brevi, nel catalogo in home
 dettagli:
   - "Dettaglio 1"
 copertina: /assets/images/nome-borsa/1.webp
+indossata: /assets/images/nome-borsa/4.webp # facoltativa: foto indossata per il catalogo
 gallery:
   - /assets/images/nome-borsa/1.webp
   - /assets/images/nome-borsa/2.webp
@@ -126,6 +128,10 @@ visibile: true
 ---
 Descrizione della borsa.
 ```
+
+Le borse che sono misure dello stesso modello hanno anche `famiglia` e `misura` (es. `famiglia: MBag`, `misura: Small`):
+nel catalogo compaiono insieme in un unico blocco, con le foto indossate affiancate.
+La frase descrittiva del blocco si imposta in `config.php`, sotto `famiglie`.
 
 ## Ottimizzazione immagini
 

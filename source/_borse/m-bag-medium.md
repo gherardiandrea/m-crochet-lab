@@ -6,6 +6,9 @@ ordine: 2
 visibile: false
 prezzo: 30€
 dimensioni: "L 30 cm x H 22 cm x P 10 cm"
+famiglia: MBag
+misura: Medium
+dimensioniBrevi: "L 30 × H 22 cm"
 dettagli:
 copertina: /assets/images/borsa_1/1.jpg
 gallery:

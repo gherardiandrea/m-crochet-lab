@@ -5,6 +5,10 @@ nome: MBag Extra-large
 ordine: 4
 prezzo: 40€
 dimensioni: "L 30 cm x P 15 cm x H 15 cm"
+famiglia: MBag
+misura: Extra Large
+dimensioniBrevi: "L 30 × H 15 cm"
+indossata: /assets/images/m-bag-extra-large/5.webp
 dettagli:
 copertina: /assets/images/m-bag-extra-large/1.webp
 gallery:
