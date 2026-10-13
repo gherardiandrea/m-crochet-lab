@@ -2,11 +2,12 @@
 
 @section('body')
     @php
-        $shipping = method_exists($page, 'get') ? (array) $page->get('shipping', []) : [];
-        $shippingPreparation = (string) ($shipping['preparationTime'] ?? '5-8 giorni lavorativi');
-        $shippingDelivery = (string) ($shipping['deliveryTime'] ?? '24-72 ore dopo la spedizione');
-        $shippingTracking = (string) ($shipping['tracking'] ?? 'Codice inviato appena parte il pacco');
-        $shippingCustomOrders = (string) ($shipping['customOrders'] ?? 'Tempi comunicati prima della conferma');
+        // I testi vengono da "shipping" in config.php: (array) sull'oggetto di Jigsaw perdeva le chiavi
+        $shipping = collect($page->get('shipping', []));
+        $shippingPreparation = (string) $shipping->get('preparationTime');
+        $shippingDelivery = (string) $shipping->get('deliveryTime');
+        $shippingTracking = (string) $shipping->get('tracking');
+        $shippingCustomOrders = (string) $shipping->get('customOrders');
         $prontaConsegna = json_decode(json_encode($page->get('prontaConsegna', [])), true) ?? [];
     @endphp
 

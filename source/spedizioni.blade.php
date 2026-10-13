@@ -6,12 +6,13 @@ description: Tempi, costi e modalità di consegna
 
 @section('body')
     @php
-        $shipping = method_exists($page, 'get') ? (array) $page->get('shipping', []) : [];
-        $shippingPreparation = (string) ($shipping['preparationTime'] ?? '5-8 giorni lavorativi');
-        $shippingDelivery = (string) ($shipping['deliveryTime'] ?? '24-72 ore dopo la spedizione');
-        $shippingTracking = (string) ($shipping['tracking'] ?? 'Codice inviato appena parte il pacco');
-        $shippingCustomOrders = (string) ($shipping['customOrders'] ?? 'Tempi comunicati prima della conferma');
-        $shippingCosts = (string) ($shipping['costs'] ?? 'I costi vengono indicati prima della conferma ordine in base al peso, al volume e alla destinazione.');
+        // I testi vengono da "shipping" in config.php: (array) sull'oggetto di Jigsaw perdeva le chiavi
+        $shipping = collect($page->get('shipping', []));
+        $shippingPreparation = (string) $shipping->get('preparationTime');
+        $shippingDelivery = (string) $shipping->get('deliveryTime');
+        $shippingTracking = (string) $shipping->get('tracking');
+        $shippingCustomOrders = (string) $shipping->get('customOrders');
+        $shippingCosts = (string) $shipping->get('costs');
     @endphp
 
     <section class="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm p-6 md:p-10">

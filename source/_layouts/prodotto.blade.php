@@ -24,9 +24,10 @@
     // With Jigsaw page data, empty($page->field) can be unreliable on dynamic properties.
     $dimensioni = method_exists($page, 'get') ? $page->get('dimensioni') : null;
     $dettagli = method_exists($page, 'get') ? $page->get('dettagli') : null;
-    $shipping = method_exists($page, 'get') ? (array) $page->get('shipping', []) : [];
-    $shippingPreparation = (string) ($shipping['preparationTime'] ?? '5-8 giorni lavorativi');
-    $shippingDelivery = (string) ($shipping['deliveryTime'] ?? '24-72 ore dopo la spedizione');
+    // I testi vengono da "shipping" in config.php: (array) sull'oggetto di Jigsaw perdeva le chiavi
+    $shipping = collect($page->get('shipping', []));
+    $shippingPreparation = (string) $shipping->get('preparationTime');
+    $shippingDelivery = (string) $shipping->get('deliveryTime');
 
     // Misure dello stesso modello (campo "famiglia" nel frontmatter) e colori già realizzati
     $famiglia = (string) $page->famiglia;
