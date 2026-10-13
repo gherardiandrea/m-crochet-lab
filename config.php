@@ -9,9 +9,9 @@ return [
     'shipping' => [
         'preparationTime' => '5-8 giorni lavorativi',
         'deliveryTime' => '24-72 ore dopo la spedizione',
-        'tracking' => 'Codice inviato appena parte il pacco',
+        'tracking' => 'Il codice di tracciamento te lo invio appena parte il pacco.',
         'customOrders' => 'Tempi comunicati prima della conferma',
-        'costs' => 'I costi vengono indicati prima della conferma ordine in base al peso, al volume e alla destinazione.',
+        'costs' => 'Il prezzo dipende dal formato del pacco: il costo esatto te lo confermo prima dell\'ordine.',
         // Tariffe InPost per formato del pacco: la home mostra la più bassa ("da ...")
         'inpost' => [
             'Small' => '4,99€',
