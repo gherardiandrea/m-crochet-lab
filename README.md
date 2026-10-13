@@ -103,7 +103,7 @@ Dopo `promoScadenza` la barra sparisce da sola, anche senza un nuovo deploy.
 ## Aggiungere un prodotto
 
 1. Creare un file `.md` in `source/_borse/`
-2. Aggiungere le immagini ottimizzate in `source/assets/images/<nome-borsa>/`
+2. Aggiungere le immagini ottimizzate in `source/assets/images/<nome-borsa>/` e generare le varianti (vedi [Ottimizzazione immagini](#ottimizzazione-immagini))
 3. Impostare `visibile: true` nel frontmatter
 
 Struttura frontmatter prodotto:
@@ -135,6 +135,13 @@ Convertire un originale (da `raw-images/`) in WebP, con rotazione EXIF corretta 
 
 ```bash
 python3 scripts/ottimizza-immagini.py converti source/assets/raw-images/borsa/foto.jpg source/assets/images/borsa/1.webp
+```
+
+Dopo aver aggiunto o sostituito foto, generare le versioni ridotte (`-400.webp`, `-800.webp`) usate dal `srcset`.
+Se mancano il sito funziona lo stesso, ma scarica le foto a piena risoluzione:
+
+```bash
+python3 scripts/ottimizza-immagini.py varianti
 ```
 
 ## Note

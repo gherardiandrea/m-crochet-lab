@@ -71,6 +71,25 @@ return [
     'promoScadenza' => '2026-05-19',
     'promoBarra' => '🎁 Offerta di lancio: spedizione gratuita + un regalo misterioso per ogni ordine!',
 
+    // srcset con le varianti -400/-800.webp create da scripts/ottimizza-immagini.py.
+    // $maxWidth esclude le versioni più grandi (es. miniature); senza varianti resta l'originale.
+    'srcset' => function ($page, $path, $maxWidth = null) {
+        $info = pathinfo((string) $path);
+        $candidati = [];
+        foreach ([400, 800] as $larghezza) {
+            $variante = $info['dirname'] . '/' . $info['filename'] . '-' . $larghezza . '.webp';
+            if (($maxWidth === null || $larghezza <= $maxWidth) && is_file(__DIR__ . '/source' . $variante)) {
+                $candidati[] = $variante . ' ' . $larghezza . 'w';
+            }
+        }
+        $dimensioni = @getimagesize(__DIR__ . '/source' . $path);
+        if ($dimensioni && ($maxWidth === null || $dimensioni[0] <= $maxWidth || $candidati === [])) {
+            $candidati[] = $path . ' ' . $dimensioni[0] . 'w';
+        }
+
+        return implode(', ', $candidati);
+    },
+
     'collections' => [
         'borse' => [
             'path' => 'modelli/{filename}',

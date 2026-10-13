@@ -298,7 +298,7 @@
 
         <footer class="bg-[#7f5539] text-[#e6ccb2] text-center py-10 px-4 mt-auto">
             <div class="mb-5">
-                <img src="/assets/images/logo.webp" alt="M Crochet Lab" loading="lazy" decoding="async" width="72" height="72" style="display:block;margin:0 auto;width:72px;height:72px;border-radius:50%;object-fit:cover;opacity:0.92;">
+                <img src="/assets/images/logo.webp" srcset="{{ $page->srcset('/assets/images/logo.webp', 400) }}" sizes="72px" alt="{{ $siteName }}" loading="lazy" decoding="async" width="72" height="72" style="display:block;margin:0 auto;width:72px;height:72px;border-radius:50%;object-fit:cover;opacity:0.92;">
             </div>
             <div class="mb-6">
                 <a href="https://www.instagram.com/m_crochet_lab/" 

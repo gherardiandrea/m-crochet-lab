@@ -19,13 +19,16 @@
 @php
     $gallery = collect($page->get('gallery', []))->values()->all();
     $startIndex = array_search($page->copertina, $gallery, true);
+    $current = $startIndex === false ? 0 : $startIndex;
+    $srcsets = array_map(fn ($foto) => $page->srcset($foto), $gallery);
 @endphp
 
 {{-- Stato della gallery per indice: con l'URL una foto ripetuta bloccherebbe la navigazione --}}
 <div x-data="{
     open: false,
-    current: {{ $startIndex === false ? 0 : $startIndex }},
+    current: {{ $current }},
     images: {{ json_encode($gallery) }},
+    srcsets: {{ json_encode($srcsets) }},
     get currentImg() { return this.images[this.current]; },
     next() { this.current = (this.current + 1) % this.images.length; },
     prev() { this.current = (this.current - 1 + this.images.length) % this.images.length; }
@@ -33,7 +36,12 @@
     
     <div class="md:w-1/2">
         <div class="relative group cursor-zoom-in" @click="open = true">
-            <img :src="currentImg" alt="{{ $page->nome }}" fetchpriority="high" decoding="async" class="w-full rounded-2xl shadow-lg mb-4 object-cover aspect-square">
+            <img src="{{ $gallery[$current] ?? $page->copertina }}"
+                 srcset="{{ $srcsets[$current] ?? '' }}"
+                 :src="currentImg"
+                 :srcset="srcsets[current]"
+                 sizes="(min-width: 1152px) 540px, (min-width: 768px) 50vw, 100vw"
+                 alt="{{ $page->nome }}" fetchpriority="high" decoding="async" class="w-full rounded-2xl shadow-lg mb-4 object-cover aspect-square">
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-2xl flex items-center justify-center">
                 <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 p-3 rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -46,6 +54,8 @@
         <div class="grid grid-cols-4 gap-4">
             @foreach($gallery as $foto)
                 <img src="{{ $foto }}"
+                     srcset="{{ $page->srcset($foto, 800) }}"
+                     sizes="(min-width: 768px) 120px, 25vw"
                      alt="{{ $page->nome }} — foto {{ $loop->iteration }}"
                      loading="lazy"
                      decoding="async"
@@ -149,7 +159,8 @@
                 </svg>
             </button>
 
-            <img :src="currentImg" alt="{{ $page->nome }}" decoding="async" @click.outside="open = false" class="max-w-full max-h-[90vh] rounded shadow-2xl relative z-40 object-contain">
+            {{-- src solo a lightbox aperto: anche nascosta, l'immagine a piena risoluzione verrebbe scaricata --}}
+            <img :src="open ? currentImg : null" alt="{{ $page->nome }}" decoding="async" @click.outside="open = false" class="max-w-full max-h-[90vh] rounded shadow-2xl relative z-40 object-contain">
 
             <button @click.stop="next()" class="absolute right-2 md:right-8 text-white/70 hover:text-white transition-colors z-50 p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 md:h-14 md:w-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">

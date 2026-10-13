@@ -45,6 +45,8 @@
                     @endphp
                     <a href="{{ $borsa->getPath() }}" class="block aspect-[4/3] sm:aspect-[4/5] overflow-hidden bg-stone-100">
                         <img src="{{ $borsa->copertina }}"
+                             srcset="{{ $page->srcset($borsa->copertina, 800) }}"
+                             sizes="(min-width: 1024px) 350px, (min-width: 768px) 50vw, 384px"
                              alt="{{ $borsa->nome }}"
                              loading="lazy"
                              decoding="async"
@@ -108,13 +110,22 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($prontaConsegna as $borsa)
-                @php $galleryJson = json_encode(array_values((array)($borsa['gallery'] ?? []))); @endphp
-                <div x-data="{ foto: 0, gallery: {{ $galleryJson }} }"
+                @php
+                    $gallery = array_values((array) ($borsa['gallery'] ?? []));
+                    $srcsets = array_map(fn ($foto) => $page->srcset($foto, 800), $gallery);
+                @endphp
+                <div x-data="{ foto: 0, gallery: {{ json_encode($gallery) }}, srcsets: {{ json_encode($srcsets) }} }"
                      class="group bg-stone-50 border border-stone-100 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
 
                     <div class="relative aspect-square overflow-hidden bg-stone-100 cursor-pointer" @click="foto = (foto + 1) % gallery.length">
-                        <img :src="gallery[foto]"
+                        <img src="{{ $gallery[0] ?? '' }}"
+                             srcset="{{ $srcsets[0] ?? '' }}"
+                             :src="gallery[foto]"
+                             :srcset="srcsets[foto]"
+                             sizes="(min-width: 1024px) 330px, (min-width: 640px) 50vw, 100vw"
                              alt="{{ $borsa['nome'] }}"
+                             loading="lazy"
+                             decoding="async"
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
 
                         <div class="absolute top-3 left-3 flex flex-col items-start gap-1.5">
@@ -178,6 +189,8 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl shadow-sm p-6 md:p-10">
             <div class="aspect-[4/3] sm:aspect-[4/5] -mx-6 -mt-6 sm:mx-0 sm:mt-0 rounded-t-2xl sm:rounded-2xl overflow-hidden bg-stone-100">
                 <img src="/assets/images/homepage/homepage.jpg"
+                     srcset="{{ $page->srcset('/assets/images/homepage/homepage.jpg') }}"
+                     sizes="(min-width: 1024px) 520px, 100vw"
                      alt="Dettaglio artigianale di una borsa crochet"
                      loading="lazy"
                      decoding="async"

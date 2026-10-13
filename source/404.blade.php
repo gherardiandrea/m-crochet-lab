@@ -64,6 +64,8 @@ permalink: 404.html
                     <a href="{{ $borsa->getPath() }}" class="group block">
                         <div class="aspect-square overflow-hidden rounded-2xl bg-stone-100 mb-3">
                             <img src="{{ $borsa->copertina }}"
+                                 srcset="{{ $page->srcset($borsa->copertina, 800) }}"
+                                 sizes="(min-width: 1024px) 210px, (min-width: 640px) 33vw, 50vw"
                                  alt="{{ $borsa->nome }}"
                                  loading="lazy"
                                  decoding="async"
