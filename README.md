@@ -129,17 +129,12 @@ Descrizione della borsa.
 
 ## Ottimizzazione immagini
 
-Convertire i JPEG in WebP con rotazione EXIF corretta (richiede Pillow):
+Script in `scripts/ottimizza-immagini.py` (richiede Pillow: `pip3 install Pillow`).
+
+Convertire un originale (da `raw-images/`) in WebP, con rotazione EXIF corretta e larghezza massima 1440px:
 
 ```bash
-pip3 install Pillow
-python3 -c "
-from PIL import Image, ImageOps
-img = Image.open('originale.jpeg')
-img = ImageOps.exif_transpose(img)
-img = img.resize((1200, int(img.height * 1200 / img.width)))
-img.save('ottimizzata.webp', 'WEBP', quality=82)
-"
+python3 scripts/ottimizza-immagini.py converti source/assets/raw-images/borsa/foto.jpg source/assets/images/borsa/1.webp
 ```
 
 ## Note
