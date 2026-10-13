@@ -6,8 +6,6 @@
         $shipping = collect($page->get('shipping', []));
         $shippingPreparation = (string) $shipping->get('preparationTime');
         $shippingDelivery = (string) $shipping->get('deliveryTime');
-        $shippingTracking = (string) $shipping->get('tracking');
-        $shippingCustomOrders = (string) $shipping->get('customOrders');
         $prontaConsegna = json_decode(json_encode($page->get('prontaConsegna', [])), true) ?? [];
     @endphp
 
@@ -261,63 +259,27 @@
         </div>
     </section>
 
-    <section id="spedizioni" class="mt-10 md:mt-14 scroll-mt-32">
-        <div class="bg-white rounded-3xl shadow-sm p-6 md:p-10">
-            <div class="text-center mb-8">
-                <p class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#9c6644] bg-[#f4e7db] px-3 py-2 rounded-full mb-4">Spedizioni</p>
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-3">Tempi e consegna</h2>
-                <p class="text-stone-600 max-w-2xl mx-auto">Ogni borsa viene realizzata a mano: i tempi possono variare in base al modello e alle personalizzazioni richieste.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 text-sm">
-                <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-4">
-                    <p class="font-semibold text-stone-800 mb-1">Preparazione</p>
-                    <p class="text-stone-600">{{ $shippingPreparation }}</p>
-                </div>
-                <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-4">
-                    <p class="font-semibold text-stone-800 mb-1">Consegna Italia</p>
-                    <p class="text-stone-600">{{ $shippingDelivery }}</p>
-                </div>
-                <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-4">
-                    <p class="font-semibold text-stone-800 mb-1">Tracciamento</p>
-                    <p class="text-stone-600">{{ $shippingTracking }}</p>
-                </div>
-                <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-4">
-                    <p class="font-semibold text-stone-800 mb-1">Personalizzazioni</p>
-                    <p class="text-stone-600">{{ $shippingCustomOrders }}</p>
-                </div>
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                <a href="/spedizioni" class="py-3 px-6 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md text-center">Leggi dettagli spedizioni</a>
-                <a href="https://ig.me/m/m_crochet_lab"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="py-3 px-6 rounded-xl border border-[#7f5539] text-[#7f5539] font-semibold hover:bg-[#f4e7db] transition text-center">
-                    Chiedi info su Instagram
-                </a>
-            </div>
+    <section id="spedizioni" class="mt-12 md:mt-16 scroll-mt-32">
+        @php $tariffaMinima = collect($shipping->get('inpost', []))->first(); @endphp
+        <div class="md:flex md:items-end md:justify-between md:gap-8 mb-6">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539]">Spedizioni</h2>
+            <a href="/spedizioni" class="mt-2 md:mt-0 inline-block text-sm font-semibold text-[#7f5539] underline underline-offset-2 hover:text-[#9c6644]">Tutti i dettagli sulle spedizioni</a>
         </div>
-    </section>
-
-    <section id="contatti" class="mt-10 md:mt-14 scroll-mt-32">
-        <div class="bg-[#e6ccb2] rounded-3xl p-6 md:p-10 text-center">
-            <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-4">Contatti</h2>
-            <p class="text-[#7f5539] max-w-2xl mx-auto mb-8">Scrivimi per disponibilità, colori personalizzati o tempi di realizzazione. Ti rispondo volentieri su Instagram.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://ig.me/m/m_crochet_lab"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="py-3 px-6 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md">
-                    Contattami su Instagram
-                </a>
-                <a href="https://www.instagram.com/m_crochet_lab/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="py-3 px-6 rounded-xl border border-[#7f5539] text-[#7f5539] font-semibold hover:bg-[#f4e7db] transition">
-                    Seguimi su Instagram
-                </a>
+        <dl class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-0 border-t border-stone-200 pt-6">
+            <div class="md:pr-8">
+                <dt class="text-sm font-semibold text-stone-800">Realizzazione</dt>
+                <dd class="mt-1 text-stone-600">{{ $shippingPreparation }} dalla conferma dell'ordine</dd>
             </div>
-        </div>
+            <div class="md:px-8 md:border-l border-stone-200">
+                <dt class="text-sm font-semibold text-stone-800">Consegna in Italia</dt>
+                <dd class="mt-1 text-stone-600">{{ $shippingDelivery }}, con codice di tracciamento</dd>
+            </div>
+            @if ($tariffaMinima)
+                <div class="md:pl-8 md:border-l border-stone-200">
+                    <dt class="text-sm font-semibold text-stone-800">Costo</dt>
+                    <dd class="mt-1 text-stone-600">InPost locker e punti di ritiro, da {{ $tariffaMinima }}</dd>
+                </div>
+            @endif
+        </dl>
     </section>
 @endsection

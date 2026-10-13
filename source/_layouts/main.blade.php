@@ -211,7 +211,7 @@
                 '/#pronte-per-te' => $haPronte ? 'Pronte per te' : null,
                 '/#chi-sono' => 'Chi sono',
                 '/#spedizioni' => 'Spedizioni',
-                '/#contatti' => 'Contatti',
+                '#contatti' => 'Contatti',
             ]);
         @endphp
         {{-- Su desktop resta fissa tutta la barra; su mobile solo la riga del menu, per non occupare mezzo schermo --}}
@@ -307,42 +307,57 @@
             </div>
         </div>
 
-        <footer class="bg-[#7f5539] text-[#e6ccb2] text-center py-10 px-4 mt-auto">
-            <div class="mb-5">
-                <img src="/assets/images/logo.webp" srcset="{{ $page->srcset('/assets/images/logo.webp', 400) }}" sizes="72px" alt="{{ $siteName }}" loading="lazy" decoding="async" width="72" height="72" style="display:block;margin:0 auto;width:72px;height:72px;border-radius:50%;object-fit:cover;opacity:0.92;">
-            </div>
-            <div class="mb-6">
-                <a href="https://www.instagram.com/m_crochet_lab/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 hover:text-white transition-colors duration-300 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-instagram transform group-hover:scale-110 transition-transform" viewBox="0 0 16 16">
-                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.269.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.003 1.44c2.147 0 2.4.008 3.248.047.78.036 1.203.166 1.485.276.374.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.847.047 1.097.047 3.247s-.008 2.399-.047 3.248c-.036.78-.166 1.203-.276 1.485-.145.374-.319.64-.599.92-.28.28-.546.453-.92.598-.281.11-.705.24-1.485.276-.847.039-1.097.047-3.247.047s-2.399-.008-3.248-.047c-.78-.036-1.203-.166-1.485-.276a2.47 2.47 0 0 1-.92-.598 2.47 2.47 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.847-.046-1.097-.046-3.247s.008-2.399.046-3.248c.035-.78.166-1.203.276-1.485.145-.374.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
-                    </svg>
-                    <span class="font-medium">Seguimi su Instagram</span>
-                </a>
+        <footer class="bg-[#7f5539] text-[#e6ccb2] mt-auto">
+            {{-- Contatti in cima al footer: l'invito a scrivere c'è in fondo a ogni pagina --}}
+            <div class="border-b border-white/15">
+                <div id="contatti" class="container mx-auto max-w-6xl px-4 py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-center scroll-mt-24">
+                    <div class="md:col-span-7">
+                        <h2 class="font-serif text-3xl md:text-5xl font-bold text-white leading-tight text-balance">Hai in mente una borsa? Scrivimi.</h2>
+                        <p class="mt-4 leading-relaxed max-w-lg">Disponibilità, colori personalizzati o tempi di realizzazione: ti rispondo volentieri su Instagram.</p>
+                    </div>
+                    <div class="md:col-span-5">
+                        <a href="https://ig.me/m/m_crochet_lab"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-[#e6ccb2] text-[#7f5539] font-bold hover:bg-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.269.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.003 1.44c2.147 0 2.4.008 3.248.047.78.036 1.203.166 1.485.276.374.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.847.047 1.097.047 3.247s-.008 2.399-.047 3.248c-.036.78-.166 1.203-.276 1.485-.145.374-.319.64-.599.92-.28.28-.546.453-.92.598-.281.11-.705.24-1.485.276-.847.039-1.097.047-3.247.047s-2.399-.008-3.248-.047c-.78-.036-1.203-.166-1.485-.276a2.47 2.47 0 0 1-.92-.598 2.47 2.47 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.847-.046-1.097-.046-3.247s.008-2.399.046-3.248c.035-.78.166-1.203.276-1.485.145-.374.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+                            </svg>
+                            Scrivimi su Instagram
+                        </a>
+                        @if ($page->email)
+                            <p class="mt-3 text-sm text-center">Non usi Instagram? <a href="mailto:{{ $page->email }}" class="font-semibold underline underline-offset-2 hover:text-white">{{ $page->email }}</a></p>
+                        @endif
+                    </div>
+                </div>
             </div>
 
-            <div class="mb-5 text-sm flex flex-wrap items-center justify-center gap-4">
-                <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
-                <span aria-hidden="true" class="opacity-50">·</span>
-                <a href="/cookie" class="hover:text-white transition-colors">Cookie Policy</a>
-                <span aria-hidden="true" class="opacity-50">·</span>
-                <a href="/termini-vendita" class="hover:text-white transition-colors">Termini di Vendita</a>
-                <span aria-hidden="true" class="opacity-50">·</span>
-                <a href="/spedizioni" class="hover:text-white transition-colors">Spedizioni</a>
-                <span aria-hidden="true" class="opacity-50">·</span>
-                <button
-                    type="button"
-                    onclick="window.dispatchEvent(new CustomEvent('reopen-cookie-banner'))"
-                    class="hover:text-white transition-colors hover:underline cursor-pointer"
-                    style="font: inherit; color: inherit; background: transparent; border: 0; padding: 0; margin: 0;"
-                >Gestisci preferenze cookie</button>
-            </div>
-            <p class="text-xs opacity-70 mb-3">M Crochet Lab di Mara Benintendi &mdash; Paladina (BG) &mdash; Attività artigianale occasionale non professionale</p>
+            <div class="container mx-auto max-w-6xl px-4 py-8 text-center">
+                <img src="/assets/images/logo.webp" srcset="{{ $page->srcset('/assets/images/logo.webp', 400) }}" sizes="56px" alt="{{ $siteName }}" loading="lazy" decoding="async" width="56" height="56" class="mx-auto mb-4 w-14 h-14 rounded-full object-cover">
+                <p class="mb-5 text-sm">
+                    <a href="https://www.instagram.com/m_crochet_lab/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-white transition-colors">Seguimi su Instagram</a>
+                </p>
+                <div class="mb-5 text-sm flex flex-wrap items-center justify-center gap-4">
+                    <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <span aria-hidden="true" class="opacity-50">·</span>
+                    <a href="/cookie" class="hover:text-white transition-colors">Cookie Policy</a>
+                    <span aria-hidden="true" class="opacity-50">·</span>
+                    <a href="/termini-vendita" class="hover:text-white transition-colors">Termini di Vendita</a>
+                    <span aria-hidden="true" class="opacity-50">·</span>
+                    <a href="/spedizioni" class="hover:text-white transition-colors">Spedizioni</a>
+                    <span aria-hidden="true" class="opacity-50">·</span>
+                    <button
+                        type="button"
+                        onclick="window.dispatchEvent(new CustomEvent('reopen-cookie-banner'))"
+                        class="hover:text-white transition-colors hover:underline cursor-pointer"
+                        style="font: inherit; color: inherit; background: transparent; border: 0; padding: 0; margin: 0;"
+                    >Gestisci preferenze cookie</button>
+                </div>
+                <p class="text-xs opacity-70 mb-3">M Crochet Lab di Mara Benintendi &mdash; Paladina (BG) &mdash; Attività artigianale occasionale non professionale</p>
 
-            <p class="text-sm opacity-80">&copy; {{ date('Y') }} {{ $siteName }}. Fatte a mano con il ❤️.</p>
-            <p class="text-xs opacity-50 mt-2">Sito sviluppato da <a href="https://andrea-gherardi.netlify.app/" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-80">Andrea Gherardi</a> &middot; <a href="https://github.com/gherardiandrea" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-80">GitHub</a></p>
+                <p class="text-sm opacity-80">&copy; {{ date('Y') }} {{ $siteName }}. Fatte a mano con il ❤️.</p>
+                <p class="text-xs opacity-50 mt-2">Sito sviluppato da <a href="https://andrea-gherardi.netlify.app/" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-80">Andrea Gherardi</a> &middot; <a href="https://github.com/gherardiandrea" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-80">GitHub</a></p>
+            </div>
         </footer>
     </body>
 </html>
