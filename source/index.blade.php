@@ -233,34 +233,30 @@
     </section>
     @endif
 
-    <section id="chi-sono" class="mt-10 md:mt-14 scroll-mt-32">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl shadow-sm p-6 md:p-10">
-            <div class="aspect-[4/3] sm:aspect-[4/5] -mx-6 -mt-6 sm:mx-0 sm:mt-0 rounded-t-2xl sm:rounded-2xl overflow-hidden bg-stone-100">
-                <img src="/assets/images/homepage/homepage.jpg"
-                     srcset="{{ $page->srcset('/assets/images/homepage/homepage.jpg') }}"
-                     sizes="(min-width: 1024px) 520px, 100vw"
-                     alt="Dettaglio artigianale di una borsa crochet"
-                     loading="lazy"
-                     decoding="async"
-                     class="w-full h-full object-cover object-[center_38%] md:object-[center_30%]">
-            </div>
+    <section id="chi-sono" class="mt-12 md:mt-16 scroll-mt-32 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-14 items-start">
+        <figure class="md:col-span-5">
+            <img src="/assets/images/homepage/homepage.jpg"
+                 srcset="{{ $page->srcset('/assets/images/homepage/homepage.jpg') }}"
+                 sizes="(min-width: 1152px) 440px, (min-width: 768px) 40vw, 100vw"
+                 alt="Simba accanto a una borsa all'uncinetto fucsia"
+                 loading="lazy"
+                 decoding="async"
+                 class="w-full aspect-[4/3] md:aspect-[4/5] object-cover object-[center_40%] rounded-3xl">
+            <figcaption class="mt-3 text-sm text-stone-500">Simba, il mio assistente ufficiale, al lavoro.</figcaption>
+        </figure>
 
-            <div>
-                <p class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#9c6644] bg-[#f4e7db] px-3 py-2 rounded-full mb-5">Chi sono</p>
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-5">Creatività, filati e passione artigianale</h2>
-                <p class="text-stone-600 mb-4 leading-relaxed">Mi chiamo Mara, ho 27 anni e, se qualche anno fa mi avessero detto che avrei creato borse all'uncinetto, probabilmente avrei riso. Non mi sono mai considerata una persona particolarmente creativa... e forse è proprio per questo che quello che faccio oggi mi sembra ancora più magico.</p>
-                <p class="text-stone-600 mb-4 leading-relaxed">L'uncinetto mi ha insegnato qualcosa di importante: che dal nulla può nascere qualcosa di bello. Un filo, un uncino, un po' di pazienza... e piano piano prende forma una borsa unica.</p>
-                <p class="text-stone-600 mb-4 leading-relaxed">Mi ha insegnato anche che non sempre le cose riescono al primo tentativo. A volte bisogna fermarsi, disfare qualche punto e ricominciare. Ma in fondo è proprio così che si impara, e forse è anche così che funziona la vita.</p>
-                <p class="text-stone-600 mb-4 leading-relaxed">Ogni borsa che realizzo è diversa, imperfetta nel modo più bello possibile, perché fatta a mano e con il suo carattere. Un po' come noi.</p>
-                <p class="text-stone-600 mb-4 leading-relaxed">Ah, e non sono sola in questa avventura: il mio assistente ufficiale è Simba, il mio gattino rosso, grande esperto nel controllare gomitoli, fili in movimento e momenti di pausa.</p>
-                <p class="text-stone-600 mb-6 leading-relaxed">Se sei qui, probabilmente anche tu credi che le cose fatte con calma, pazienza e un pizzico di magia abbiano qualcosa di speciale.</p>
-
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 text-sm">
-                    <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 font-medium text-stone-700">100% fatte a mano</div>
-                    <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 font-medium text-stone-700">Pezzi unici</div>
-                    <div class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 font-medium text-stone-700">Personalizzabili</div>
-                </div>
+        {{-- Il testo è di Mara: si legge come una lettera, con il primo paragrafo in evidenza e la firma --}}
+        <div class="md:col-span-7 max-w-[62ch]">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-5">Chi sono</h2>
+            <p class="font-serif text-xl md:text-2xl leading-snug text-stone-800 mb-6">Mi chiamo Mara, ho 27 anni e, se qualche anno fa mi avessero detto che avrei creato borse all'uncinetto, probabilmente avrei riso. Non mi sono mai considerata una persona particolarmente creativa... e forse è proprio per questo che quello che faccio oggi mi sembra ancora più magico.</p>
+            <div class="space-y-4 text-stone-600 leading-relaxed">
+                    <p>L'uncinetto mi ha insegnato qualcosa di importante: che dal nulla può nascere qualcosa di bello. Un filo, un uncino, un po' di pazienza... e piano piano prende forma una borsa unica.</p>
+                    <p>Mi ha insegnato anche che non sempre le cose riescono al primo tentativo. A volte bisogna fermarsi, disfare qualche punto e ricominciare. Ma in fondo è proprio così che si impara, e forse è anche così che funziona la vita.</p>
+                    <p>Ogni borsa che realizzo è diversa, imperfetta nel modo più bello possibile, perché fatta a mano e con il suo carattere. Un po' come noi.</p>
+                    <p>Ah, e non sono sola in questa avventura: il mio assistente ufficiale è Simba, il mio gattino rosso, grande esperto nel controllare gomitoli, fili in movimento e momenti di pausa.</p>
+                    <p>Se sei qui, probabilmente anche tu credi che le cose fatte con calma, pazienza e un pizzico di magia abbiano qualcosa di speciale.</p>
             </div>
+            <p class="mt-8 font-serif text-2xl font-bold text-[#7f5539]">Mara</p>
         </div>
     </section>
 
