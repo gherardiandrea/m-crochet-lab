@@ -3,15 +3,15 @@
 
     $staticPaths = [
         '/',
-        '/privacy',
-        '/cookie',
-        '/termini-vendita',
-        '/spedizioni',
+        '/privacy/',
+        '/cookie/',
+        '/termini-vendita/',
+        '/spedizioni/',
     ];
 
     $productPaths = collect($borse ?? [])
-        ->map(function ($borsa) {
-            return (string) $borsa->getPath();
+        ->map(function ($borsa) use ($page) {
+            return $page->conBarra($borsa->getPath());
         })
         ->filter()
         ->all();

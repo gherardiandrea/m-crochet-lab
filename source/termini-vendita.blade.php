@@ -89,7 +89,7 @@ aggiornamento: 13 ottobre 2026
                 volume e destinazione.
             </p>
             <p class="mt-2">
-                Tempi di preparazione e consegna sono indicati nella pagina <a class="underline" href="/spedizioni">Spedizioni</a>.
+                Tempi di preparazione e consegna sono indicati nella pagina <a class="underline" href="/spedizioni/">Spedizioni</a>.
                 Eventuali ritardi imputabili al corriere non sono attribuibili al Venditore.
             </p>
         </div>
@@ -167,7 +167,7 @@ aggiornamento: 13 ottobre 2026
             <h2 class="font-serif text-2xl font-bold text-[#7f5539] mb-3 scroll-mt-20 lg:scroll-mt-28">12. Trattamento dei dati personali</h2>
             <p>
                 I dati personali forniti per la conclusione e l'esecuzione del contratto sono trattati secondo quanto descritto nella
-                <a class="underline" href="/privacy">Privacy Policy</a>.
+                <a class="underline" href="/privacy/">Privacy Policy</a>.
             </p>
         </div>
 

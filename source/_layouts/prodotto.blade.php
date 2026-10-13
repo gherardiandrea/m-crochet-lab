@@ -101,7 +101,7 @@
                 <div class="grid grid-cols-3 gap-2">
                     @foreach ($misure as $borsa)
                         @php $attuale = $borsa->getPath() === $page->getPath(); @endphp
-                        <a href="{{ $borsa->getPath() }}"
+                        <a href="{{ $page->conBarra($borsa->getPath()) }}"
                            @if ($attuale) aria-current="page" @endif
                            class="rounded-xl px-2 py-2.5 text-center transition {{ $attuale ? 'border-2 border-[#7f5539] bg-[#f4e7db]' : 'border border-stone-300 hover:border-[#7f5539]' }}">
                             <span class="block font-semibold text-stone-800 leading-tight">{{ $borsa->misura ?: $borsa->nome }}</span>
@@ -186,7 +186,7 @@
                     <span>La realizzo in {{ $shippingPreparation }}, poi te la spedisco (consegna in Italia: {{ $shippingDelivery }}).</span>
                 </li>
             </ol>
-            <a href="/spedizioni" class="mt-4 inline-block text-sm font-semibold text-[#7f5539] underline underline-offset-2 hover:text-[#9c6644]">Costi e dettagli di spedizione</a>
+            <a href="/spedizioni/" class="mt-4 inline-block text-sm font-semibold text-[#7f5539] underline underline-offset-2 hover:text-[#9c6644]">Costi e dettagli di spedizione</a>
         </div>
     </div>
 
@@ -234,7 +234,7 @@
         <ul class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             @foreach ($altriModelli as $borsa)
                 <li>
-                    <a href="{{ $borsa->getPath() }}" class="group block">
+                    <a href="{{ $page->conBarra($borsa->getPath()) }}" class="group block">
                         <img src="{{ $borsa->copertina }}"
                              srcset="{{ $page->srcset($borsa->copertina, 800) }}"
                              sizes="(min-width: 1024px) 260px, 45vw"

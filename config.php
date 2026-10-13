@@ -93,6 +93,16 @@ return [
         ],
     ],
 
+    // Percorsi interni con la barra finale: Netlify serve /pagina/ e reindirizza /pagina (home, ancore e file restano uguali)
+    'conBarra' => function ($page, $path) {
+        $path = (string) $path;
+        if ($path === '' || $path === '/' || str_contains($path, '#') || preg_match('/\.[a-z0-9]+$/i', $path)) {
+            return $path === '' ? '/' : $path;
+        }
+
+        return rtrim($path, '/') . '/';
+    },
+
     // srcset con le varianti -400/-800.webp create da scripts/ottimizza-immagini.py.
     // $maxWidth esclude le versioni più grandi (es. miniature); senza varianti resta l'originale.
     'srcset' => function ($page, $path, $maxWidth = null) {

@@ -42,9 +42,11 @@
                 : '/assets/images/homepage/homepage.jpg';
 
             $baseUrl = rtrim((string) ($page->baseUrl ?? ''), '/');
-            $pagePath = (string) ($page->getPath() ?? '/');
+            $pagePath = $page->conBarra($page->getPath() ?? '/');
             $canonicalPath = $pagePath === '/' ? '' : $pagePath;
-            $canonicalUrl = $baseUrl !== '' ? $baseUrl . $canonicalPath : '';
+            // Pagine da non indicizzare (es. la 404): niente canonical e meta robots noindex
+            $indicizzabile = (bool) $page->get('indicizzabile', true);
+            $canonicalUrl = $baseUrl !== '' && $indicizzabile ? $baseUrl . $canonicalPath : '';
             $seoImage = $baseUrl !== '' ? $baseUrl . $seoImagePath : $seoImagePath;
             $ogType = $productName !== '' ? 'product' : 'website';
         @endphp
@@ -52,7 +54,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ $seoTitle }}</title>
         <meta name="description" content="{{ $seoDescription }}">
-        <meta name="robots" content="index, follow">
+        <meta name="robots" content="{{ $indicizzabile ? 'index, follow' : 'noindex' }}">
 
         @if ($canonicalUrl !== '')
             <link rel="canonical" href="{{ $canonicalUrl }}">
@@ -282,9 +284,9 @@
                         <p style="margin:0;font-size:0.75rem;color:#78716c;line-height:1.5;">
                             Usiamo cookie analitici (Google Analytics) per capire come viene visitato il sito.
                             Nessun dato personale identificativo viene raccolto.
-                            <a href="/cookie" style="color:#7f5539;text-decoration:underline;">Cookie Policy</a>
+                            <a href="/cookie/" style="color:#7f5539;text-decoration:underline;">Cookie Policy</a>
                             &middot;
-                            <a href="/privacy" style="color:#7f5539;text-decoration:underline;">Privacy Policy</a>
+                            <a href="/privacy/" style="color:#7f5539;text-decoration:underline;">Privacy Policy</a>
                         </p>
                     </div>
                 </div>
@@ -334,10 +336,10 @@
                 <div class="container mx-auto max-w-6xl px-4 py-4 space-y-2">
                     <div class="text-sm flex flex-wrap items-center gap-x-4 gap-y-1">
                         <a href="https://www.instagram.com/m_crochet_lab/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-white transition-colors">Seguimi su Instagram</a>
-                        <a href="/spedizioni" class="hover:text-white transition-colors">Spedizioni</a>
-                        <a href="/termini-vendita" class="hover:text-white transition-colors">Termini di Vendita</a>
-                        <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
-                        <a href="/cookie" class="hover:text-white transition-colors">Cookie Policy</a>
+                        <a href="/spedizioni/" class="hover:text-white transition-colors">Spedizioni</a>
+                        <a href="/termini-vendita/" class="hover:text-white transition-colors">Termini di Vendita</a>
+                        <a href="/privacy/" class="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="/cookie/" class="hover:text-white transition-colors">Cookie Policy</a>
                         <button
                             type="button"
                             onclick="window.dispatchEvent(new CustomEvent('reopen-cookie-banner'))"

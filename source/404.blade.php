@@ -2,6 +2,7 @@
 title: Pagina non trovata
 description: La pagina richiesta non è disponibile.
 permalink: 404.html
+indicizzabile: false
 ---
 @extends('_layouts.main')
 
@@ -61,7 +62,7 @@ permalink: 404.html
             <h2 class="font-serif text-2xl md:text-3xl font-bold text-[#7f5539] mb-6">Forse cercavi una di queste borse</h2>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
                 @foreach ($borse as $borsa)
-                    <a href="{{ $borsa->getPath() }}" class="group block">
+                    <a href="{{ $page->conBarra($borsa->getPath()) }}" class="group block">
                         <div class="aspect-square overflow-hidden rounded-2xl bg-stone-100 mb-3">
                             <img src="{{ $borsa->copertina }}"
                                  srcset="{{ $page->srcset($borsa->copertina, 800) }}"

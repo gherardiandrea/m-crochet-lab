@@ -12,7 +12,7 @@
     <section class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-center mb-12 md:mb-16">
         {{-- Foto indossata: fa capire subito com'è la borsa e quanto è grande --}}
         <figure class="md:col-span-5 md:order-2">
-            <a href="/modelli/m-bag-extra-large">
+            <a href="/modelli/m-bag-extra-large/">
                 <img src="/assets/images/m-bag-extra-large/4.webp"
                      srcset="{{ $page->srcset('/assets/images/m-bag-extra-large/4.webp') }}"
                      sizes="(min-width: 1152px) 440px, (min-width: 768px) 40vw, 100vw"
@@ -22,7 +22,7 @@
                      class="w-full aspect-square md:aspect-[4/5] object-cover object-[center_62%] rounded-3xl">
             </a>
             <figcaption class="mt-3 text-sm text-stone-500">
-                Nella foto: <a href="/modelli/m-bag-extra-large" class="font-semibold text-[#7f5539] underline underline-offset-2 hover:text-[#9c6644]">MBag Extra Large</a>, color tortora
+                Nella foto: <a href="/modelli/m-bag-extra-large/" class="font-semibold text-[#7f5539] underline underline-offset-2 hover:text-[#9c6644]">MBag Extra Large</a>, color tortora
             </figcaption>
         </figure>
 
@@ -71,7 +71,7 @@
                     @foreach ($misure as $borsa)
                         @php $foto = $borsa->indossata ?: $borsa->copertina; @endphp
                         <li>
-                            <a href="{{ $borsa->getPath() }}" class="group block">
+                            <a href="{{ $page->conBarra($borsa->getPath()) }}" class="group block">
                                 {{-- Indossata per confrontare le misure; al passaggio del mouse la borsa da sola --}}
                                 <div class="relative aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100">
                                     <img src="{{ $foto }}"
@@ -109,7 +109,7 @@
             <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 @foreach ($singole as $borsa)
                     <li>
-                        <a href="{{ $borsa->getPath() }}" class="group grid grid-cols-5 gap-4 md:gap-6 items-center h-full bg-white rounded-3xl p-3 md:p-4">
+                        <a href="{{ $page->conBarra($borsa->getPath()) }}" class="group grid grid-cols-5 gap-4 md:gap-6 items-center h-full bg-white rounded-3xl p-3 md:p-4">
                             {{-- Copertina; al passaggio del mouse compare la foto indossata --}}
                             <div class="col-span-2 relative aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100">
                                 <img src="{{ $borsa->copertina }}"
@@ -263,7 +263,7 @@
         @php $tariffaMinima = collect($shipping->get('inpost', []))->first(); @endphp
         <div class="md:flex md:items-end md:justify-between md:gap-8 mb-6">
             <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539]">Spedizioni</h2>
-            <a href="/spedizioni" class="mt-2 md:mt-0 inline-block text-sm font-semibold text-[#7f5539] underline underline-offset-2 hover:text-[#9c6644]">Tutti i dettagli sulle spedizioni</a>
+            <a href="/spedizioni/" class="mt-2 md:mt-0 inline-block text-sm font-semibold text-[#7f5539] underline underline-offset-2 hover:text-[#9c6644]">Tutti i dettagli sulle spedizioni</a>
         </div>
         <dl class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-0 border-t border-stone-200 pt-6">
             <div class="md:pr-8">
