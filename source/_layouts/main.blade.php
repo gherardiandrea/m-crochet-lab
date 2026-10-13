@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth">
+<html lang="it" class="motion-safe:scroll-smooth">
     <head>
         @php
             $siteName = (string) $page->siteName;
