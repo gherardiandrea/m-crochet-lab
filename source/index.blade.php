@@ -108,95 +108,83 @@
     </section>
 
     @if(count($prontaConsegna) > 0)
-    <section id="pronte-per-te" class="mt-10 md:mt-14 scroll-mt-32">
-        <div class="bg-white rounded-3xl shadow-sm p-6 md:p-10">
-            <div class="mb-8 md:mb-10">
-                <p class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-emerald-700 bg-emerald-50 px-3 py-2 rounded-full mb-4">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+    <section id="pronte-per-te" class="mt-10 md:mt-14 scroll-mt-32 bg-[#f4e7db] rounded-3xl p-6 md:p-10">
+        <div class="md:flex md:items-end md:justify-between md:gap-12 mb-6 md:mb-8">
+            <div>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-3">Pronte per te</h2>
+                <p class="text-stone-700 leading-relaxed max-w-lg">
                     @if(count($prontaConsegna) == 1)
-                        Disponibile ora
+                        Questa borsa è già pronta: la spedisco appena la prenoti.
                     @else
-                        Disponibili ora
+                        Queste {{ count($prontaConsegna) }} borse sono già pronte: le spedisco appena le prenoti.
                     @endif
                 </p>
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-3">Pronte per te</h2>
-                <p class="text-stone-500 leading-relaxed max-w-lg">Pezzi unici, già pronti per essere indossati.</p>
             </div>
+            <a href="https://ig.me/m/m_crochet_lab"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="mt-5 md:mt-0 inline-block shrink-0 py-3 px-6 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md text-center">
+                Scrivimi per prenotare
+            </a>
+        </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach($prontaConsegna as $borsa)
-                @php
-                    $gallery = array_values((array) ($borsa['gallery'] ?? []));
-                    $srcsets = array_map(fn ($foto) => $page->srcset($foto, 800), $gallery);
-                @endphp
-                <div x-data="{ foto: 0, gallery: {{ json_encode($gallery) }}, srcsets: {{ json_encode($srcsets) }} }"
-                     class="group bg-stone-50 border border-stone-100 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        {{-- Su mobile la fila scorre in orizzontale; da desktop è una griglia da 6 --}}
+        <ul class="flex lg:grid lg:grid-cols-6 gap-3 md:gap-4 overflow-x-auto snap-x pb-1">
+            @foreach($prontaConsegna as $borsa)
+            @php
+                $gallery = array_values((array) ($borsa['gallery'] ?? []));
+                $srcsets = array_map(fn ($foto) => $page->srcset($foto, 800), $gallery);
+                $descrizione = trim($borsa['nome'] . ' ' . ($borsa['colore'] ?? ''));
+            @endphp
+            <li x-data="{ foto: 0, gallery: {{ json_encode($gallery) }}, srcsets: {{ json_encode($srcsets) }} }"
+                class="shrink-0 w-32 sm:w-44 lg:w-auto snap-start">
+                <div class="relative aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 cursor-pointer" @click="foto = (foto + 1) % gallery.length">
+                    <img src="{{ $gallery[0] ?? '' }}"
+                         srcset="{{ $srcsets[0] ?? '' }}"
+                         :src="gallery[foto]"
+                         :srcset="srcsets[foto]"
+                         sizes="(min-width: 1024px) 170px, (min-width: 640px) 176px, 128px"
+                         alt="{{ $descrizione }}"
+                         loading="lazy"
+                         decoding="async"
+                         class="w-full h-full object-cover">
 
-                    <div class="relative aspect-square overflow-hidden bg-stone-100 cursor-pointer" @click="foto = (foto + 1) % gallery.length">
-                        <img src="{{ $gallery[0] ?? '' }}"
-                             srcset="{{ $srcsets[0] ?? '' }}"
-                             :src="gallery[foto]"
-                             :srcset="srcsets[foto]"
-                             sizes="(min-width: 1024px) 330px, (min-width: 640px) 50vw, 100vw"
-                             alt="{{ $borsa['nome'] }}"
-                             loading="lazy"
-                             decoding="async"
-                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-                        <div class="absolute top-3 left-3 flex flex-col items-start gap-1.5">
-                            <span class="inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-sm text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                                Disponibile
-                            </span>
-                            @if(!empty($borsa['novita']))
-                            <span class="inline-flex items-center bg-[#7f5539] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
-                                Novità assoluta
-                            </span>
-                            @endif
-                            @if(!empty($borsa['prezzoOriginale']))
-                            <span class="inline-flex items-center text-xs font-bold px-3 py-1.5 rounded-full shadow-sm" style="background:#f4e7db;color:#7f5539;">
-                                In sconto per la festa della mamma
-                            </span>
-                            @endif
-                        </div>
-
-                        @if(count($borsa['gallery'] ?? []) > 1)
-                        <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
-                            @foreach($borsa['gallery'] as $idx => $f)
-                            <button @click.stop="foto = {{ $idx }}"
-                                    :class="foto === {{ $idx }} ? 'bg-white w-4' : 'bg-white/50 w-1.5'"
-                                    class="h-1.5 rounded-full transition-all duration-300"></button>
-                            @endforeach
-                        </div>
+                    @if(!empty($borsa['novita']) || !empty($borsa['prezzoOriginale']))
+                    <div class="absolute top-2 left-2 flex flex-col items-start gap-1">
+                        @if(!empty($borsa['novita']))
+                        <span class="bg-[#7f5539] text-white text-xs font-bold px-2.5 py-1 rounded-full">Novità</span>
+                        @endif
+                        @if(!empty($borsa['prezzoOriginale']))
+                        <span class="bg-white text-[#7f5539] text-xs font-bold px-2.5 py-1 rounded-full">In sconto</span>
                         @endif
                     </div>
+                    @endif
 
-                    <div class="p-5">
-                        <div class="flex items-start justify-between gap-2">
-                            <div>
-                                <p class="font-bold text-stone-800 text-lg leading-tight">{{ $borsa['nome'] }}</p>
-                                @if(!empty($borsa['colore']))
-                                <p class="text-xs text-stone-400 mt-0.5">{{ $borsa['colore'] }}</p>
-                                @endif
-                            </div>
-                            <div class="text-right shrink-0">
-                                @if(!empty($borsa['prezzoOriginale']))
-                                <p class="text-xs text-stone-400 line-through">{{ $borsa['prezzoOriginale'] }}</p>
-                                @endif
-                                <p class="font-bold text-xl" style="color:#7f5539;">{{ $borsa['prezzo'] }}</p>
-                            </div>
-                        </div>
-                        <a href="https://ig.me/m/m_crochet_lab"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="mt-4 w-full text-center block py-2.5 px-4 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition text-sm shadow-sm">
-                            Scrivimi per prenotare
-                        </a>
+                    @if(count($gallery) > 1)
+                    <div class="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5">
+                        @foreach($gallery as $idx => $f)
+                        <button type="button"
+                                aria-label="{{ $descrizione }}, foto {{ $idx + 1 }} di {{ count($gallery) }}"
+                                @click.stop="foto = {{ $idx }}"
+                                :class="foto === {{ $idx }} ? 'bg-white w-4' : 'bg-white/60 w-1.5'"
+                                class="h-1.5 rounded-full transition-all duration-300"></button>
+                        @endforeach
                     </div>
+                    @endif
                 </div>
-                @endforeach
-            </div>
-        </div>
+                <p class="mt-2 text-sm font-semibold text-stone-800 leading-tight">{{ $borsa['nome'] }}</p>
+                @if(!empty($borsa['colore']))
+                <p class="text-xs text-stone-600">{{ $borsa['colore'] }}</p>
+                @endif
+                <p class="text-sm text-[#9c6644]">
+                    @if(!empty($borsa['prezzoOriginale']))
+                    <span class="line-through text-stone-500 mr-1">{{ $borsa['prezzoOriginale'] }}</span>
+                    @endif
+                    {{ $borsa['prezzo'] }}
+                </p>
+            </li>
+            @endforeach
+        </ul>
     </section>
     @endif
 
