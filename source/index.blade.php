@@ -42,9 +42,9 @@
     </section>
 
     <section id="modelli" class="scroll-mt-32">
-        <div class="md:flex md:items-end md:justify-between md:gap-12 mb-8">
-            <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539]">I modelli</h2>
-            <p class="mt-2 md:mt-0 text-stone-600 leading-relaxed max-w-md">Scegli il modello e il colore: la realizzo a mano dopo il tuo ordine, in {{ $shippingPreparation }}.</p>
+        <div class="mb-8">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-3">I modelli</h2>
+            <p class="text-stone-600 leading-relaxed max-w-xl">Scegli il modello e il colore: la realizzo a mano dopo il tuo ordine, in {{ $shippingPreparation }}.</p>
         </div>
 
         @php
@@ -61,9 +61,9 @@
                 $quante = $numeri[$misure->count()] ?? $misure->count();
             @endphp
             <div class="bg-white rounded-3xl p-4 md:p-8 mb-4 md:mb-6">
-                <div class="md:flex md:items-end md:justify-between md:gap-12 mb-5 md:mb-6">
-                    <h3 class="font-serif text-2xl md:text-3xl font-bold text-[#7f5539]">{{ $famiglia }}</h3>
-                    <p class="mt-1 md:mt-0 text-stone-600 leading-relaxed max-w-md">
+                <div class="mb-5 md:mb-6">
+                    <h3 class="font-serif text-2xl md:text-3xl font-bold text-[#7f5539] mb-1">{{ $famiglia }}</h3>
+                    <p class="text-stone-600 leading-relaxed max-w-xl">
                         {{ $descrizione !== '' ? $descrizione . ', in ' . $quante . ' misure.' : 'In ' . $quante . ' misure.' }}
                         Qui le vedi indossate, per confrontarle.
                     </p>
