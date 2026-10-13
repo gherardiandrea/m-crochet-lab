@@ -7,18 +7,36 @@
         $shippingDelivery = (string) ($shipping['deliveryTime'] ?? '24-72 ore dopo la spedizione');
         $shippingTracking = (string) ($shipping['tracking'] ?? 'Codice inviato appena parte il pacco');
         $shippingCustomOrders = (string) ($shipping['customOrders'] ?? 'Tempi comunicati prima della conferma');
+        $prontaConsegna = json_decode(json_encode($page->get('prontaConsegna', [])), true) ?? [];
     @endphp
 
-    <section id="home-section" class="scroll-mt-32 mb-10 md:mb-14">
-        <div class="bg-white rounded-3xl shadow-sm p-5 sm:p-6 md:p-10 lg:p-12">
-            <p class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#9c6644] bg-[#f4e7db] px-3 py-2 rounded-full mb-5">Home</p>
-            <div class="max-w-3xl">
-                <h1 class="font-serif text-2xl sm:text-3xl md:text-5xl font-bold text-[#7f5539] mb-4 md:mb-5">Borse crochet fatte a mano, una per una</h1>
-                <p class="text-stone-600 leading-relaxed mb-6 md:mb-7">Ti do il benvenuto in M Crochet Lab: qui trovi creazioni artigianali con uno stile caldo, naturale e curato nei dettagli. Ogni modello è pensato per accompagnarti tutti i giorni con originalità.</p>
-                <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                    <a href="/#modelli" class="w-full sm:w-auto text-center py-3 px-4 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md">Scopri i modelli</a>
-                    <a href="/#chi-sono" class="w-full sm:w-auto text-center py-3 px-4 rounded-xl border-2 border-stone-100 font-semibold text-stone-700 hover:bg-stone-50 transition">Leggi la mia storia</a>
-                </div>
+    <section class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-center mb-12 md:mb-16">
+        {{-- Foto indossata: fa capire subito com'è la borsa e quanto è grande --}}
+        <figure class="md:col-span-5 md:order-2">
+            <a href="/modelli/m-bag-extra-large">
+                <img src="/assets/images/m-bag-extra-large/4.webp"
+                     srcset="{{ $page->srcset('/assets/images/m-bag-extra-large/4.webp') }}"
+                     sizes="(min-width: 1152px) 440px, (min-width: 768px) 40vw, 100vw"
+                     alt="MBag Extra Large color tortora tenuta in mano"
+                     fetchpriority="high"
+                     decoding="async"
+                     class="w-full aspect-square md:aspect-[4/5] object-cover object-[center_62%] rounded-3xl">
+            </a>
+            <figcaption class="mt-3 text-sm text-stone-500">
+                Nella foto: <a href="/modelli/m-bag-extra-large" class="font-semibold text-[#7f5539] underline underline-offset-2 hover:text-[#9c6644]">MBag Extra Large</a>, color tortora
+            </figcaption>
+        </figure>
+
+        <div class="md:col-span-7 md:order-1">
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#7f5539] leading-[1.05] text-balance">Borse crochet fatte a mano, una per una</h1>
+            <p class="mt-5 text-lg text-stone-600 leading-relaxed max-w-xl">Borse all'uncinetto in filato di cotone, realizzate da Mara. Scegli il modello: il colore lo decidiamo insieme.</p>
+            <div class="mt-7 flex flex-col sm:flex-row gap-3">
+                <a href="/#modelli" class="py-3 px-6 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md text-center">Scopri i modelli</a>
+                @if (count($prontaConsegna) > 0)
+                    <a href="/#pronte-per-te" class="py-3 px-6 rounded-xl border border-[#7f5539] text-[#7f5539] font-semibold hover:bg-[#f4e7db] transition text-center">Disponibili subito</a>
+                @else
+                    <a href="/#chi-sono" class="py-3 px-6 rounded-xl border border-[#7f5539] text-[#7f5539] font-semibold hover:bg-[#f4e7db] transition text-center">Leggi la mia storia</a>
+                @endif
             </div>
         </div>
     </section>
@@ -89,9 +107,6 @@
         </div>
     </section>
 
-    @php
-        $prontaConsegna = json_decode(json_encode($page->get('prontaConsegna', [])), true) ?? [];
-    @endphp
     @if(count($prontaConsegna) > 0)
     <section id="pronte-per-te" class="mt-10 md:mt-14 scroll-mt-32">
         <div class="bg-white rounded-3xl shadow-sm p-6 md:p-10">
