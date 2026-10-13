@@ -204,27 +204,39 @@
         @endif
         @endif
 
-        <header class="bg-[#e6ccb2] py-10 text-center shadow-sm px-4">
-            <p class="text-4xl md:text-5xl font-serif text-[#7f5539] mb-2 font-bold"><a href="/">{{ $siteName }}</a></p>
-            <p class="text-[#9c6644] text-lg">{{ $tagline }}</p>
+        @php
+            $haPronte = count(json_decode(json_encode($page->get('prontaConsegna', [])), true) ?? []) > 0;
+            $menu = array_filter([
+                '/#modelli' => 'Modelli',
+                '/#pronte-per-te' => $haPronte ? 'Pronte per te' : null,
+                '/#chi-sono' => 'Chi sono',
+                '/#spedizioni' => 'Spedizioni',
+                '/#contatti' => 'Contatti',
+            ]);
+        @endphp
+        {{-- Su desktop resta fissa tutta la barra; su mobile solo la riga del menu, per non occupare mezzo schermo --}}
+        <header class="md:sticky md:top-0 z-20 bg-stone-50/95 backdrop-blur md:border-b border-stone-200">
+            <div class="container mx-auto px-4 max-w-6xl flex items-center justify-between gap-6 h-16 md:h-20">
+                <a href="/" class="flex items-center gap-3 shrink-0">
+                    <img src="/assets/images/logo.webp" srcset="{{ $page->srcset('/assets/images/logo.webp', 400) }}" sizes="48px" alt="" width="48" height="48" class="w-11 h-11 md:w-12 md:h-12 rounded-full ring-1 ring-[#e6ccb2] bg-white">
+                    <span class="font-serif text-xl md:text-2xl font-bold text-[#7f5539]">{{ $siteName }}</span>
+                </a>
+                <nav class="hidden md:flex items-center gap-1 font-semibold text-[#7f5539]" aria-label="Navigazione principale">
+                    @foreach ($menu as $href => $voce)
+                        <a href="{{ $href }}" class="px-3 py-2 rounded-full hover:bg-[#f4e7db] transition">{{ $voce }}</a>
+                    @endforeach
+                </nav>
+            </div>
         </header>
-
-        <nav class="sticky top-0 z-20 bg-stone-50/95 backdrop-blur border-b border-stone-200" aria-label="Navigazione principale">
-            <div class="container mx-auto px-4 max-w-6xl">
-                <div class="flex gap-2 sm:gap-3 overflow-x-auto py-3 text-sm sm:text-base whitespace-nowrap">
-                    <a href="/#home-section" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Home</a>
-                    <a href="/#modelli" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Modelli</a>
-                    @if(count(json_decode(json_encode($page->get('prontaConsegna', [])), true) ?? []) > 0)
-                    <a href="/#pronte-per-te" class="px-4 py-2 rounded-full font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition">Pronte per te</a>
-                    @endif
-                    <a href="/#chi-sono" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Chi sono</a>
-                    <a href="/#spedizioni" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Spedizioni</a>
-                    <a href="/#contatti" class="px-4 py-2 rounded-full font-semibold text-[#7f5539] hover:bg-[#e6ccb2] transition">Contatti</a>
-                </div>
+        <nav class="md:hidden sticky top-0 z-20 bg-stone-50/95 backdrop-blur border-b border-stone-200" aria-label="Navigazione principale">
+            <div class="flex gap-1 overflow-x-auto px-2 py-2 text-sm font-semibold text-[#7f5539] whitespace-nowrap">
+                @foreach ($menu as $href => $voce)
+                    <a href="{{ $href }}" class="px-3 py-1.5 rounded-full hover:bg-[#f4e7db] transition">{{ $voce }}</a>
+                @endforeach
             </div>
         </nav>
 
-        <main class="container mx-auto px-4 py-12 max-w-6xl flex-grow">
+        <main class="container mx-auto px-4 py-8 md:py-12 max-w-6xl flex-grow">
             @yield('body')
         </main>
 
