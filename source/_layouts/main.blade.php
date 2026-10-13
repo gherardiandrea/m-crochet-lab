@@ -186,7 +186,8 @@
             }
             if (localStorage.getItem('cookie_consent') === 'accepted') { loadGA(); }
         </script>
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        {{-- Versione fissa con hash di integrità: un aggiornamento automatico del CDN potrebbe rompere gallery e banner cookie --}}
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.17.4/dist/cdn.min.js" integrity="sha384-5/joNqFnRyVWzXp99bHot6RHG+EksGp+USSgZwPar7T9SD9PKKER37n/8bXBAZGd" crossorigin="anonymous"></script>
     </head>
     <body class="bg-stone-50 text-stone-800 font-sans antialiased flex flex-col min-h-screen">
 
