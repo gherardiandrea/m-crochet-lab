@@ -16,19 +16,19 @@
     </ol>
 </nav>
 
-{{-- Inizializziamo lo stato della gallery con Alpine.js aggiungendo la logica per le frecce --}}
-<div x-data="{ 
-    open: false, 
-    currentImg: '{{ $page->copertina }}',
-    images: {{ json_encode($page->gallery) }},
-    next() {
-        let index = this.images.indexOf(this.currentImg);
-        this.currentImg = index === this.images.length - 1 ? this.images[0] : this.images[index + 1];
-    },
-    prev() {
-        let index = this.images.indexOf(this.currentImg);
-        this.currentImg = index === 0 ? this.images[this.images.length - 1] : this.images[index - 1];
-    }
+@php
+    $gallery = collect($page->get('gallery', []))->values()->all();
+    $startIndex = array_search($page->copertina, $gallery, true);
+@endphp
+
+{{-- Stato della gallery per indice: con l'URL una foto ripetuta bloccherebbe la navigazione --}}
+<div x-data="{
+    open: false,
+    current: {{ $startIndex === false ? 0 : $startIndex }},
+    images: {{ json_encode($gallery) }},
+    get currentImg() { return this.images[this.current]; },
+    next() { this.current = (this.current + 1) % this.images.length; },
+    prev() { this.current = (this.current - 1 + this.images.length) % this.images.length; }
 }" class="flex flex-col md:flex-row gap-12">
     
     <div class="md:w-1/2">
@@ -44,13 +44,13 @@
         </div>
 
         <div class="grid grid-cols-4 gap-4">
-            @foreach($page->gallery as $foto)
+            @foreach($gallery as $foto)
                 <img src="{{ $foto }}"
                      alt="{{ $page->nome }} — foto {{ $loop->iteration }}"
                      loading="lazy"
                      decoding="async"
-                     @click="currentImg = '{{ $foto }}'"
-                     :class="currentImg === '{{ $foto }}' ? 'ring-2 ring-[#7f5539] scale-95' : 'opacity-70 hover:opacity-100'"
+                     @click="current = {{ $loop->index }}"
+                     :class="current === {{ $loop->index }} ? 'ring-2 ring-[#7f5539] scale-95' : 'opacity-70 hover:opacity-100'"
                      class="cursor-pointer rounded-lg transition-all duration-200 aspect-square object-cover w-full">
             @endforeach
         </div>
@@ -133,8 +133,8 @@
              x-transition:leave-end="opacity-0"
              class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 md:p-10 select-none"
              @keydown.escape.window="open = false"
-             @keydown.right.window="next()"
-             @keydown.left.window="prev()"
+             @keydown.right.window="open && next()"
+             @keydown.left.window="open && prev()"
              style="display: none;">
             
             <button @click="open = false" class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white transition-colors z-50">

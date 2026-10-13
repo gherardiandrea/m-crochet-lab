@@ -13,7 +13,6 @@ gallery:
   - /assets/images/e-bag/e_bag_grigia_1.webp
   - /assets/images/e-bag/e_bag_grigia_2.webp
   - /assets/images/e-bag/e_bag_grigia_3.webp
-  - /assets/images/e-bag/e_bag_grigia_7.webp
   - /assets/images/e-bag/e_bag_grigia_8.webp
   - /assets/images/e-bag/e_bag_grigia_9.webp
   - /assets/images/e-bag/e_bag_grigia_10.webp
