@@ -15,7 +15,7 @@ description: Tempi, costi e modalità di consegna
     @endphp
 
     <section class="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm p-6 md:p-10">
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-6">Spedizioni</h2>
+        <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-6">Spedizioni</h1>
 
         <div class="space-y-6 text-stone-700 leading-relaxed">
             <p>
@@ -24,7 +24,7 @@ description: Tempi, costi e modalità di consegna
             </p>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Tempi di preparazione</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Tempi di preparazione</h2>
                 <p>
                     In media: {{ $shippingPreparation }} dalla conferma ordine.
                     Per richieste personalizzate: {{ strtolower($shippingCustomOrders) }}.
@@ -32,7 +32,7 @@ description: Tempi, costi e modalità di consegna
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Tempi di consegna</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Tempi di consegna</h2>
                 <p>
                     Dopo la spedizione, la consegna in Italia avviene indicativamente in {{ $shippingDelivery }},
                     in base alla zona e al corriere.
@@ -40,7 +40,7 @@ description: Tempi, costi e modalità di consegna
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Costi di spedizione</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Costi di spedizione</h2>
                 <p>
                     {{ $shippingCosts }}
                     Eventuali promozioni o spedizioni gratuite saranno comunicate nei canali ufficiali.
@@ -48,7 +48,7 @@ description: Tempi, costi e modalità di consegna
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-3">InPost — Locker e InPost Point</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-3">InPost — Locker e InPost Point</h2>
                 <p class="mb-4">
                     Un metodo comodo ed economico: ritiri il pacco quando vuoi, senza aspettare il corriere a casa.
                     Puoi scegliere tra migliaia di locker e punti di ritiro in tutta Italia.
@@ -70,14 +70,14 @@ description: Tempi, costi e modalità di consegna
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Tracciamento</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Tracciamento</h2>
                 <p>
                     {{ $shippingTracking }}.
                 </p>
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Supporto</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Supporto</h2>
                 <p>
                     Per aggiornamenti su tempi e disponibilità puoi scrivermi direttamente su Instagram.
                 </p>

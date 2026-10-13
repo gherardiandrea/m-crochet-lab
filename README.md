@@ -88,7 +88,7 @@ source/
 
 Tutto in `config.php`:
 
-- **Titolo e descrizione** del sito
+- **Nome e slogan** del sito (`siteName`, `tagline`): compaiono nell'header e nei `<title>`
 - **Dati spedizioni** (tempi, costi, tracking)
 - **Barra promozionale** — per attivarla/disattivarla:
 

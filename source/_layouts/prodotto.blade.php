@@ -82,14 +82,14 @@
 
         @if ($dimensioni)
             <div class="mb-8">
-                <h3 class="font-bold mb-3 text-stone-800">Dimensioni:</h3>
+                <h2 class="font-bold mb-3 text-stone-800">Dimensioni:</h2>
                 <p class="inline-flex items-center px-4 py-2 bg-stone-100 text-stone-700 rounded-lg text-sm font-medium">{{ $dimensioni }}</p>
             </div>
         @endif
 
         @if (is_array($dettagli) && count($dettagli) > 0)
             <div class="mb-8">
-                <h3 class="font-bold mb-3 text-stone-800">Dettagli:</h3>
+                <h2 class="font-bold mb-3 text-stone-800">Dettagli:</h2>
                 <ul class="space-y-2 text-stone-700 text-sm">
                     @foreach($dettagli as $dettaglio)
                         <li class="flex items-start gap-2">
@@ -101,7 +101,7 @@
             </div>
         @elseif (is_string($dettagli) && $dettagli)
             <div class="mb-8">
-                <h3 class="font-bold mb-3 text-stone-800">Dettagli:</h3>
+                <h2 class="font-bold mb-3 text-stone-800">Dettagli:</h2>
                 <p class="text-stone-700 text-sm">{{ $dettagli }}</p>
             </div>
         @endif

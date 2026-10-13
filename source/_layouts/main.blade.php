@@ -2,27 +2,34 @@
 <html lang="it">
     <head>
         @php
-            $siteName = 'M Crochet Lab';
-            $pageTitle = (string) ($page->title ?? $siteName);
+            $siteName = (string) $page->siteName;
+            $tagline = (string) $page->tagline;
+            $pageTitle = (string) $page->get('title', '');
             $productName = method_exists($page, 'get') ? (string) $page->get('nome', '') : '';
 
-            // Build a stronger title on product pages without requiring per-file frontmatter changes.
-            $seoTitle = $productName !== '' ? ($productName . ' | ' . $siteName) : $pageTitle;
+            // Il brand resta sempre nel <title>: "Prodotto | Brand", "Pagina | Brand", in home "Brand | slogan".
+            if ($productName !== '') {
+                $seoTitle = $productName . ' | ' . $siteName;
+            } elseif ($pageTitle !== '') {
+                $seoTitle = $pageTitle . ' | ' . $siteName;
+            } else {
+                $seoTitle = $siteName . ' | ' . $tagline;
+            }
 
             $rawDescription = method_exists($page, 'get')
                 ? (string) $page->get('seoDescription', $page->get('description', ''))
                 : (string) ($page->description ?? '');
 
             if ($rawDescription === '' && method_exists($page, 'getContent')) {
-                $rawDescription = trim((string) $page->getContent());
+                $rawDescription = trim(strip_tags((string) $page->getContent()));
             }
 
             if ($rawDescription === '' && $productName !== '') {
-                $rawDescription = 'Scopri ' . $productName . ', borsa crochet artigianale realizzata a mano da M Crochet Lab.';
+                $rawDescription = 'Scopri ' . $productName . ', borsa crochet artigianale realizzata a mano da ' . $siteName . '.';
             }
 
             if ($rawDescription === '') {
-                $rawDescription = 'Borse crochet fatte a mano con passione e cura artigianale.';
+                $rawDescription = $tagline;
             }
 
             $seoDescription = trim(preg_replace('/\s+/', ' ', $rawDescription));
@@ -199,8 +206,8 @@
         @endif
 
         <header class="bg-[#e6ccb2] py-10 text-center shadow-sm px-4">
-            <h1 class="text-4xl md:text-5xl font-serif text-[#7f5539] mb-2 font-bold">{{ $page->title }}</h1>
-            <p class="text-[#9c6644] text-lg">{{ $page->description }}</p>
+            <p class="text-4xl md:text-5xl font-serif text-[#7f5539] mb-2 font-bold"><a href="/">{{ $siteName }}</a></p>
+            <p class="text-[#9c6644] text-lg">{{ $tagline }}</p>
         </header>
 
         <nav class="sticky top-0 z-20 bg-stone-50/95 backdrop-blur border-b border-stone-200" aria-label="Navigazione principale">
@@ -325,7 +332,7 @@
             </div>
             <p class="text-xs opacity-70 mb-3">M Crochet Lab di Mara Benintendi &mdash; Paladina (BG) &mdash; Attività artigianale occasionale non professionale</p>
 
-            <p class="text-sm opacity-80">&copy; {{ date('Y') }} {{ $page->title }}. Fatte a mano con il ❤️.</p>
+            <p class="text-sm opacity-80">&copy; {{ date('Y') }} {{ $siteName }}. Fatte a mano con il ❤️.</p>
             <p class="text-xs opacity-50 mt-2">Sito sviluppato da <a href="https://andrea-gherardi.netlify.app/" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-80">Andrea Gherardi</a> &middot; <a href="https://github.com/gherardiandrea" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-80">GitHub</a></p>
         </footer>
     </body>

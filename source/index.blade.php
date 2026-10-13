@@ -13,7 +13,7 @@
         <div class="bg-white rounded-3xl shadow-sm p-5 sm:p-6 md:p-10 lg:p-12">
             <p class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#9c6644] bg-[#f4e7db] px-3 py-2 rounded-full mb-5">Home</p>
             <div class="max-w-3xl">
-                <h2 class="font-serif text-2xl sm:text-3xl md:text-5xl font-bold text-[#7f5539] mb-4 md:mb-5">Borse crochet fatte a mano, una per una</h2>
+                <h1 class="font-serif text-2xl sm:text-3xl md:text-5xl font-bold text-[#7f5539] mb-4 md:mb-5">Borse crochet fatte a mano, una per una</h1>
                 <p class="text-stone-600 leading-relaxed mb-6 md:mb-7">Ti do il benvenuto in M Crochet Lab: qui trovi creazioni artigianali con uno stile caldo, naturale e curato nei dettagli. Ogni modello è pensato per accompagnarti tutti i giorni con originalità.</p>
                 <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
                     <a href="/#modelli" class="w-full sm:w-auto text-center py-3 px-4 rounded-xl bg-[#7f5539] text-white font-semibold hover:bg-[#9c6644] transition shadow-md">Scopri i modelli</a>

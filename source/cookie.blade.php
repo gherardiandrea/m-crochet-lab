@@ -6,7 +6,7 @@ description: Informativa sull'uso dei cookie
 
 @section('body')
     <section class="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm p-6 md:p-10">
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-6">Cookie Policy</h2>
+        <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-6">Cookie Policy</h1>
 
         <div class="space-y-5 text-stone-700 leading-relaxed">
             <p>
@@ -15,7 +15,7 @@ description: Informativa sull'uso dei cookie
             </p>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Titolare del trattamento</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Titolare del trattamento</h2>
                 <p>
                     <strong>Mara Benintendi</strong> &mdash; Paladina (BG), Italia.<br>
                     Email: <a class="underline" href="mailto:marabenintendi00@gmail.com">marabenintendi00@gmail.com</a>
@@ -23,7 +23,7 @@ description: Informativa sull'uso dei cookie
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Cosa sono i cookie</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Cosa sono i cookie</h2>
                 <p>
                     I cookie sono piccoli file di testo che i siti possono salvare sul dispositivo dell'utente per migliorare la navigazione
                     e abilitare alcune funzionalità.
@@ -31,7 +31,7 @@ description: Informativa sull'uso dei cookie
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Cookie tecnici</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Cookie tecnici</h2>
                 <p>
                     Il sito utilizza una preferenza tecnica salvata nel <strong>localStorage</strong> del browser
                     (chiave <code class="bg-stone-100 px-1 rounded text-sm">cookie_consent</code>) per ricordare la tua scelta sul consenso ai cookie analitici.
@@ -45,7 +45,7 @@ description: Informativa sull'uso dei cookie
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Cookie analitici di terze parti (Google Analytics 4)</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Cookie analitici di terze parti (Google Analytics 4)</h2>
                 <p class="mb-3">
                     Previo tuo consenso esplicito, il sito utilizza <strong>Google Analytics 4</strong> (fornito da Google LLC)
                     per analizzare il traffico in forma anonima e aggregata. L'IP viene anonimizzato e non sono raccolti dati identificativi diretti.
@@ -85,7 +85,7 @@ description: Informativa sull'uso dei cookie
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Servizi di terze parti</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Servizi di terze parti</h2>
                 <p>
                     I link verso piattaforme esterne (ad esempio Instagram) possono portare a siti o app che applicano proprie politiche cookie e privacy,
                     indipendenti da questo sito.
@@ -93,7 +93,7 @@ description: Informativa sull'uso dei cookie
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Come gestire o revocare il consenso</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Come gestire o revocare il consenso</h2>
                 <p>Puoi modificare la tua scelta in qualsiasi momento:</p>
                 <ul class="list-disc list-inside mt-2 space-y-1">
                     <li>Cliccando sul link <strong>"Gestisci preferenze cookie"</strong> presente nel footer del sito (riapre il banner)</li>
@@ -106,7 +106,7 @@ description: Informativa sull'uso dei cookie
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Aggiornamenti</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Aggiornamenti</h2>
                 <p>
                     Questa policy può essere aggiornata in caso di modifiche tecniche o normative. Ultimo aggiornamento: <strong>26 aprile 2026</strong>.
                 </p>

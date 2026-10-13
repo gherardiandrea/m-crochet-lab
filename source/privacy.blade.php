@@ -6,7 +6,7 @@ description: Informativa sul trattamento dei dati personali
 
 @section('body')
     <section class="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm p-6 md:p-10">
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-6">Privacy Policy</h2>
+        <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-6">Privacy Policy</h1>
 
         <div class="space-y-5 text-stone-700 leading-relaxed">
             <p>
@@ -15,7 +15,7 @@ description: Informativa sul trattamento dei dati personali
             </p>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Titolare del trattamento</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Titolare del trattamento</h2>
                 <p>
                     <strong>Mara Benintendi</strong> &mdash; Paladina (BG), Italia.<br>
                     Email: <a class="underline" href="mailto:marabenintendi00@gmail.com">marabenintendi00@gmail.com</a><br>
@@ -27,7 +27,7 @@ description: Informativa sul trattamento dei dati personali
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Tipi di dati trattati</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Tipi di dati trattati</h2>
                 <p>
                     Durante la navigazione possono essere raccolti dati tecnici necessari al funzionamento del sito
                     (ad esempio indirizzo IP, dati di connessione, log di accesso) da parte del provider hosting Netlify.
@@ -45,7 +45,7 @@ description: Informativa sul trattamento dei dati personali
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Hosting</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Hosting</h2>
                 <p>
                     Il sito è ospitato su Netlify (Netlify, Inc.), che può trattare dati tecnici necessari all'erogazione del servizio
                     (ad esempio log e dati di traffico) in qualità di responsabile del trattamento.
@@ -53,7 +53,7 @@ description: Informativa sul trattamento dei dati personali
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Strumenti di analisi</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Strumenti di analisi</h2>
                 <p>
                     Previo consenso dell'utente, il sito utilizza <strong>Google Analytics 4</strong> (Google LLC) per analizzare
                     il traffico in forma aggregata e anonima, al fine di migliorare i contenuti e l'esperienza di navigazione.
@@ -71,7 +71,7 @@ description: Informativa sul trattamento dei dati personali
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Finalità e basi giuridiche</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Finalità e basi giuridiche</h2>
                 <ul class="list-disc list-inside space-y-1">
                     <li>Funzionamento e sicurezza del sito &mdash; legittimo interesse (art. 6.1.f GDPR)</li>
                     <li>Analisi statistica del traffico &mdash; consenso (art. 6.1.a GDPR)</li>
@@ -81,7 +81,7 @@ description: Informativa sul trattamento dei dati personali
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Conservazione dei dati</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Conservazione dei dati</h2>
                 <p>
                     I dati sono conservati per il tempo strettamente necessario alle finalità indicate:
                 </p>
@@ -93,7 +93,7 @@ description: Informativa sul trattamento dei dati personali
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Comunicazione e diffusione</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Comunicazione e diffusione</h2>
                 <p>
                     I dati personali non vengono diffusi né ceduti a terzi per finalità commerciali.
                     Possono essere comunicati esclusivamente a fornitori tecnici (hosting, servizi di pagamento PayPal, vettori per la spedizione)
@@ -102,7 +102,7 @@ description: Informativa sul trattamento dei dati personali
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Diritti dell'interessato</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Diritti dell'interessato</h2>
                 <p>
                     Hai diritto di chiedere accesso, rettifica, cancellazione, limitazione, opposizione e portabilità dei dati,
                     nei limiti previsti dal GDPR. Puoi revocare il consenso ai cookie in qualsiasi momento.
@@ -116,7 +116,7 @@ description: Informativa sul trattamento dei dati personali
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-stone-800 mb-2">Aggiornamenti</h3>
+                <h2 class="text-xl font-semibold text-stone-800 mb-2">Aggiornamenti</h2>
                 <p>
                     Questa informativa può essere aggiornata nel tempo. Ultimo aggiornamento: <strong>26 aprile 2026</strong>.
                 </p>

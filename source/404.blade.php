@@ -8,7 +8,7 @@ permalink: 404.html
 @section('body')
     <section class="max-w-2xl mx-auto bg-white rounded-3xl shadow-sm p-8 md:p-12 text-center">
         <p class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#9c6644] bg-[#f4e7db] px-3 py-2 rounded-full mb-5">Errore 404</p>
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-4">Questa pagina non esiste</h2>
+        <h1 class="font-serif text-3xl md:text-4xl font-bold text-[#7f5539] mb-4">Questa pagina non esiste</h1>
         <p class="text-stone-600 mb-8 leading-relaxed">Il link potrebbe essere cambiato o non piu disponibile. Torna alla home oppure scrivimi su Instagram e ti aiuto subito.</p>
 
         <div class="flex flex-col sm:flex-row gap-3 justify-center">

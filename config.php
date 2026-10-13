@@ -3,8 +3,9 @@
 return [
     'production' => false,
     'baseUrl' => '',
-    'title' => 'M Crochet Lab',
-    'description' => 'Borse all\'uncinetto fatte a mano con passione',
+    // Brand e slogan dell'header: le pagine usano title/description nel frontmatter per i propri testi
+    'siteName' => 'M Crochet Lab',
+    'tagline' => 'Borse all\'uncinetto fatte a mano con passione',
     'shipping' => [
         'preparationTime' => '5-8 giorni lavorativi',
         'deliveryTime' => '24-72 ore dopo la spedizione',
