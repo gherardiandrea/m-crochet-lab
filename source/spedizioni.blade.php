@@ -55,18 +55,13 @@ description: Tempi, costi e modalità di consegna
                     Puoi scegliere tra migliaia di locker e punti di ritiro in tutta Italia.
                 </p>
                 <div class="grid grid-cols-3 gap-3">
-                    <div class="rounded-xl border border-stone-200 bg-stone-50 p-4 text-center">
-                        <p class="text-xs font-semibold uppercase tracking-wide text-stone-500 mb-1">Small</p>
-                        <p class="text-2xl font-bold text-[#7f5539]">4,99€</p>
-                    </div>
-                    <div class="rounded-xl border border-stone-200 bg-stone-50 p-4 text-center">
-                        <p class="text-xs font-semibold uppercase tracking-wide text-stone-500 mb-1">Medium</p>
-                        <p class="text-2xl font-bold text-[#7f5539]">5,99€</p>
-                    </div>
-                    <div class="rounded-xl border border-stone-200 bg-stone-50 p-4 text-center">
-                        <p class="text-xs font-semibold uppercase tracking-wide text-stone-500 mb-1">Large</p>
-                        <p class="text-2xl font-bold text-[#7f5539]">6,99€</p>
-                    </div>
+                    @foreach ($shipping->get('inpost', []) as $formato => $prezzo)
+                        <div class="rounded-xl border border-stone-200 bg-stone-50 p-4 text-center">
+                            <p class="text-xs font-semibold uppercase tracking-wide text-stone-500 mb-1">{{ $formato }}</p>
+                            <p class="text-2xl font-bold text-[#7f5539]">{{ $prezzo }}</p>
+                        </div>
+                    @endforeach
+                </div>
                 </div>
             </div>
 

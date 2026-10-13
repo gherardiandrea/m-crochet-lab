@@ -12,7 +12,14 @@ return [
         'tracking' => 'Codice inviato appena parte il pacco',
         'customOrders' => 'Tempi comunicati prima della conferma',
         'costs' => 'I costi vengono indicati prima della conferma ordine in base al peso, al volume e alla destinazione.',
+        // Tariffe InPost per formato del pacco: la home mostra la più bassa ("da ...")
+        'inpost' => [
+            'Small' => '4,99€',
+            'Medium' => '5,99€',
+            'Large' => '6,99€',
+        ],
     ],
+    'email' => 'marabenintendi00@gmail.com',
     'prontaConsegna' => [
         [
             'nome' => 'MBag Medium',
