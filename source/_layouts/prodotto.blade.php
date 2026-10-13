@@ -79,7 +79,7 @@
             @endforeach
         </ul>
         @if (count($gallery) > 1)
-            <span class="md:hidden absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs font-semibold px-2.5 py-1 rounded-full pointer-events-none" aria-hidden="true">
+            <span class="md:hidden absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/70 text-white text-xs font-semibold px-2.5 py-1 rounded-full pointer-events-none" aria-hidden="true">
                 <span x-text="current + 1">1</span> / {{ count($gallery) }}
             </span>
         @endif
@@ -104,7 +104,7 @@
                            @if ($attuale) aria-current="page" @endif
                            class="rounded-xl px-2 py-2.5 text-center transition {{ $attuale ? 'border-2 border-[#7f5539] bg-[#f4e7db]' : 'border border-stone-300 hover:border-[#7f5539]' }}">
                             <span class="block font-semibold text-stone-800 leading-tight">{{ $borsa->misura ?: $borsa->nome }}</span>
-                            <span class="block text-sm text-stone-500">{{ $borsa->prezzo }}</span>
+                            <span class="block text-sm text-stone-600">{{ $borsa->prezzo }}</span>
                         </a>
                     @endforeach
                 </div>

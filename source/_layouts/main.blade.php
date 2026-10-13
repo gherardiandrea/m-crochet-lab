@@ -194,7 +194,7 @@
             $promoVisibile = $page->promoAttiva && ($promoScadenza === '' || date('Y-m-d') <= $promoScadenza);
         @endphp
         @if ($promoVisibile)
-        <div id="promo-bar" style="background:#7f5539;color:#e6ccb2;text-align:center;padding:10px 40px;font-size:0.82rem;font-weight:500;line-height:1.4;position:relative;">
+        <div id="promo-bar" style="background:#7f5539;color:#f4e7db;text-align:center;padding:10px 40px;font-size:0.82rem;font-weight:500;line-height:1.4;position:relative;">
             {!! $page->promoBarra !!}
             <a href="https://ig.me/m/m_crochet_lab" target="_blank" rel="noopener noreferrer" style="color:#fff;text-decoration:underline;margin-left:8px;white-space:nowrap;">Scrivimi su Instagram →</a>
         </div>
@@ -307,7 +307,7 @@
             </div>
         </div>
 
-        <footer class="bg-[#7f5539] text-[#e6ccb2] text-center mt-auto">
+        <footer class="bg-[#7f5539] text-[#f4e7db] text-center mt-auto">
             {{-- Contatti in cima al footer: l'invito a scrivere c'è in fondo a ogni pagina --}}
             <div id="contatti" class="max-w-2xl mx-auto px-4 pt-12 pb-10 scroll-mt-24">
                 <img src="/assets/images/logo.webp" srcset="{{ $page->srcset('/assets/images/logo.webp', 400) }}" sizes="56px" alt="{{ $siteName }}" loading="lazy" decoding="async" width="56" height="56" class="mx-auto mb-5 w-14 h-14 rounded-full object-cover">
@@ -316,7 +316,7 @@
                 <a href="https://ig.me/m/m_crochet_lab"
                    target="_blank"
                    rel="noopener noreferrer"
-                   class="mt-6 inline-flex items-center gap-2 py-3 px-6 rounded-xl bg-[#e6ccb2] text-[#7f5539] font-bold hover:bg-white transition-colors">
+                   class="mt-6 inline-flex items-center gap-2 py-3 px-6 rounded-xl bg-[#f4e7db] text-[#7f5539] font-bold hover:bg-white transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                         <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.269.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.003 1.44c2.147 0 2.4.008 3.248.047.78.036 1.203.166 1.485.276.374.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.847.047 1.097.047 3.247s-.008 2.399-.047 3.248c-.036.78-.166 1.203-.276 1.485-.145.374-.319.64-.599.92-.28.28-.546.453-.92.598-.281.11-.705.24-1.485.276-.847.039-1.097.047-3.247.047s-2.399-.008-3.248-.047c-.78-.036-1.203-.166-1.485-.276a2.47 2.47 0 0 1-.92-.598 2.47 2.47 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.847-.046-1.097-.046-3.247s.008-2.399.046-3.248c.035-.78.166-1.203.276-1.485.145-.374.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
                     </svg>
@@ -342,7 +342,7 @@
                             style="font: inherit; color: inherit; background: transparent; border: 0; padding: 0; margin: 0;"
                         >Gestisci preferenze cookie</button>
                     </div>
-                    <div class="mt-4 text-xs opacity-80 space-y-1">
+                    <div class="mt-4 text-xs space-y-1">
                         <p>M Crochet Lab di Mara Benintendi &mdash; Paladina (BG) &mdash; Attività artigianale occasionale non professionale</p>
                         <p>&copy; {{ date('Y') }} {{ $siteName }}. Fatte a mano con il ❤️. &middot; Sito sviluppato da <a href="https://andrea-gherardi.netlify.app/" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-80">Andrea Gherardi</a> &middot; <a href="https://github.com/gherardiandrea" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-80">GitHub</a></p>
                     </div>

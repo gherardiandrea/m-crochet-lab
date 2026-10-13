@@ -220,9 +220,9 @@
                 @if(!empty($borsa['colore']))
                 <p class="text-xs text-stone-600">{{ $borsa['colore'] }}</p>
                 @endif
-                <p class="text-sm text-[#9c6644]">
+                <p class="text-sm text-[#7f5539]">
                     @if(!empty($borsa['prezzoOriginale']))
-                    <span class="line-through text-stone-500 mr-1">{{ $borsa['prezzoOriginale'] }}</span>
+                    <span class="line-through text-stone-600 mr-1">{{ $borsa['prezzoOriginale'] }}</span>
                     @endif
                     {{ $borsa['prezzo'] }}
                 </p>
