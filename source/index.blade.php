@@ -175,18 +175,24 @@
                 $srcsets = array_map(fn ($foto) => $page->srcset($foto, 800), $gallery);
                 $descrizione = trim($borsa['nome'] . ' ' . ($borsa['colore'] ?? ''));
             @endphp
-            <li x-data="{ foto: 0, gallery: {{ json_encode($gallery) }}, srcsets: {{ json_encode($srcsets) }} }"
+            {{-- Foto sovrapposte con dissolvenza: il mouse mostra la seconda, clic e pallini le sfogliano tutte --}}
+            <li x-data="{ foto: 0, n: {{ count($gallery) }} }"
                 class="shrink-0 w-32 sm:w-44 lg:w-auto snap-start">
-                <div class="relative aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 cursor-pointer" @click="foto = (foto + 1) % gallery.length">
-                    <img src="{{ $gallery[0] ?? '' }}"
-                         srcset="{{ $srcsets[0] ?? '' }}"
-                         :src="gallery[foto]"
-                         :srcset="srcsets[foto]"
+                <div class="relative aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 cursor-pointer"
+                     @click="foto = (foto + 1) % n"
+                     @pointerenter="if ($event.pointerType === 'mouse' && n > 1 && foto === 0) foto = 1"
+                     @pointerleave="if ($event.pointerType === 'mouse') foto = 0">
+                    @foreach($gallery as $idx => $f)
+                    <img src="{{ $f }}"
+                         srcset="{{ $srcsets[$idx] }}"
                          sizes="(min-width: 1024px) 170px, (min-width: 640px) 176px, 128px"
-                         alt="{{ $descrizione }}"
+                         alt="{{ $idx === 0 ? $descrizione : '' }}"
                          loading="lazy"
                          decoding="async"
-                         class="w-full h-full object-cover">
+                         style="{{ $idx > 0 ? 'opacity: 0' : '' }}"
+                         :style="{ opacity: foto === {{ $idx }} ? 1 : 0 }"
+                         class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500">
+                    @endforeach
 
                     @if(!empty($borsa['novita']) || !empty($borsa['prezzoOriginale']))
                     <div class="absolute top-2 left-2 flex flex-col items-start gap-1">
