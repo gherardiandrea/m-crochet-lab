@@ -5,3 +5,20 @@
 [build.environment]
   PHP_VERSION = "8.2"
   NODE_VERSION = "20"
+
+# Il CSS è versionato da Mix (?id=hash) e i font non cambiano: cache di un anno.
+[[headers]]
+  for = "/assets/build/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Le foto possono essere sostituite mantenendo il nome: cache di un giorno.
+[[headers]]
+  for = "/assets/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
